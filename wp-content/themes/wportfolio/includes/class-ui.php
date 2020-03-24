@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.4
+ * @version 0.0.5
  */
 
 namespace WPortfolio;
@@ -127,12 +127,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		public function section_open( $section, $section_title, $post_id ) {
 			$args = [
 				'section_class' => 'section-' . $section,
+				'section_id'    => $section,
 			];
 
 			/**
