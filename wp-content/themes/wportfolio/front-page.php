@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -46,6 +46,7 @@ while ( have_posts() ) {
 		 * @param int $post_id id of the current page.
 		 *
 		 * @hooked UI::section_open - 10
+		 * @hooked UI::section_title - 20 @since 0.0.2
 		 *
 		 * @version 0.0.2
 		 * @since 0.0.1

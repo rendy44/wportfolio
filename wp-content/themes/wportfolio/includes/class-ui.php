@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -62,6 +62,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Global section.
 			add_action( 'wportfolio_before_section', [ $this, 'section_open' ], 10, 3 );
+			add_action( 'wportfolio_before_section', [ $this, 'section_title' ], 20, 3 );
 			add_action( 'wportfolio_after_section', [ $this, 'section_close' ], 50, 3 );
 
 			// Render footer.
@@ -72,6 +73,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 		/**
 		 * Callback for masthead open content.
+		 *
+		 * @since 0.0.1
 		 */
 		public function masthead_open() {
 			$args = [];
@@ -95,6 +98,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 		/**
 		 * Callback for masthead content.
+		 *
+		 * @since 0.0.1
 		 */
 		public function masthead_content() {
 			Template::render( 'front-page/masthead' );
@@ -102,6 +107,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 		/**
 		 * Callback for masthead close content.
+		 *
+		 * @since 0.0.1
 		 */
 		public function masthead_close() {
 			Template::render( 'global/masthead-close' );
@@ -137,6 +144,34 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		}
 
 		/**
+		 * Callback for section open content.
+		 *
+		 * @param string $section name of the current section.
+		 * @param string $section_title title of the current section.
+		 * @param int $post_id id of the current page.
+		 *
+		 * @since 0.0.2
+		 */
+		public function section_title( $section, $section_title, $post_id ) {
+			$args = [
+				'section_title' => $section_title,
+			];
+
+			/**
+			 * WPortfolio section title args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param string $section name of the current section.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$args = apply_filters( 'wportfolio_section_title_args', $args, $section, $post_id );
+
+			Template::render( 'global/section-title', $args );
+		}
+
+		/**
 		 * Callback for section close content.
 		 *
 		 * @param string $section name of the current section.
@@ -152,6 +187,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 		/**
 		 * Callback for footer open content.
+		 *
+		 * @since 0.0.1
 		 */
 		public function footer_open() {
 			$args = [
@@ -172,6 +209,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 		/**
 		 * Callback for footer content.
+		 *
+		 * @since 0.0.1
 		 */
 		public function footer_content() {
 			Template::render( 'global/footer-content' );
@@ -179,6 +218,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 		/**
 		 * Callback for footer close content.
+		 *
+		 * @since 0.0.1
 		 */
 		public function footer_close() {
 			Template::render( 'global/footer-close' );
