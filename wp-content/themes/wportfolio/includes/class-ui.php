@@ -61,8 +61,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wp_body_open', [ $this, 'masthead_close' ], 30 );
 
 			// Global section.
-			add_action( 'wportfolio_before_section', [ $this, 'section_open' ], 10, 2 );
-			add_action( 'wportfolio_after_section', [ $this, 'section_close' ], 50, 2 );
+			add_action( 'wportfolio_before_section', [ $this, 'section_open' ], 10, 3 );
+			add_action( 'wportfolio_after_section', [ $this, 'section_close' ], 50, 3 );
 
 			// Render footer.
 			add_action( 'wportfolio_footer', [ $this, 'footer_open' ], 10 );
@@ -111,9 +111,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section open content.
 		 *
 		 * @param string $section name of the current section.
+		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
-		public function section_open( $section, $post_id ) {
+		public function section_open( $section, $section_title, $post_id ) {
 			$args = [
 				'section_class' => 'section-' . $section,
 			];
@@ -136,9 +140,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section close content.
 		 *
 		 * @param string $section name of the current section.
+		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
-		public function section_close( $section, $post_id ) {
+		public function section_close( $section, $section_title, $post_id ) {
 			Template::render( 'global/section-close' );
 		}
 
