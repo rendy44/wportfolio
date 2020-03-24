@@ -83,7 +83,8 @@ section.masthead {
   }
 
   &.masthead-front-page {
-    height: 400px;
+    height: 100vh;
+    min-height: 400px;
   }
 
   > * {
