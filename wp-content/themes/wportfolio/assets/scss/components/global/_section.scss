@@ -1,0 +1,8 @@
+section.section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  @include breakpoint($size_tablet) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}

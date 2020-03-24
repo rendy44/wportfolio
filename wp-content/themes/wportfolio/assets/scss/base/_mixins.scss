@@ -1,0 +1,200 @@
+// Useful sass mixins
+
+// Create linear gradient
+@mixin linearGradient($top, $bottom) {
+  background: $top;
+  background: -moz-linear-gradient(45deg, $top 0%, $top 0%, $bottom 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, $top), color-stop(0%, $top), color-stop(100%, $bottom));
+  background: -webkit-linear-gradient(45deg, $top 0%, $top 0%, $bottom 100%);
+  background: linear-gradient(45deg, $top 0%, $top 0%, $bottom 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6b75ff", endColorstr="#59b7ff", GradientType=1);
+}
+
+@mixin custom_gradient($color1, $color2, $color3) {
+  background: -moz-linear-gradient(45deg, $color1 15%, $color2 95%, $color3 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(15%, $color1), color-stop(95%, $color2), color-stop(100%, $color3));
+  background: -webkit-linear-gradient(45deg, $color1 15%, $color2 95%, $color3 100%);
+  background: linear-gradient(45deg, $color1 15%, $color2 95%, $color3 100%);
+}
+
+// Retina image
+@mixin image-2x($image, $width, $height) {
+
+  @media (min--moz-device-pixel-ratio: 1.3),
+  (-o-min-device-pixel-ratio: 2.6/2),
+  (-webkit-min-device-pixel-ratio: 1.3),
+  (min-device-pixel-ratio: 1.3),
+  (min-resolution: 1.3dppx) {
+    background-image: url($image);
+    background-size: $width + px $height + px;
+    background-size: $width / 10 + rem $height / 10 + rem;
+  }
+}
+
+// Breakpoint media query
+@mixin breakpoint($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+// Rounded corner
+@mixin border-radius($size) {
+  -webkit-border-radius: $size;
+  -moz-border-radius: $size;
+  border-radius: $size;
+}
+
+@mixin border-radius-left($size) {
+  border-top-left-radius: $size;
+  -webkit-border-top-left-radius: $size;
+  -moz-border-radius-topleft: $size;
+  border-bottom-left-radius: $size;
+  -webkit-border-bottom-left-radius: $size;
+  -moz-border-radius-bottomleft: $size;
+}
+
+@mixin border-radius-right($size) {
+  border-top-right-radius: $size;
+  -webkit-border-top-right-radius: $size;
+  -moz-border-radius-topright: $size;
+  border-bottom-right-radius: $size;
+  -webkit-border-bottom-right-radius: $size;
+  -moz-border-radius-bottomright: $size;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin box-shadow($top : 0, $left : .2rem, $blur : .4rem, $color: rgba($black,.15), $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color !important;
+    -moz-box-shadow: inset $top $left $blur $color !important;
+    box-shadow: inset $top $left $blur $color !important;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color !important;
+    -moz-box-shadow: $top $left $blur $color !important;
+    box-shadow: $top $left $blur $color !important;
+  }
+}
+
+@mixin custom-box-shadow($args...) {
+  -webkit-box-shadow: $args !important;
+  -moz-box-shadow: $args !important;
+  box-shadow: $args !important;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin blur($size) {
+  filter: blur($size);
+  -webkit-filter: blur($size);
+  -ms-filter: blur($size);
+}
+
+@mixin grayscale($size) {
+  filter: grayscale($size);
+  -webkit-filter: grayscale($size);
+  -ms-filter: grayscale($size);
+}
+
+@mixin whiteContrast() {
+  filter: brightness(0) invert(1);
+  -webkit-filter: brightness(0) invert(1);
+}
+
+@mixin zoom($size:1.2) {
+  transform: scale($size);
+  -moz-transform: scale($size);
+  -o-transform: scale($size);
+  -webkit-transform: scale($size);
+}
+
+@mixin rotate($val) {
+  transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  -webkit-transform: rotate($val);
+}
+
+@mixin skew($val) {
+  transform: skew($val);
+  -moz-transform: skew($val);
+  -ms-transform: skew($val);
+  -o-transform: skew($val);
+  -webkit-transform: skew($val);
+}
+
+@mixin transform($args) {
+  transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  -webkit-transform: $args;
+}
+
+@mixin ellipse_text($rows) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $rows; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+@mixin user_select($mode: none) {
+  -webkit-user-select: $mode;
+  -moz-user-select: $mode;
+  -ms-user-select: $mode;
+  user-select: $mode;
+}
+
+@mixin display_accessibility($active: true) {
+  @if ($active) {
+    display: inline;
+    background-color: rgba($black, .1);
+  } @else {
+    display: inherit;
+    background-color: inherit;
+  }
+}
+
+@mixin text_shadow($color) {
+  text-shadow: 1px 1px $color;
+}
+
+@mixin custom_text_shadow($args...) {
+  text-shadow: $args;
+}
+
+@mixin filter($args) {
+  filter: $args;
+  -ms-filter: $args;
+  -webkit-filter: $args;
+}
+
+@mixin animate($name, $duration) {
+  animation-name: $name;
+  -moz-animation-name: $name;
+  -webkit-animation-name: $name;
+  -o-animation-name: $name;
+  animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+  -o-animation-duration: $duration;
+}
+
+@mixin animation($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}

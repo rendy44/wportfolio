@@ -1,0 +1,12 @@
+.button {
+  background-color: $base_color;
+  color: $white_color;
+  padding: .75rem 2rem;
+  border: 1px solid rgba($black_color, .1);
+  display: inline-block;
+  @include border-radius(4px);
+
+  &.button-success {
+    background-color: $success_color !important;
+  }
+}

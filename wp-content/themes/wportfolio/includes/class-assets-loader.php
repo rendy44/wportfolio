@@ -1,0 +1,92 @@
+<?php
+/**
+ * Assets Loader Class.
+ * This class contains useful functions to assets.
+ *
+ * @author WPerfekt
+ * @package WPortfolio
+ * @version 0.0.1
+ */
+
+namespace WPortfolio;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
+
+	/**
+	 * Class Assets_Loader.
+	 *
+	 * @package WPortfolio
+	 */
+	class Assets_Loader {
+
+		/**
+		 * Front-end css variable.
+		 *
+		 * @var array
+		 */
+		private static $front_css;
+
+		/**
+		 * Front-end js variable.
+		 *
+		 * @var array
+		 */
+		private static $front_js;
+
+		/**
+		 * Add asset for front-end.
+		 *
+		 * @param string $name name of the asset.
+		 * @param array $args array of the new asset.
+		 * @param string $type type of the asset, css|js
+		 */
+		public static function add_front_asset( $name, $args, $type = 'css' ) {
+
+			// Prepare default args.
+			$default_args = [
+				'src'       => '',
+				'deps'      => [],
+				'ver'       => '0.0.1',
+				'in_footer' => false,
+			];
+
+			// Merge args.
+			$args = wp_parse_args( $args, $default_args );
+
+			// Merge the assets, whether it is css or js.
+			if ( 'css' === $type ) {
+				self::$front_css[ $name ] = $args;
+				$args['in_footer']        = 'all';
+			} else {
+				self::$front_js[ $name ] = $args;
+			}
+		}
+
+		/**
+		 * Get front-end's assets.
+		 *
+		 * @param string $type type of the asset, css|js
+		 */
+		public static function load_front_assets( $type = 'css' ) {
+			$assets          = self::$front_js;
+			$loader_function = 'wp_enqueue_script';
+
+			if ( 'css' === $type ) {
+				$assets          = self::$front_css;
+				$loader_function = 'wp_enqueue_style';
+			}
+
+
+			// Loop assets.
+			if ( ! empty( $assets ) ) {
+				foreach ( $assets as $asset_name => $asset_arg ) {
+					$loader_function( $asset_name, $asset_arg['src'], $asset_arg['deps'], $asset_arg['ver'], $asset_arg['in_footer'] );
+				}
+			}
+		}
+	}
+}

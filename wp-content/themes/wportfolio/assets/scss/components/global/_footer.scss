@@ -1,0 +1,18 @@
+footer.footer {
+  padding: 1.5rem 0;
+  background-color: darken($white_color, 5%);
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  &.footer-dark {
+    background-color: lighten($black_color, 20%);
+
+    p {
+      color: $white_color;
+    }
+  }
+}
