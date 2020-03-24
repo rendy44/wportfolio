@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -64,6 +64,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wportfolio_before_section', [ $this, 'section_open' ], 10, 3 );
 			add_action( 'wportfolio_before_section', [ $this, 'section_title' ], 20, 3 );
 			add_action( 'wportfolio_after_section', [ $this, 'section_close' ], 50, 3 );
+
+			// Section about.
+			add_action( 'wportfolio_section_about', [ $this, 'about_content' ], 10, 2 );
 
 			// Render footer.
 			add_action( 'wportfolio_footer', [ $this, 'footer_open' ], 10 );
@@ -183,6 +186,18 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function section_close( $section, $section_title, $post_id ) {
 			Template::render( 'global/section-close' );
+		}
+
+		/**
+		 * Callback for section about content.
+		 *
+		 * @param string $section_title title of the current section. @since 0.0.2
+		 * @param int $post_id id of the current page.
+		 *
+		 * @since 0.0.3
+		 */
+		public function about_content( $section_title, $post_id ) {
+			Template::render( 'front-page/section-about' );
 		}
 
 		/**
