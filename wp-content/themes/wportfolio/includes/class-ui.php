@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
@@ -67,6 +67,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Section about.
 			add_action( 'wportfolio_section_about', [ $this, 'about_content' ], 10, 2 );
+
+			// Section focus.
+			add_action( 'wportfolio_section_focus', [ $this, 'focus_content' ], 10, 2 );
 
 			// Render footer.
 			add_action( 'wportfolio_footer', [ $this, 'footer_open' ], 10 );
@@ -198,6 +201,18 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function about_content( $section_title, $post_id ) {
 			Template::render( 'front-page/section-about' );
+		}
+
+		/**
+		 * Callback for section focus content.
+		 *
+		 * @param string $section_title title of the current section. @since 0.0.2
+		 * @param int $post_id id of the current page.
+		 *
+		 * @since 0.0.4
+		 */
+		public function focus_content( $section_title, $post_id ) {
+			Template::render( 'front-page/section-focus' );
 		}
 
 		/**

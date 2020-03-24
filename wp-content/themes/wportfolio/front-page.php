@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Include header.
+ *
+ * @since 0.0.1
  */
 get_header();
 
@@ -23,7 +25,10 @@ while ( have_posts() ) {
 	$post_id = get_the_ID();
 
 	// Prepare used sections.
-	$sections = [ 'about' => __( 'About Me', 'wportfolio' ) ];
+	$sections = [
+		'about' => __( 'About Me', 'wportfolio' ),
+		'focus' => __( 'My Focus Point', 'wportfolio' ),
+	];
 
 	/**
 	 * WPortfolio front page section filter hook.
@@ -82,5 +87,7 @@ while ( have_posts() ) {
 
 /**
  * Include footer.
+ *
+ * @since 0.0.1
  */
 get_footer();
