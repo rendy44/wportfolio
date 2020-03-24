@@ -5,8 +5,15 @@
   border: 1px solid rgba($black_color, .1);
   display: inline-block;
   @include border-radius(4px);
+  @include text_shadow();
+  font-weight: 500;
 
   &.button-success {
     background-color: $success_color !important;
+  }
+
+  &.button-text {
+    border-color: transparent;
+    background-color: transparent;
   }
 }

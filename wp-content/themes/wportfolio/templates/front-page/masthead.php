@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,4 +13,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <h1>Hi, I am <span>Rendy</span></h1>
 <h2>I am a <span>WordPress</span> Developer</h2>
-<a href="#about" class="button button-success button-cta">About Me</a>
+<a href="#contact" class="button button-success button-cta">Contact</a>
+<a href="#about" class="button button-text button-cta">Who I am</a>

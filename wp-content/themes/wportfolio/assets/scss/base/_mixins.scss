@@ -168,7 +168,10 @@
   }
 }
 
-@mixin text_shadow($color) {
+@mixin text_shadow($color: false) {
+  @if (false :$color) {
+    $color: rgba($black_color, .4);
+  }
   text-shadow: 1px 1px $color;
 }
 
