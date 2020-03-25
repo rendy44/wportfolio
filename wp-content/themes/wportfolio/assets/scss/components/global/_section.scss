@@ -6,12 +6,13 @@ section.section {
     text-align: center;
     margin: 0 0 1.5rem;
     font-weight: 400;
+    color: $base_color;
   }
 
   p {
     margin: 0;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   @include breakpoint($size_tablet) {

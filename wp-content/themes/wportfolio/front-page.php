@@ -26,7 +26,7 @@ while ( have_posts() ) {
 
 	// Prepare used sections.
 	$sections = [
-		'about'   => __( 'Hi!', 'wportfolio' ),
+		'about'   => __( 'Hi', 'wportfolio' ),
 		'focus'   => __( 'Specialisation', 'wportfolio' ),
 		'contact' => __( 'Get in Touch', 'wportfolio' ),
 	];

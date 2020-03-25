@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $masthead_class = isset( $masthead_class ) && $masthead_class ? $masthead_class : '';
-$masthead_size  = isset( $masthead_size ) && $masthead_size ? $masthead_size : '2-3';
+$masthead_size  = isset( $masthead_size ) && $masthead_size ? $masthead_size : 'col-md-2-3';
 ?>
 
 <section class="masthead <?php echo esc_attr( $masthead_class ); ?>">
@@ -20,4 +20,4 @@ $masthead_size  = isset( $masthead_size ) && $masthead_size ? $masthead_size : '
     <div class="right-masthead"></div>
     <div class="frow-container">
         <div class="frow">
-            <div class="col-sm-<?php echo esc_attr( $masthead_size ); ?>">
+            <div class="<?php echo esc_attr( $masthead_size ); ?>">
