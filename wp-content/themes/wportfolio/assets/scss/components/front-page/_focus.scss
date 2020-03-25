@@ -1,0 +1,50 @@
+section.section.section-focus {
+  .focus-items-wrapper {
+    > .frow {
+      > div {
+        .focus-item {
+          margin-bottom: 1rem;
+
+          .icon {
+            margin-bottom: 1rem;
+          }
+
+          > h3 {
+            text-align: center;
+            margin: 0 0 1rem;
+            font-weight: 400;
+          }
+
+          > p {
+            font-size: 16px;
+            margin: 0;
+            text-align: justify;
+          }
+        }
+
+        &:last-child {
+          .focus-item {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @include breakpoint($size_tablet) {
+    .focus-items-wrapper {
+      > .frow {
+        > div {
+          .focus-item {
+            padding: 0 7.5px;
+
+            > p {
+              font-size: 14px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}

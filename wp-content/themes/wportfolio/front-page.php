@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,7 +27,7 @@ while ( have_posts() ) {
 	// Prepare used sections.
 	$sections = [
 		'about' => __( 'About Me', 'wportfolio' ),
-		'focus' => __( 'My Focus Point', 'wportfolio' ),
+		'focus' => __( 'Specialisation', 'wportfolio' ),
 	];
 
 	/**

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.5
+ * @version 0.0.6
  */
 
 namespace WPortfolio;
@@ -210,10 +210,54 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.4
 		 */
 		public function focus_content( $section_title, $post_id ) {
-			Template::render( 'front-page/section-focus' );
+			$focus_items = [
+				[
+					'id'    => 'wpcs',
+					'title' => __( 'WPCS Compliant', 'wportfolio' ),
+					'desc'  => __( 'One of the biggest advantage of passing WPCS compliant is that we can build our theme nor plugin beautifully.', 'wportfolio' ),
+				],
+				[
+					'id'    => 'config',
+					'title' => __( 'Customizable', 'wportfolio' ),
+					'desc'  => __( 'Another great advantage of using WordPress is its hooks, which make development way more easier and simpler.', 'wportfolio' ),
+				],
+				[
+					'id'    => 'secure',
+					'title' => __( 'Secure', 'wportfolio' ),
+					'desc'  => __( 'No matter how beautiful and advance the website is, if it is not secure, it is worth nothing.', 'wportfolio' ),
+				],
+			];
+
+			/**
+			 * WPortfolio focus item filter hooks.
+			 *
+			 * @param array $focus_items default focus items.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$focus_items = apply_filters( 'wportfolio_focus_items', $focus_items, $post_id );
+
+			// Prepare the args.
+			$args = [
+				'focus_items' => $focus_items,
+			];
+
+			/**
+			 * WPortfolio section focus content args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$args = apply_filters( 'wportfolio_section_focus_content_args', $args, $post_id );
+
+			Template::render( 'front-page/section-focus', $args );
 		}
 
 		/**

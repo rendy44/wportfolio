@@ -1,5 +1,6 @@
 // Import libraries.
-@import "../frow/frow";
+@import "../lib/frow/frow";
+@import "../lib/remixicon/remixicon.css";
 
 // Import base style.
 @import "base/variable";
@@ -12,3 +13,6 @@
 @import "components/global/masthead";
 @import "components/global/section";
 @import "components/global/footer";
+
+// Import front page component.
+@import "components/front-page/focus";
