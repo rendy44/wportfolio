@@ -7,8 +7,22 @@ section.section.section-blog {
 
           .thumbnail {
             height: 200px;
-            background-color: darken($white_color, 10%);
+            //background-color: darken($white_color, 10%);
             margin-bottom: 1rem;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+
+            &:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background-color: rgba($black_color, .2);
+            }
           }
 
           > a {
