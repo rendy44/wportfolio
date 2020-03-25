@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.8
+ * @version 0.0.9
  */
 
 namespace WPortfolio;
@@ -244,7 +244,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 				[
 					'id'    => 'wpcs',
 					'title' => __( 'WPCS Compliant', 'wportfolio' ),
-					'desc'  => __( 'By following WPCS Compliant we can expect most of what WordPress offers.', 'wportfolio' ),
+					'desc'  => __( 'By following WPCS we can expect most of what WordPress offers.', 'wportfolio' ),
 				],
 				[
 					'id'    => 'config',
