@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.0
+ * @version 0.1.1
  */
 
 namespace WPortfolio;
@@ -207,7 +207,21 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @since 0.0.3
 		 */
 		public function about_content( $section_title, $post_id ) {
-			Template::render( 'front-page/section-about' );
+			$args = [
+				'about_content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionate to write clean and efficient code but highly customizable.', 'wportfolio' ),
+			];
+
+			/**
+			 * WPortfolio section about content args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$args = apply_filters( 'wportfolio_section_about_content_args', $args, $post_id );
+
+			Template::render( 'front-page/section-about', $args );
 		}
 
 		/**
