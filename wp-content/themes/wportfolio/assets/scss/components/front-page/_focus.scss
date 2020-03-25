@@ -1,3 +1,4 @@
+$icon_size: 80px;
 section.section.section-focus {
   .focus-items-wrapper {
     > .frow {
@@ -6,10 +7,46 @@ section.section.section-focus {
           margin-bottom: 1rem;
 
           .icon {
-            margin-bottom: 1rem;
+            margin: 1rem auto 2rem;
+            width: $icon_size;
+            height: $icon_size;
+            background-color: $base_color;
+            position: relative;
+
+            > * {
+              position: relative;
+              z-index: 2;
+            }
+
+            &:after {
+              position: absolute;
+              left: 0;
+              top: 0;
+              z-index: 1;
+              display: block;
+              content: '';
+              width: $icon_size;
+              height: $icon_size;
+              background-color: $base_color;
+              @include rotate(45deg);
+            }
+
+            span.icon-fill {
+              color: $white_color;
+              font-size: 2.5rem;
+              display: flex;
+              height: 100%;
+              justify-content: center;
+              align-items: center;
+
+              &:after {
+                @include remixicon_font;
+              }
+            }
           }
 
           > h3 {
+            display: block;
             text-align: center;
             margin: 0 0 1rem;
             font-weight: 400;
@@ -19,6 +56,24 @@ section.section.section-focus {
             font-size: 16px;
             margin: 0;
             text-align: justify;
+          }
+
+          &.item-wpcs {
+            .icon span.icon-fill:after {
+              content: "\ee54";
+            }
+          }
+
+          &.item-config {
+            .icon span.icon-fill:after {
+              content: "\f1a6";
+            }
+          }
+
+          &.item-secure {
+            .icon span.icon-fill:after {
+              content: "\ee67";
+            }
           }
         }
 
@@ -39,7 +94,7 @@ section.section.section-focus {
             padding: 0 7.5px;
 
             > p {
-              font-size: 14px;
+              //font-size: 14px;
               text-align: center;
             }
           }

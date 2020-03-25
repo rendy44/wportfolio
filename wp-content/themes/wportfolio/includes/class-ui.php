@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.7
+ * @version 0.0.8
  */
 
 namespace WPortfolio;
@@ -244,17 +244,17 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 				[
 					'id'    => 'wpcs',
 					'title' => __( 'WPCS Compliant', 'wportfolio' ),
-					'desc'  => __( 'One of the biggest advantage of passing WPCS compliant is that we can build our theme nor plugin beautifully.', 'wportfolio' ),
+					'desc'  => __( 'By following WPCS Compliant we can expect most of what WordPress offers.', 'wportfolio' ),
 				],
 				[
 					'id'    => 'config',
 					'title' => __( 'Customizable', 'wportfolio' ),
-					'desc'  => __( 'Another great advantage of using WordPress is its hooks, which make development way more easier and simpler.', 'wportfolio' ),
+					'desc'  => __( 'Thanks to WordPress hooks, they make development way more easier and simpler.', 'wportfolio' ),
 				],
 				[
 					'id'    => 'secure',
 					'title' => __( 'Secure', 'wportfolio' ),
-					'desc'  => __( 'No matter how beautiful and advance the website is, if it is not secure, it is worth nothing.', 'wportfolio' ),
+					'desc'  => __( 'Beautiful and cutting-edge website is worth nothing if it is not secure.', 'wportfolio' ),
 				],
 			];
 

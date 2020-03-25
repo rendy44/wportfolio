@@ -201,3 +201,10 @@
     @content;
   }
 }
+
+@mixin remixicon_font() {
+  font-family: 'remixicon' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
