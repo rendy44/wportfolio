@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.5
+ * @version 0.1.6
  */
 
 namespace WPortfolio;
@@ -62,6 +62,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wp_body_open', [ $this, 'masthead_open' ], 10 );
 			add_action( 'wp_body_open', [ $this, 'masthead_content' ], 20 );
 			add_action( 'wp_body_open', [ $this, 'masthead_close' ], 30 );
+			add_filter( 'wportfolio_masthead_title', [ $this, 'masthead_title' ], 10, 1 );
 		}
 
 		/**
@@ -74,7 +75,6 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Masthead content.
 			add_filter( 'wportfolio_masthead_open_args', [ $this, 'masthead_args' ], 10, 1 );
 			add_filter( 'wportfolio_masthead_template', [ $this, 'masthead_template' ], 10, 1 );
-			add_filter( 'wportfolio_masthead_title', [ $this, 'masthead_title' ], 10, 1 );
 			add_filter( 'wportfolio_masthead_content_args', [ $this, 'masthead_content_args' ], 10, 1 );
 
 			// Global section.
@@ -182,6 +182,30 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		}
 
 		/**
+		 * Callback for modifying masthead title.
+		 *
+		 * @param string $title default title.
+		 *
+		 * @return string
+		 *
+		 * @version 0.0.2
+		 * @since 0.1.5
+		 */
+		public function masthead_title( $title ) {
+
+			// Change masthead title depends on the current page.
+			if ( is_front_page() ) {
+				$title = __( 'Hi, I am Rendy,', 'wportfolio' );
+			} elseif ( is_home() ) {
+				$title = _x( 'Recent Posts', 'Masthead title', 'wportfolio' );
+			} elseif ( is_archive() ) {
+				$title = get_the_archive_title();
+			}
+
+			return $title;
+		}
+
+		/**
 		 * Callback for modifying masthead args.
 		 *
 		 * @param array $args default args.
@@ -217,25 +241,6 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			}
 
 			return $template;
-		}
-
-		/**
-		 * Callback for modifying masthead title.
-		 *
-		 * @param string $title default title.
-		 *
-		 * @return string
-		 *
-		 * @since 0.1.5
-		 */
-		public function masthead_title( $title ) {
-
-			// Change title in front page.
-			if ( is_front_page() ) {
-				$title = __( 'Hi, I am Rendy,', 'wportfolio' );
-			}
-
-			return $title;
 		}
 
 		/**
