@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.9
+ * @version 0.1.0
  */
 
 namespace WPortfolio;
@@ -71,6 +71,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Section focus.
 			add_filter( 'wportfolio_section_open_args', [ $this, 'section_focus_size' ], 10, 3 );
 			add_action( 'wportfolio_section_focus', [ $this, 'focus_content' ], 10, 2 );
+
+			// Section contact.
+			add_action( 'wportfolio_section_contact', [ $this, 'contact_content' ], 10, 2 );
 
 			// Render footer.
 			add_action( 'wportfolio_footer', [ $this, 'footer_open' ], 10 );
@@ -259,7 +262,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			];
 
 			/**
-			 * WPortfolio focus item filter hooks.
+			 * WPortfolio focus items filter hooks.
 			 *
 			 * @param array $focus_items default focus items.
 			 * @param int $post_id id of the current page.
@@ -284,6 +287,63 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			$args = apply_filters( 'wportfolio_section_focus_content_args', $args, $post_id );
 
 			Template::render( 'front-page/section-focus', $args );
+		}
+
+		/**
+		 * Callback for section contact content.
+		 *
+		 * @param string $section_title title of the current section. @since 0.0.2
+		 * @param int $post_id id of the current page.
+		 *
+		 * @since 0.1.0
+		 */
+		public function contact_content( $section_title, $post_id ) {
+			$contact_items = [
+				[
+					'id'  => 'email',
+					'url' => 'mailto:rendy.de.p@gmail.com',
+				],
+				[
+					'id'  => 'linkedin',
+					'url' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
+				],
+				[
+					'id'  => 'github',
+					'url' => 'https://github.com/rendy44',
+				],
+				[
+					'id'  => 'whatsapp',
+					'url' => 'http://wa.me/6282219186349',
+				],
+			];
+
+			/**
+			 * WPortfolio contact items filter hooks.
+			 *
+			 * @param array $contact_items default contact items.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$contact_items = apply_filters( 'wportfolio_contact_items', $contact_items, $post_id );
+
+			// Prepare the args.
+			$args = [
+				'contact_content' => __( 'If you have projects that need to be get started, you may need some helps or just saying hey, let\'s get in touch.', 'wportfolio' ),
+				'contact_items'   => $contact_items,
+			];
+
+			/**
+			 * WPortfolio section contact content args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$args = apply_filters( 'wportfolio_section_contact_content_args', $args, $post_id );
+
+			Template::render( 'front-page/section-contact', $args );
 		}
 
 		/**

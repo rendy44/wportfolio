@@ -1,0 +1,49 @@
+$bullet_size: 50px;
+section.section.section-contact {
+  ul.contact-items-wrapper {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+
+    li.contact-item {
+      margin-right: 15px;
+      display: inline-block;
+
+      > a {
+        display: flex;
+        width: $bullet_size;
+        height: $bullet_size;
+        background-color: $base_color;
+        color: $white_color;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        @include border-radius(50%);
+
+        &:before {
+          @include remixicon_font;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.item-email > a:before {
+        content: "\ee90";
+      }
+
+      &.item-linkedin > a:before {
+        content: "\ee4e";
+      }
+
+      &.item-github > a:before {
+        content: "\ed85";
+      }
+
+      &.item-whatsapp > a:before {
+        content: "\f1e9";
+      }
+    }
+  }
+}
