@@ -1,5 +1,7 @@
 $icon_size: 80px;
 section.section.section-focus {
+  background-color: darken($white_color, 3%);
+
   .focus-items-wrapper {
     > .frow {
       > div {
@@ -7,32 +9,32 @@ section.section.section-focus {
           margin-bottom: 1rem;
 
           .icon {
-            margin: 1rem auto 2rem;
-            width: $icon_size;
-            height: $icon_size;
-            background-color: $base_color;
-            position: relative;
+            margin: 0 auto 1rem;
+            //width: $icon_size;
+            //height: $icon_size;
+            //background-color: $base_color;
+            //position: relative;
 
-            > * {
-              position: relative;
-              z-index: 2;
-            }
+            //> * {
+            //  position: relative;
+            //  z-index: 2;
+            //}
 
-            &:after {
-              position: absolute;
-              left: 0;
-              top: 0;
-              z-index: 1;
-              display: block;
-              content: '';
-              width: $icon_size;
-              height: $icon_size;
-              background-color: $base_color;
-              @include rotate(45deg);
-            }
+            //&:after {
+            //  position: absolute;
+            //  left: 0;
+            //  top: 0;
+            //  z-index: 1;
+            //  display: block;
+            //  content: '';
+            //  width: $icon_size;
+            //  height: $icon_size;
+            //  //background-color: $base_color;
+            //  @include rotate(45deg);
+            //}
 
             span.icon-fill {
-              color: $white_color;
+              color: $base_color;
               font-size: 2.5rem;
               display: flex;
               height: 100%;
