@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.1
+ * @version 0.1.2
  */
 
 namespace WPortfolio;
@@ -109,10 +109,25 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for masthead content.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		public function masthead_content() {
-			Template::render( 'front-page/masthead' );
+			$args = [
+				'masthead_title'    => __( 'Hi, I am Rendy,', 'wportfolio' ),
+				'masthead_subtitle' => __( 'a WordPress Developer', 'wportfolio' ),
+			];
+
+			/**
+			 * WPortfolio masthead content args filter hook.
+			 *
+			 * @param array $args default args.
+			 *
+			 * @since 0.0.2
+			 */
+			$args = apply_filters( 'wportfolio_masthead_content_args', $args );
+
+			Template::render( 'front-page/masthead', $args );
 		}
 
 		/**
@@ -204,6 +219,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.3
 		 */
 		public function about_content( $section_title, $post_id ) {
