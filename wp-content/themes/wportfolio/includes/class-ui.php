@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.4
+ * @version 0.1.5
  */
 
 namespace WPortfolio;
@@ -47,18 +47,35 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * UI constructor.
 		 */
 		private function __construct() {
+			$this->global_page();
 			$this->front_page();
 		}
 
 		/**
-		 * Modify front page content.
+		 * Add content for global pages.
+		 *
+		 * @since 0.1.5
 		 */
-		private function front_page() {
+		private function global_page() {
 
 			// Render masthead.
 			add_action( 'wp_body_open', [ $this, 'masthead_open' ], 10 );
 			add_action( 'wp_body_open', [ $this, 'masthead_content' ], 20 );
 			add_action( 'wp_body_open', [ $this, 'masthead_close' ], 30 );
+		}
+
+		/**
+		 * Modify front page content.
+		 *
+		 * @since 0.0.1
+		 */
+		private function front_page() {
+
+			// Masthead content.
+			add_filter( 'wportfolio_masthead_open_args', [ $this, 'masthead_args' ], 10, 1 );
+			add_filter( 'wportfolio_masthead_template', [ $this, 'masthead_template' ], 10, 1 );
+			add_filter( 'wportfolio_masthead_title', [ $this, 'masthead_title' ], 10, 1 );
+			add_filter( 'wportfolio_masthead_content_args', [ $this, 'masthead_content_args' ], 10, 1 );
 
 			// Global section.
 			add_action( 'wportfolio_before_section', [ $this, 'section_open' ], 10, 3 );
@@ -87,20 +104,18 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for masthead open content.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		public function masthead_open() {
 			$args = [];
 
-			// Add extra class if accessed in front-page.
-			if ( is_front_page() ) {
-				$args['masthead_class'] = 'masthead-front-page';
-			}
-
 			/**
 			 * WPortfolio masthead open filter hook.
 			 *
 			 * @param array $args default args.
+			 *
+			 * @hooked self::masthead_args - 10
 			 *
 			 * @since 0.0.1
 			 */
@@ -112,13 +127,35 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for masthead content.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		public function masthead_content() {
+			$template       = 'global/masthead-content';
+			$masthead_title = get_the_title();
+
+			/**
+			 * WPortfolio masthead template filter hook.
+			 *
+			 * @hooked self::masthead_template - 10
+			 *
+			 * @param string $template default template path.
+			 */
+			$template = apply_filters( 'wportfolio_masthead_template', $template );
+
+			/**
+			 * WPortfolio masthead title filter hook.
+			 *
+			 * @param string $masthead_title default title.
+			 *
+			 * @hooked self::masthead_title - 10
+			 *
+			 * @since 0.0.3
+			 */
+			$masthead_title = apply_filters( 'wportfolio_masthead_title', $masthead_title );
+
 			$args = [
-				'masthead_title'    => __( 'Hi, I am Rendy,', 'wportfolio' ),
-				'masthead_subtitle' => __( 'a WordPress Developer', 'wportfolio' ),
+				'masthead_title' => $masthead_title,
 			];
 
 			/**
@@ -126,11 +163,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			 *
 			 * @param array $args default args.
 			 *
+			 * @hooked self::masthead_content_args - 10
+			 *
 			 * @since 0.0.2
 			 */
 			$args = apply_filters( 'wportfolio_masthead_content_args', $args );
 
-			Template::render( 'front-page/masthead', $args );
+			Template::render( $template, $args );
 		}
 
 		/**
@@ -140,6 +179,82 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function masthead_close() {
 			Template::render( 'global/masthead-close' );
+		}
+
+		/**
+		 * Callback for modifying masthead args.
+		 *
+		 * @param array $args default args.
+		 *
+		 * @return array
+		 *
+		 * @since 0.1.5
+		 */
+		public function masthead_args( $args ) {
+
+			// Add class for front page.
+			if ( is_front_page() ) {
+				$args['masthead_class'] = 'masthead-front-page';
+			}
+
+			return $args;
+		}
+
+		/**
+		 * Callback for modifying masthead template.
+		 *
+		 * @param string $template default template.
+		 *
+		 * @return string
+		 *
+		 * @since 0.1.5
+		 */
+		public function masthead_template( $template ) {
+
+			// Change template in front page.
+			if ( is_front_page() ) {
+				$template = 'front-page/masthead';
+			}
+
+			return $template;
+		}
+
+		/**
+		 * Callback for modifying masthead title.
+		 *
+		 * @param string $title default title.
+		 *
+		 * @return string
+		 *
+		 * @since 0.1.5
+		 */
+		public function masthead_title( $title ) {
+
+			// Change title in front page.
+			if ( is_front_page() ) {
+				$title = __( 'Hi, I am Rendy,', 'wportfolio' );
+			}
+
+			return $title;
+		}
+
+		/**
+		 * Callback for modifying masthead content args.
+		 *
+		 * @param array $args default title.
+		 *
+		 * @return array
+		 *
+		 * @since 0.1.5
+		 */
+		public function masthead_content_args( $args ) {
+
+			// Add args in front page.
+			if ( is_front_page() ) {
+				$args['masthead_subtitle'] = __( 'a WordPress Developer', 'wportfolio' );
+			}
+
+			return $args;
 		}
 
 		/**
