@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.8
+ * @version 0.1.9
  */
 
 namespace WPortfolio;
@@ -81,6 +81,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Global section.
 			add_action( 'wportfolio_before_single_content', [ $this, 'single_page_section_open' ], 10, 2 );
 			add_action( 'wportfolio_after_single_content', [ $this, 'single_page_section_close' ], 50, 2 );
+
+			// Single post content.
+			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_meta' ], 10, 1 );
+			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_content' ], 20, 1 );
 		}
 
 		/**
@@ -254,6 +258,72 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function single_page_section_close( $post_type, $post_id ) {
 			Template::render( 'global/section-close' );
+		}
+
+		/**
+		 * Callback for adding single post meta.
+		 *
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.1.9
+		 */
+		public function single_post_meta( $post_id ) {
+			$meta_items = [
+				[
+					'id'   => 'date-time',
+					/* translators: %1$s : post date, %2$s : post time */
+					'html' => sprintf( '%1$s - %2$s', get_the_date(), get_the_time() ),
+				],
+				[
+					'id'   => 'author',
+					'html' => get_the_author_posts_link(),
+				],
+				[
+					'id'   => 'category',
+					'html' => get_the_category_list( ', ' ),
+				],
+				[
+					'id'   => 'tag',
+					'html' => get_the_tag_list( '', ', ' ),
+				],
+			];
+
+			/**
+			 * WPortfolio single post meta items filter hook.
+			 *
+			 * @param array $meta_items default meta items.
+			 * @param int $post_id id of the current post.
+			 *
+			 * @since 0.0.1
+			 */
+			$meta_items = apply_filters( 'wportfolio_single_post_meta_items', $meta_items, $post_id );
+
+			$args = [
+				'meta_items' => $meta_items,
+			];
+
+			/**
+			 * WPortfolio single post meta args filter hook.
+			 *
+			 * @param array $meta_items default meta items.
+			 * @param int $post_id id of the current post.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_single_post_meta_args', $args, $post_id );
+
+			Template::render( 'blog/single/meta', $args );
+		}
+
+		/**
+		 * Callback for adding single post content.
+		 *
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.1.9
+		 */
+		public function single_post_content( $post_id ) {
+			the_content();
 		}
 
 		/**

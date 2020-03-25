@@ -3,6 +3,7 @@ section.masthead.masthead-front-page {
   min-height: 400px;
 
   h1 {
+    text-align: left;
     font-size: 4rem;
     @include dancing_font;
     @include breakpoint($size_tablet) {
