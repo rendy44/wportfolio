@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.2
+ * @version 0.1.3
  */
 
 namespace WPortfolio;
@@ -269,7 +269,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.4
 		 */
 		public function focus_content( $section_title, $post_id ) {
@@ -277,7 +277,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 				[
 					'id'    => 'wpcs',
 					'title' => __( 'WPCS Compliant', 'wportfolio' ),
-					'desc'  => __( 'By following WPCS we can expect most of what WordPress offers.', 'wportfolio' ),
+					'desc'  => __( 'By following WPCS we can expect most of what WordPress can offers.', 'wportfolio' ),
 				],
 				[
 					'id'    => 'config',
