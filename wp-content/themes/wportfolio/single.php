@@ -4,10 +4,8 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
-
-use WPortfolio\Template;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -27,25 +25,13 @@ while ( have_posts() ) {
 	$post_type = get_post_type();
 	$post_id   = get_the_ID();
 
-	$args = [
-		/* translators: %1$s: post type name, %2$s : post id */
-		'section_id' => sprintf( '%1$s-%2$s', $post_type, $post_id ),
-	];
-
-	/**
-	 * WPortfolio single section open args.
-	 *
-	 * @param array $args default args.
-	 *
-	 * @since 0.0.1
-	 */
-	$args = apply_filters( 'wportfolio_single_section_open_args', $args );
-
 	/**
 	 * WPortfolio before single post content action hook.
 	 *
 	 * @param string $post_type name of the current post type.
 	 * @param int $post_id id of the current post.
+	 *
+	 * @hooked UI::single_page_section_open - 10
 	 *
 	 * @since 0.0.1
 	 */
@@ -66,6 +52,7 @@ while ( have_posts() ) {
 	 * @param string $post_type name of the current post type.
 	 * @param int $post_id id of the current post.
 	 *
+	 * @hooked UI::single_page_section_close - 50
 	 * @since 0.0.1
 	 */
 	do_action( "wportfolio_after_single_content", $post_type, $post_id );

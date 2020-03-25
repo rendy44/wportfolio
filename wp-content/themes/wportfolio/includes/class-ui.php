@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.7
+ * @version 0.1.8
  */
 
 namespace WPortfolio;
@@ -49,6 +49,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		private function __construct() {
 			$this->global_page();
 			$this->front_page();
+			$this->single_page();
 		}
 
 		/**
@@ -68,6 +69,18 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wportfolio_footer', [ $this, 'footer_open' ], 10 );
 			add_action( 'wportfolio_footer', [ $this, 'footer_content' ], 20 );
 			add_action( 'wportfolio_footer', [ $this, 'footer_close' ], 30 );
+		}
+
+		/**
+		 * Add content for single post page.
+		 *
+		 * @since 0.1.8
+		 */
+		private function single_page() {
+
+			// Global section.
+			add_action( 'wportfolio_before_single_content', [ $this, 'single_page_section_open' ], 10, 2 );
+			add_action( 'wportfolio_after_single_content', [ $this, 'single_page_section_close' ], 50, 2 );
 		}
 
 		/**
@@ -203,6 +216,44 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			}
 
 			return $title;
+		}
+
+		/**
+		 * Callback for adding section open in single post.
+		 *
+		 * @param string $post_type name of the current post type.
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.1.8
+		 */
+		public function single_page_section_open( $post_type, $post_id ) {
+			$args = [
+				/* translators: %1$s: post type name, %2$s : post id */
+				'section_id' => sprintf( '%1$s-%2$s', $post_type, $post_id ),
+			];
+
+			/**
+			 * WPortfolio single section open args.
+			 *
+			 * @param array $args default args.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_single_section_open_args', $args, $post_type, $post_id );
+
+			Template::render( 'global/section-open', $args );
+		}
+
+		/**
+		 * Callback for adding section close in single post.
+		 *
+		 * @param string $post_type name of the current post type.
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.1.8
+		 */
+		public function single_page_section_close( $post_type, $post_id ) {
+			Template::render( 'global/section-close' );
 		}
 
 		/**
