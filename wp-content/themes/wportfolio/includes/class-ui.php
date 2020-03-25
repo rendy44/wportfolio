@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.6
+ * @version 0.1.7
  */
 
 namespace WPortfolio;
@@ -63,6 +63,11 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wp_body_open', [ $this, 'masthead_content' ], 20 );
 			add_action( 'wp_body_open', [ $this, 'masthead_close' ], 30 );
 			add_filter( 'wportfolio_masthead_title', [ $this, 'masthead_title' ], 10, 1 );
+
+			// Render footer.
+			add_action( 'wportfolio_footer', [ $this, 'footer_open' ], 10 );
+			add_action( 'wportfolio_footer', [ $this, 'footer_content' ], 20 );
+			add_action( 'wportfolio_footer', [ $this, 'footer_close' ], 30 );
 		}
 
 		/**
@@ -78,27 +83,22 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_filter( 'wportfolio_masthead_content_args', [ $this, 'masthead_content_args' ], 10, 1 );
 
 			// Global section.
-			add_action( 'wportfolio_before_section', [ $this, 'section_open' ], 10, 3 );
-			add_filter( 'wportfolio_section_open_args', [ $this, 'section_size' ], 10, 3 );
-			add_action( 'wportfolio_before_section', [ $this, 'section_title' ], 20, 3 );
-			add_action( 'wportfolio_after_section', [ $this, 'section_close' ], 50, 3 );
+			add_action( 'wportfolio_before_section', [ $this, 'front_page_section_open' ], 10, 3 );
+			add_filter( 'wportfolio_section_open_args', [ $this, 'front_page_section_size' ], 10, 3 );
+			add_action( 'wportfolio_before_section', [ $this, 'front_page_section_title' ], 20, 3 );
+			add_action( 'wportfolio_after_section', [ $this, 'front_page_section_close' ], 50, 3 );
 
 			// Section about.
-			add_action( 'wportfolio_section_about', [ $this, 'about_content' ], 10, 2 );
+			add_action( 'wportfolio_section_about', [ $this, 'front_page_about_content' ], 10, 2 );
 
 			// Section focus.
-			add_action( 'wportfolio_section_focus', [ $this, 'focus_content' ], 10, 2 );
+			add_action( 'wportfolio_section_focus', [ $this, 'front_page_focus_content' ], 10, 2 );
 
 			// Section blog.
-			add_action( 'wportfolio_section_blog', [ $this, 'blog_content' ], 10, 2 );
+			add_action( 'wportfolio_section_blog', [ $this, 'front_page_blog_content' ], 10, 2 );
 
 			// Section contact.
-			add_action( 'wportfolio_section_contact', [ $this, 'contact_content' ], 10, 2 );
-
-			// Render footer.
-			add_action( 'wportfolio_footer', [ $this, 'footer_open' ], 10 );
-			add_action( 'wportfolio_footer', [ $this, 'footer_content' ], 20 );
-			add_action( 'wportfolio_footer', [ $this, 'footer_close' ], 30 );
+			add_action( 'wportfolio_section_contact', [ $this, 'front_page_contact_content' ], 10, 2 );
 		}
 
 		/**
@@ -269,10 +269,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.3
+		 * @version 0.0.4
 		 * @since 0.0.1
 		 */
-		public function section_open( $section, $section_title, $post_id ) {
+		public function front_page_section_open( $section, $section_title, $post_id ) {
 			$args = [
 				'section_class' => 'section-' . $section,
 				'section_id'    => $section,
@@ -307,7 +307,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @version 0.0.2
 		 * @since 0.0.7
 		 */
-		public function section_size( $args, $section, $post_id ) {
+		public function front_page_section_size( $args, $section, $post_id ) {
 			switch ( $section ) {
 				case 'focus':
 				case 'blog':

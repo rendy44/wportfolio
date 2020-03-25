@@ -41,8 +41,6 @@ while ( have_posts() ) {
 	 */
 	$args = apply_filters( 'wportfolio_single_section_open_args', $args );
 
-	Template::render( 'global/section-open', $args );
-
 	/**
 	 * WPortfolio before single post content action hook.
 	 *
@@ -71,8 +69,6 @@ while ( have_posts() ) {
 	 * @since 0.0.1
 	 */
 	do_action( "wportfolio_after_single_content", $post_type, $post_id );
-
-	Template::render( 'global/section-close' );
 }
 
 /**
