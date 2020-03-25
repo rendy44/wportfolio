@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -52,6 +52,8 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 
 		/**
 		 * Load dependency classes.
+		 *
+		 * @since 0.0.1
 		 */
 		private function load_class() {
 
@@ -68,12 +70,16 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 		 * Map all dependency classes.
 		 *
 		 * @return array
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
 		private function map_classes() {
 			$classes = [
 				'assets-loader',
 				'assets',
 				'runner',
+				'master',
 				'settings',
 				'ui',
 				'template',
@@ -83,6 +89,8 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 			 * WPortfolio dependency classes filter hook.
 			 *
 			 * @param array $classes default dependency classes.
+			 *
+			 * @since 0.0.1
 			 */
 			return apply_filters( 'wportfolio_dependency_classes', $classes );
 		}

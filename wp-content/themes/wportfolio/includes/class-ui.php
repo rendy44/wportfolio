@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.3
+ * @version 0.1.4
  */
 
 namespace WPortfolio;
@@ -62,6 +62,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Global section.
 			add_action( 'wportfolio_before_section', [ $this, 'section_open' ], 10, 3 );
+			add_filter( 'wportfolio_section_open_args', [ $this, 'section_size' ], 10, 3 );
 			add_action( 'wportfolio_before_section', [ $this, 'section_title' ], 20, 3 );
 			add_action( 'wportfolio_after_section', [ $this, 'section_close' ], 50, 3 );
 
@@ -69,8 +70,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wportfolio_section_about', [ $this, 'about_content' ], 10, 2 );
 
 			// Section focus.
-			add_filter( 'wportfolio_section_open_args', [ $this, 'section_focus_size' ], 10, 3 );
 			add_action( 'wportfolio_section_focus', [ $this, 'focus_content' ], 10, 2 );
+
+			// Section blog.
+			add_action( 'wportfolio_section_blog', [ $this, 'blog_content' ], 10, 2 );
 
 			// Section contact.
 			add_action( 'wportfolio_section_contact', [ $this, 'contact_content' ], 10, 2 );
@@ -171,6 +174,32 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			Template::render( 'global/section-open', $args );
 		}
 
+
+		/**
+		 * Callback for filtering section size.
+		 *
+		 * @param array $args default args.
+		 * @param string $section name of the current section.
+		 * @param int $post_id id of the current page.
+		 *
+		 * @return array
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.7
+		 */
+		public function section_size( $args, $section, $post_id ) {
+			switch ( $section ) {
+				case 'focus':
+				case 'blog':
+
+					// Add custom data.
+					$args['section_size'] = 'col-md-2-3';
+					break;
+			}
+
+			return $args;
+		}
+
 		/**
 		 * Callback for section open content.
 		 *
@@ -241,29 +270,6 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		}
 
 		/**
-		 * Callback for filtering section focus size.
-		 *
-		 * @param array $args default args.
-		 * @param string $section name of the current section.
-		 * @param int $post_id id of the current page.
-		 *
-		 * @return array
-		 *
-		 * @since 0.0.7
-		 */
-		public function section_focus_size( $args, $section, $post_id ) {
-			switch ( $section ) {
-				case 'focus':
-
-					// Add custom data.
-					$args['section_size'] = 'col-md-2-3';
-					break;
-			}
-
-			return $args;
-		}
-
-		/**
 		 * Callback for section focus content.
 		 *
 		 * @param string $section_title title of the current section. @since 0.0.2
@@ -317,6 +323,53 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			$args = apply_filters( 'wportfolio_section_focus_content_args', $args, $post_id );
 
 			Template::render( 'front-page/section-focus', $args );
+		}
+
+		/**
+		 * Callback for section blog content.
+		 *
+		 * @param string $section_title title of the current section. @since 0.0.2
+		 * @param int $post_id id of the current page.
+		 *
+		 * @since 0.1.4
+		 */
+		public function blog_content( $section_title, $post_id ) {
+			$blog_items = [];
+
+			// Get posts.
+			$posts_query = Master::get_posts( [ 'posts_per_page' => 3 ] );
+			if ( $posts_query->have_posts() ) {
+				while ( $posts_query->have_posts() ) {
+					$posts_query->the_post();
+
+					// Save post details.
+					$blog_items[] = [
+						'id'            => get_the_ID(),
+						'title'         => get_the_title(),
+						'permalink'     => get_permalink(),
+						'thumbnail_url' => get_the_post_thumbnail_url(),
+						'excerpt'       => get_the_excerpt(),
+						'date'          => get_the_date(),
+					];
+				}
+			}
+
+			$args = [
+				'blog_items' => $blog_items,
+				'blog_empty' => __( 'No posts found', 'wportfolio' ),
+			];
+
+			/**
+			 * WPortfolio section blog content args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_section_blog_content_args', $args, $post_id );
+
+			Template::render( 'front-page/section-blog', $args );
 		}
 
 		/**
