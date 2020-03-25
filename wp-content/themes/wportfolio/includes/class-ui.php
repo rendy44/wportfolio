@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.6
+ * @version 0.0.7
  */
 
 namespace WPortfolio;
@@ -69,6 +69,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wportfolio_section_about', [ $this, 'about_content' ], 10, 2 );
 
 			// Section focus.
+			add_filter( 'wportfolio_section_open_args', [ $this, 'section_focus_size' ], 10, 3 );
 			add_action( 'wportfolio_section_focus', [ $this, 'focus_content' ], 10, 2 );
 
 			// Render footer.
@@ -143,6 +144,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			 * @param string $section name of the current section.
 			 * @param int $post_id id of the current page.
 			 *
+			 * @hooked self::section_focus_size - 10
+			 *
 			 * @since 0.0.1
 			 */
 			$args = apply_filters( 'wportfolio_section_open_args', $args, $section, $post_id );
@@ -202,6 +205,29 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function about_content( $section_title, $post_id ) {
 			Template::render( 'front-page/section-about' );
+		}
+
+		/**
+		 * Callback for filtering section focus size.
+		 *
+		 * @param array $args default args.
+		 * @param string $section name of the current section.
+		 * @param int $post_id id of the current page.
+		 *
+		 * @return array
+		 *
+		 * @since 0.0.7
+		 */
+		public function section_focus_size( $args, $section, $post_id ) {
+			switch ( $section ) {
+				case 'focus':
+
+					// Add custom data.
+					$args['section_size'] = 'col-md-2-3';
+					break;
+			}
+
+			return $args;
 		}
 
 		/**
