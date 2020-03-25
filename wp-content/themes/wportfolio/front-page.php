@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.4
+ * @version 0.0.5
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,8 +26,9 @@ while ( have_posts() ) {
 
 	// Prepare used sections.
 	$sections = [
-		'about' => __( 'About Me', 'wportfolio' ),
-		'focus' => __( 'Specialisation', 'wportfolio' ),
+		'about'   => __( 'Hi!', 'wportfolio' ),
+		'focus'   => __( 'Specialisation', 'wportfolio' ),
+		'contact' => __( 'Get in Touch', 'wportfolio' ),
 	];
 
 	/**
@@ -64,8 +65,6 @@ while ( have_posts() ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @hooked UI::section_close - 50
-		 *
 		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
@@ -77,6 +76,8 @@ while ( have_posts() ) {
 		 * @param string $section name of the current section.
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
+		 *
+		 * @hooked UI::section_close - 50
 		 *
 		 * @version 0.0.2
 		 * @since 0.0.1

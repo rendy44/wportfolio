@@ -67,16 +67,22 @@ section.masthead {
       align-items: center;
 
       h1 {
+        font-size: 3.5rem;
         margin: 0 0 1rem;
-
-        > span {
+        @include dancing_font;
+        @include breakpoint($size_tablet) {
+          font-size: 5rem;
         }
       }
 
       h2 {
+        font-weight: 400;
+        font-size: 22px;
         margin: 0 0 3rem;
-
-        > span {
+        @include breakpoint($size_tablet) {
+          &:before {
+            content: '... ';
+          }
         }
       }
     }

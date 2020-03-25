@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: "remixicon";
-    src: url('remixicon.eot?t=1585103105048'); /* IE9*/
-    src: url('remixicon.eot?t=1585103105048#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url("remixicon.woff2?t=1585103105048") format("woff2"),
-    url("remixicon.woff?t=1585103105048") format("woff"),
-    url('remixicon.ttf?t=1585103105048') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('remixicon.svg?t=1585103105048#remixicon') format('svg'); /* iOS 4.1- */
+    src: url('remixicon.eot?t=1585106843070'); /* IE9*/
+    src: url('remixicon.eot?t=1585106843070#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url("remixicon.woff2?t=1585106843070") format("woff2"),
+    url("remixicon.woff?t=1585106843070") format("woff"),
+    url('remixicon.ttf?t=1585106843070') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('remixicon.svg?t=1585106843070#remixicon') format('svg'); /* iOS 4.1- */
     font-display: swap;
 }
 
@@ -44,3 +44,7 @@
 .ri-lock-2-line:before { content: "\ee67"; }
 .ri-user-settings-line:before { content: "\f1a6"; }
 .ri-list-check-2:before { content: "\ee54"; }
+.ri-github-fill:before { content: "\ed85"; }
+.ri-linkedin-box-fill:before { content: "\ee4e"; }
+.ri-mail-send-fill:before { content: "\ee90"; }
+.ri-whatsapp-fill:before { content: "\f1e9"; }

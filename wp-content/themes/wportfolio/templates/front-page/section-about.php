@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,5 +12,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <div class="text-center">
-    <p>I have been involved in WordPress development for years and most of them are custom website with its own unique functionality.</p>
+    <p>I am a WordPress Developer based in Yogyakarta, Indonesia. I have passion for creating clean and efficient code yet highly customizable.</p>
 </div>

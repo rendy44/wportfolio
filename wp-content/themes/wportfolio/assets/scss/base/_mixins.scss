@@ -208,3 +208,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@mixin dancing_font() {
+  font-family: 'Dancing Script', cursive;
+}

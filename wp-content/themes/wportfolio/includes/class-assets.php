@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -76,7 +76,7 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 			// Prepare front-end css.
 			$css_files = [
 				'font'       => [
-					'src' => 'https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap',
+					'src' => 'https://fonts.googleapis.com/css?family=Dancing+Script:700|Roboto+Mono:300,400,500,700&display=swap',
 				],
 				'wportfolio' => [
 					'src' => TEMP_URI . '/assets/css/wportfolio.css',
