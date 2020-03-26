@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
@@ -71,11 +71,12 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 		 *
 		 * @return array
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		private function map_classes() {
 			$classes = [
+				'helper',
 				'assets-loader',
 				'assets',
 				'runner',
@@ -84,6 +85,7 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 				'ui',
 				'template',
 				'post-like',
+				'ajax',
 			];
 
 			/**
