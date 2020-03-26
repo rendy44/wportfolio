@@ -19,3 +19,7 @@
 @import "components/front-page/focus";
 @import "components/front-page/blog";
 @import "components/front-page/contact";
+
+// Import single page component.
+@import "components/single/base";
+@import "components/single/meta";

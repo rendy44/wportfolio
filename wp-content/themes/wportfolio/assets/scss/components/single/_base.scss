@@ -1,0 +1,7 @@
+section.section.section-single {
+
+  @include breakpoint($size_tablet) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}

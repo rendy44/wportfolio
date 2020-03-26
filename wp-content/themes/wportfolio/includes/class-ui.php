@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.9
+ * @version 0.2.0
  */
 
 namespace WPortfolio;
@@ -228,12 +228,15 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $post_type name of the current post type.
 		 * @param int $post_id id of the current post.
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.8
 		 */
 		public function single_page_section_open( $post_type, $post_id ) {
 			$args = [
 				/* translators: %1$s: post type name, %2$s : post id */
-				'section_id' => sprintf( '%1$s-%2$s', $post_type, $post_id ),
+				'section_id'    => sprintf( '%1$s-%2$s', $post_type, $post_id ),
+				'section_class' => 'section-single section-single-' . $post_type,
+				'section_size'  => 'col-sm-4-5 col-md-2-3',
 			];
 
 			/**
@@ -265,41 +268,15 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param int $post_id id of the current post.
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.9
 		 */
 		public function single_post_meta( $post_id ) {
-			$meta_items = [
-				[
-					'id'   => 'date-time',
-					/* translators: %1$s : post date, %2$s : post time */
-					'html' => sprintf( '%1$s - %2$s', get_the_date(), get_the_time() ),
-				],
-				[
-					'id'   => 'author',
-					'html' => get_the_author_posts_link(),
-				],
-				[
-					'id'   => 'category',
-					'html' => get_the_category_list( ', ' ),
-				],
-				[
-					'id'   => 'tag',
-					'html' => get_the_tag_list( '', ', ' ),
-				],
-			];
-
-			/**
-			 * WPortfolio single post meta items filter hook.
-			 *
-			 * @param array $meta_items default meta items.
-			 * @param int $post_id id of the current post.
-			 *
-			 * @since 0.0.1
-			 */
-			$meta_items = apply_filters( 'wportfolio_single_post_meta_items', $meta_items, $post_id );
 
 			$args = [
-				'meta_items' => $meta_items,
+				'meta_author_link' => get_the_author_posts_link(),
+				'meta_date_time'   => get_the_date() . ' @ ' . get_the_time(),
+				'meta_avatar'      => get_avatar( get_the_author_meta( 'ID' ), 50 ),
 			];
 
 			/**
@@ -448,9 +425,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section.
 		 * @param int $post_id id of the current page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.2
 		 */
-		public function section_title( $section, $section_title, $post_id ) {
+		public function front_page_section_title( $section, $section_title, $post_id ) {
 			$args = [
 				'section_title' => $section_title,
 			];
@@ -476,10 +454,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
-		public function section_close( $section, $section_title, $post_id ) {
+		public function front_page_section_close( $section, $section_title, $post_id ) {
 			Template::render( 'global/section-close' );
 		}
 
@@ -489,10 +467,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.3
 		 */
-		public function about_content( $section_title, $post_id ) {
+		public function front_page_about_content( $section_title, $post_id ) {
 			$args = [
 				'about_content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionate to write clean and efficient code but highly customizable.', 'wportfolio' ),
 			];
@@ -516,10 +494,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.3
+		 * @version 0.0.4
 		 * @since 0.0.4
 		 */
-		public function focus_content( $section_title, $post_id ) {
+		public function front_page_focus_content( $section_title, $post_id ) {
 			$focus_items = [
 				[
 					'id'    => 'wpcs',
@@ -572,9 +550,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.4
 		 */
-		public function blog_content( $section_title, $post_id ) {
+		public function front_page_blog_content( $section_title, $post_id ) {
 			$blog_items = [];
 
 			// Get posts.
@@ -619,9 +598,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.0
 		 */
-		public function contact_content( $section_title, $post_id ) {
+		public function front_page_contact_content( $section_title, $post_id ) {
 			$contact_items = [
 				[
 					'id'  => 'email',

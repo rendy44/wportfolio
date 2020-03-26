@@ -4,17 +4,19 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } ?>
 
-<ul class="single-meta-items-wrapper">
-	<?php foreach ( $meta_items as $meta_item ) { ?>
-        <li class="meta-<?php echo esc_attr( $meta_item['id'] ); ?>">
-            <span><?php echo $meta_item['html']; // phpcs:ignore ?></span>
-        </li>
-	<?php } ?>
-</ul>
+<div class="single-meta">
+    <div class="author-avatar">
+		<?php echo $meta_avatar; ?>
+    </div>
+    <div class="author-detail">
+		<?php echo $meta_author_link; // phpcs:ignore ?>
+        <span class="meta-date"><?php echo esc_html( $meta_date_time ); ?></span>
+    </div>
+</div>
