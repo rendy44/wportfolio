@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -128,10 +128,11 @@ if ( ! class_exists( 'WPortfolio\Post_Like' ) ) {
 		/**
 		 * Add cookie to current visitor.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		private function add_cookie() {
-			$_COOKIE[ $this->cookie_like_key ] = true;
+			setcookie( $this->cookie_like_key, true, WP_FS__TIME_WEEK_IN_SEC );
 		}
 
 		/**
@@ -139,10 +140,11 @@ if ( ! class_exists( 'WPortfolio\Post_Like' ) ) {
 		 *
 		 * @return bool
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		public function is_liked() {
-			return ! empty( $_COOKIE[ $this->cookie_like_key ] );
+			return isset( $_COOKIE[ $this->cookie_like_key ] );
 		}
 	}
 }

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -42,12 +42,22 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		private static $front_js;
 
 		/**
+		 * Treat js as module variable.
+		 *
+		 * @var array
+		 *
+		 * @since 0.0.3
+		 */
+		private static $as_module;
+
+		/**
 		 * Add asset for front-end.
 		 *
 		 * @param string $name name of the asset.
 		 * @param array $args array of the new asset.
 		 * @param string $type type of the asset, css|js
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		public static function add_front_asset( $name, $args, $type = 'css' ) {
@@ -58,10 +68,16 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 				'deps'      => [],
 				'ver'       => '0.0.1',
 				'in_footer' => false,
+				'is_module' => true,
 			];
 
 			// Merge args.
 			$args = wp_parse_args( $args, $default_args );
+
+			// Maybe add to module.
+			if ( 'js' === $type && $args['is_module'] ) {
+				self::$as_module[] = $name;
+			}
 
 			// Merge the assets, whether it is css or js.
 			if ( 'css' === $type ) {
@@ -93,8 +109,24 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 			if ( ! empty( $assets ) ) {
 				foreach ( $assets as $asset_name => $asset_arg ) {
 					$loader_function( $asset_name, $asset_arg['src'], $asset_arg['deps'], $asset_arg['ver'], $asset_arg['in_footer'] );
+
+					// Maybe localize script.
+					if ( 'js' === $type && ! empty( $asset_arg['vars'] ) ) {
+						wp_localize_script( $asset_name, 'obj', $asset_arg['vars'] );
+					}
 				}
 			}
+		}
+
+		/**
+		 * Get all js that should be treated as module.
+		 *
+		 * @return array
+		 *
+		 * @since 0.0.3
+		 */
+		public static function get_all_modules() {
+			return self::$as_module;
 		}
 	}
 }

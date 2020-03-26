@@ -62,6 +62,10 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 				'wportfolio' => [
 					'src'  => TEMP_URI . '/assets/js/wportfolio.js',
 					'deps' => [ 'jquery' ],
+					'vars' => [
+						'ajax_url' => admin_url( 'admin-ajax.php' ),
+						'prefix'   => TEMP_PREFIX,
+					],
 				],
 			];
 

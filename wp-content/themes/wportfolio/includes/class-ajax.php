@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -120,11 +120,12 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 		 *
 		 * @return array
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		private function get_default_endpoints() {
 			return [
-				'like' => [
+				'like_post' => [
 					'callback' => [ $this, 'like_single_post' ],
 				],
 			];
@@ -133,11 +134,13 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 		/**
 		 * Callback for liking a post.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		public function like_single_post() {
 			$result  = '';
-			$post_id = Helper::post( 'post_id' );
+			$data    = $this->get_posted_data();
+			$post_id = Helper::array_val( $data, 'post_id' );
 
 			// Validate input.
 			if ( $post_id ) {
@@ -147,7 +150,13 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 				$like      = $post_like->maybe_add_like();
 
 				// Validate the like.
-				if ( ! $like ) {
+				if ( $like ) {
+
+					// Get new like count.
+					$new_like_count = $post_like->get_likes();
+
+					$result = sprintf( _n( '%s love', '%s loves', $new_like_count, 'wportfolio' ), $new_like_count );
+				} else {
 					$result = new WP_Error( 'fail_like', __( 'Unable to give a love', 'wportfolio' ) );
 				}
 			} else {
