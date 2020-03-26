@@ -1,0 +1,14 @@
+.post-tags {
+  margin-top: 2rem;
+
+  > a {
+    display: inline-block;
+    padding: .5rem;
+    line-height: 1;
+    background-color: darken($white_color, 10%);
+    margin-right: .3rem;
+    color: $black_text_color;
+    @include border-radius(4px);
+    font-size: 14px;
+  }
+}

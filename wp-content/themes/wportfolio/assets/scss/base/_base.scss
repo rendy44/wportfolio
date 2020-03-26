@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: 'Baloo 2', cursive;
-  color: lighten($black_color, 20%);
+  color: $black_text_color
 }
 
 p {

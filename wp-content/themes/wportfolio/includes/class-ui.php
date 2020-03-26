@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.0
+ * @version 0.2.1
  */
 
 namespace WPortfolio;
@@ -85,6 +85,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Single post content.
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_meta' ], 10, 1 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_content' ], 20, 1 );
+			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_tag' ], 30, 1 );
 		}
 
 		/**
@@ -301,6 +302,17 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function single_post_content( $post_id ) {
 			the_content();
+		}
+
+		/**
+		 * Callback for adding single post tag.
+		 *
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.2.1
+		 */
+		public function single_post_tag( $post_id ) {
+			echo get_the_tag_list( '<div class="post-tags">', '', '</div>' ); // phpcs:ignore
 		}
 
 		/**
