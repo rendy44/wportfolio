@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
@@ -52,6 +52,8 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 
 		/**
 		 * Load assets in front-end.
+		 *
+		 * @since 0.0.1
 		 */
 		private function load_front_assets() {
 
@@ -67,6 +69,8 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 			 * WPortfolio front-end js filter hook.
 			 *
 			 * @param array $js_files default js files.
+			 *
+			 * @since 0.0.1
 			 */
 			$js_files = apply_filters( 'wportfolio_front_end_js', $js_files );
 
@@ -87,6 +91,8 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 			 * WPortfolio front-end css filter hook.
 			 *
 			 * @param array $css_files default css files.
+			 *
+			 * @since 0.0.1
 			 */
 			$css_files = apply_filters( 'wportfolio_front_end_css', $css_files );
 
@@ -99,6 +105,8 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 		 *
 		 * @param array $assets list of the assets.
 		 * @param string $type type of the asset, css|js
+		 *
+		 * @since 0.0.1
 		 */
 		private function do_load_assets( $assets, $type = 'css' ) {
 

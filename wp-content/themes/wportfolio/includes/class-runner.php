@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -54,6 +54,8 @@ if ( ! class_exists( 'WPortfolio\Runner' ) ) {
 
 		/**
 		 * Callback for loading front assets.
+		 *
+		 * @since 0.0.1
 		 */
 		public function enqueue_front_assets() {
 			Assets_Loader::load_front_assets( 'css' );

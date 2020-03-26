@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -27,6 +27,8 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		 * Front-end css variable.
 		 *
 		 * @var array
+		 *
+		 * @since 0.0.1
 		 */
 		private static $front_css;
 
@@ -34,6 +36,8 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		 * Front-end js variable.
 		 *
 		 * @var array
+		 *
+		 * @since 0.0.1
 		 */
 		private static $front_js;
 
@@ -43,6 +47,8 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		 * @param string $name name of the asset.
 		 * @param array $args array of the new asset.
 		 * @param string $type type of the asset, css|js
+		 *
+		 * @since 0.0.1
 		 */
 		public static function add_front_asset( $name, $args, $type = 'css' ) {
 
@@ -70,6 +76,8 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		 * Get front-end's assets.
 		 *
 		 * @param string $type type of the asset, css|js
+		 *
+		 * @since 0.0.1
 		 */
 		public static function load_front_assets( $type = 'css' ) {
 			$assets          = self::$front_js;

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -24,13 +24,6 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 	 * @package WPortfolio
 	 */
 	class Master {
-
-		/**
-		 * Key prefix variable.
-		 *
-		 * @var string
-		 */
-		private static $key_prefix = 'wprtfl_';
 
 		/**
 		 * Get posts.
@@ -80,6 +73,7 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 		 * @param string $value new post meta value.
 		 * @param bool|int $post_id id of the post.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.2
 		 */
 		public static function update_post_meta( $key, $value, $post_id = false ) {
@@ -89,7 +83,7 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 				$post_id = get_the_ID();
 			}
 
-			update_post_meta( $post_id, self::$key_prefix . $key, $value );
+			update_post_meta( $post_id, TEMP_PREFIX . $key, $value );
 		}
 
 		/**
@@ -102,6 +96,7 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 		 *
 		 * @return array|bool|mixed
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.2
 		 */
 		public static function get_post_meta( $key, $post_id = false, $single_value = true, $with_prefix = true ) {
@@ -112,7 +107,7 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 				$post_id = get_the_ID();
 			}
 
-			$prefix  = $with_prefix ? self::$key_prefix : '';
+			$prefix  = $with_prefix ? TEMP_PREFIX : '';
 			if ( is_array( $key ) ) {
 				foreach ( $key as $single_key ) {
 					$result[ $single_key ] = get_post_meta( $post_id, $prefix . $single_key, $single_value );

@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -27,11 +27,15 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		 * Folder name variable
 		 *
 		 * @var string
+		 *
+		 * @since 0.0.1
 		 */
 		private static $folder = '';
 
 		/**
 		 * Set template folder
+		 *
+		 * @since 0.0.1
 		 */
 		private static function set_default_folder() {
 			$folder = TEMP_PATH . '/templates';
@@ -43,20 +47,11 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		}
 
 		/**
-		 * Maybe find template file in theme.
-		 *
-		 * @param string $file_name name of the template file.
-		 *
-		 * @return string
-		 */
-		private static function find_template_in_theme( $file_name ) {
-			return locate_template( "templates/wacara/{$file_name}.php" );
-		}
-
-		/**
 		 * Save folder path.
 		 *
 		 * @param string $path the folder path.
+		 *
+		 * @since 0.0.1
 		 */
 		private static function do_set_folder( $path ) {
 			self::$folder = rtrim( $path, '/' );
@@ -68,31 +63,20 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		 * @param string $file_name template file name.
 		 *
 		 * @return bool|string
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
 		private static function find_template( $file_name ) {
 			$found = false;
 
-			// Maybe check template file in theme if it supports wacara.
-			if ( current_theme_supports( 'wacara' ) ) {
+			// Set default folder.
+			self::set_default_folder();
 
-				// Check template file in theme.
-				$file_in_theme = self::find_template_in_theme( $file_name );
-				if ( '' !== $file_in_theme ) {
-					$found = $file_in_theme;
-				}
-			}
-
-			// Find default file in plugin.
-			if ( ! $found ) {
-
-				// Set default folder.
-				self::set_default_folder();
-
-				// Check file in plugin.
-				$file = self::$folder . "/{$file_name}.php";
-				if ( file_exists( $file ) ) {
-					$found = $file;
-				}
+			// Check file in plugin.
+			$file = self::$folder . "/{$file_name}.php";
+			if ( file_exists( $file ) ) {
+				$found = $file;
 			}
 
 			return $found;
@@ -105,6 +89,8 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		 * @param array $variables variables that will be injected into template file.
 		 *
 		 * @return string
+		 *
+		 * @since 0.0.1
 		 */
 		private static function render_template( $template, $variables = [] ) {
 			ob_start();
@@ -124,6 +110,8 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		 * @param bool $echo whether display as variable or display in browser.
 		 *
 		 * @return void|string
+		 *
+		 * @since 0.0.1
 		 */
 		public static function render( $file_name, $variables = [], $echo = true ) {
 			$template = self::find_template( $file_name );
