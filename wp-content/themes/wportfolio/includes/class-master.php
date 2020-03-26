@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -24,6 +24,13 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 	 * @package WPortfolio
 	 */
 	class Master {
+
+		/**
+		 * Key prefix variable.
+		 *
+		 * @var string
+		 */
+		private static $key_prefix = 'wprtfl_';
 
 		/**
 		 * Get posts.
@@ -64,6 +71,57 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 			}
 
 			return $query;
+		}
+
+		/**
+		 * Update post meta.
+		 *
+		 * @param string $key post meta key.
+		 * @param string $value new post meta value.
+		 * @param bool|int $post_id id of the post.
+		 *
+		 * @since 0.0.2
+		 */
+		public static function update_post_meta( $key, $value, $post_id = false ) {
+
+			// Maybe redefine post id.
+			if ( ! $post_id ) {
+				$post_id = get_the_ID();
+			}
+
+			update_post_meta( $post_id, self::$key_prefix . $key, $value );
+		}
+
+		/**
+		 * Get post meta.
+		 *
+		 * @param string|array $key post meta key.
+		 * @param bool|string  $post_id post id.
+		 * @param bool         $single_value whether the meta is single or array.
+		 * @param bool         $with_prefix whether format field with auto prefix or not.
+		 *
+		 * @return array|bool|mixed
+		 *
+		 * @since 0.0.2
+		 */
+		public static function get_post_meta( $key, $post_id = false, $single_value = true, $with_prefix = true ) {
+			$result  = false;
+
+			// Maybe redefine post id.
+			if ( ! $post_id ) {
+				$post_id = get_the_ID();
+			}
+
+			$prefix  = $with_prefix ? self::$key_prefix : '';
+			if ( is_array( $key ) ) {
+				foreach ( $key as $single_key ) {
+					$result[ $single_key ] = get_post_meta( $post_id, $prefix . $single_key, $single_value );
+				}
+			} else {
+				$result = get_post_meta( $post_id, $prefix . $key, $single_value );
+			}
+
+			return $result;
 		}
 	}
 }

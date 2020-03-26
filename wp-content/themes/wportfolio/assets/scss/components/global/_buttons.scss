@@ -1,3 +1,10 @@
+button {
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
 .button {
   background-color: $base_color;
   color: $white_color;

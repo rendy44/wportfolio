@@ -1,0 +1,43 @@
+.single-like {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+
+  .button-like {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba($black_color, .4);
+    background-color: transparent;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+    color: $black_text_color;
+    @include border-radius(50%);
+    @include transition(all .2s ease);
+
+    &:after {
+      @include remixicon_font;
+      content: "\edbe";
+    }
+
+    &.liked,
+    &:hover,
+    &:active,
+    &:focus {
+      //font-size: 2rem;
+      //border-color: $base_color;
+      color: $base_color;
+
+      &:after {
+        content: "\edbd";
+      }
+    }
+
+    &.liked {
+      pointer-events: none;
+    }
+  }
+}

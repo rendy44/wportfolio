@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.1
+ * @version 0.2.2
  */
 
 namespace WPortfolio;
@@ -74,7 +74,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Add content for single post page.
 		 *
-		 * @since 0.1.8
+		 * @since 0.1.1
 		 */
 		private function single_page() {
 
@@ -86,6 +86,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_meta' ], 10, 1 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_content' ], 20, 1 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_tag' ], 30, 1 );
+			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_like' ], 40, 1 );
 		}
 
 		/**
@@ -313,6 +314,39 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function single_post_tag( $post_id ) {
 			echo get_the_tag_list( '<div class="post-tags">', '', '</div>' ); // phpcs:ignore
+		}
+
+		/**
+		 * Callback for adding single post like.
+		 *
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.2.2
+		 */
+		public function single_post_like( $post_id ) {
+
+			// Instance post like object.
+			$post_like = new Post_Like( $post_id );
+
+			$args = [
+				'post_id'    => $post_id,
+				'like_count' => $post_like->get_likes(),
+				'is_liked'   => $post_like->is_liked(),
+			];
+
+			/**
+			 * WPortfolio single post like args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current post.
+			 * @param Post_Like $post_like object of the current post like.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_single_post_like_args', $args, $post_id, $post_like );
+
+			Template::render( 'blog/single/like', $args );
+
 		}
 
 		/**

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -83,6 +83,7 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 				'settings',
 				'ui',
 				'template',
+				'post-like',
 			];
 
 			/**
