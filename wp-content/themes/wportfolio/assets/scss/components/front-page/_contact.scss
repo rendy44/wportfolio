@@ -1,7 +1,7 @@
 $bullet_size: 50px;
 section.section.section-contact {
   ul.contact-items-wrapper {
-    margin: 1rem 0 0;
+    margin: 1.5rem 0 0;
     padding: 0;
     list-style: none;
 
@@ -27,7 +27,7 @@ section.section.section-contact {
 
         &:hover {
           @include box-shadow();
-          @include rotate(15deg);
+          @include zoom(1.1);
         }
       }
 

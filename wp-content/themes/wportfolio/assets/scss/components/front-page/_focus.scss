@@ -10,6 +10,8 @@ section.section.section-focus {
 
           .icon {
             margin: 0 auto 1rem;
+            text-align: center;
+            @include transition(all .2s ease);
 
             span.icon-fill {
               color: $base_color;
@@ -55,6 +57,12 @@ section.section.section-focus {
               content: "\ee67";
             }
           }
+
+          &:hover {
+            .icon {
+              @include zoom(1.2);
+            }
+          }
         }
 
         &:last-child {
@@ -72,6 +80,8 @@ section.section.section-focus {
         > div {
           .focus-item {
             padding: 0 7.5px;
+            margin-right: 7.5px;
+            margin-left: 7.5px;
 
             > p {
               //font-size: 14px;

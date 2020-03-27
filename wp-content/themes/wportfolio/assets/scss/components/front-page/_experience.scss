@@ -3,10 +3,12 @@
 
   .experience-item {
     display: flex;
-    //background-color: aquamarine;
-    margin-bottom: 1rem;
-    padding: 0 7.5px 1rem;
+    padding: 1rem 7.5px;
     align-items: center;
+    border: 1px solid transparent;
+    margin-bottom: 1rem;
+    @include border-radius(4px);
+    @include transition(all .2s ease);
 
     .company-logo {
       width: 80%;
@@ -46,14 +48,13 @@
       }
     }
 
-    //@include breakpoint($size_tablet) {
-    //  flex-direction: row;
-    //  align-items: center;
-    //  .company-logo {
-    //    max-width: 100px;
-    //    height: 50px;
-    //    margin-right: 1rem;
-    //  }
-    //}
+    @include breakpoint($size_tablet) {
+      margin: 0 7.5px 0;
+    }
+
+    &:hover {
+      border-color: rgba($black_color, .1);
+      @include box-shadow();
+    }
   }
 }

@@ -2,7 +2,7 @@ section.masthead {
   z-index: 1;
   position: relative;
   //height: 250px;
-  background-color: $base_color;
+  background-color: lighten($base_color, 20%);
   overflow: hidden;
   color: $white_color;
   @include custom_text_shadow(2px 2px 1px rgba($black_color, .4));
