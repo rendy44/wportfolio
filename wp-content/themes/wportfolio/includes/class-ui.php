@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.4
+ * @version 0.2.5
  */
 
 namespace WPortfolio;
@@ -137,6 +137,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Render category.
 			add_action( 'wportfolio_before_archive', [ $this, 'archive_category_list' ], 20 );
+
+			// Render posts wrapper
+			add_action( 'wportfolio_before_archive', [ $this, 'archive_post_wrapper_open' ], 30 );
+			add_action( 'wportfolio_after_archive', [ $this, 'archive_post_wrapper_close' ], 40 );
+
+			// Render post list.
+			add_action( 'wportfolio_archive_post', [ $this, 'archive_post_list' ], 10, 1 );
 		}
 
 		/**
@@ -718,12 +725,14 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for section open in archive.
 		 *
+		 * @version 0.0.2
 		 * @since 0.2.3
 		 */
 		public function archive_section_open() {
 			$args = [
 				'section_id'    => 'archive',
 				'section_class' => 'section-archive',
+				'section_size'  => 'col-md-2-3',
 			];
 
 			/**
@@ -750,7 +759,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for category list in archive page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.2.3
 		 */
 		public function archive_category_list() {
@@ -783,7 +792,62 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			 */
 			$args = apply_filters( 'wportfolio_archive_section_args', $args );
 
-			Template::render( 'blog/category/list', $args );
+			Template::render( 'blog/archive/category', $args );
+		}
+
+		/**
+		 * Callback for archive posts wrapper open.
+		 *
+		 * @since 0.2.5
+		 */
+		public function archive_post_wrapper_open() { ?>
+            <div class="archive-posts-wrapper">
+		<?php }
+
+		/**
+		 * Callback for archive posts wrapper close.
+		 *
+		 * @since 0.2.5
+		 */
+		public function archive_post_wrapper_close() { ?>
+            </div>
+		<?php }
+
+		/**
+		 * Callback for rendering post list.
+		 *
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.2.5
+		 */
+		public function archive_post_list( $post_id ) {
+
+			// Fetch thumbnail as bg.
+			$thumbnail_url = get_the_post_thumbnail_url( $post_id );
+			$bg_image      = $thumbnail_url ? "style='background-image: url({$thumbnail_url});'" : '';
+
+			// Prepare args.
+			$args = [
+				'id'             => $post_id,
+				'blog_bg'        => $bg_image,
+				'blog_title'     => get_the_title( $post_id ),
+				'blog_permalink' => get_permalink( $post_id ),
+				'blog_excerpt'   => get_the_excerpt( $post_id ),
+				'blog_date'      => get_the_date( '', $post_id ),
+				'blog_category'  => get_the_category_list( '', '', $post_id ),
+			];
+
+			/**
+			 * WPortfolio archive post list args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current post.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_archive_post_list', $args, $post_id );
+
+			Template::render( 'blog/archive/post', $args );
 		}
 
 		/**

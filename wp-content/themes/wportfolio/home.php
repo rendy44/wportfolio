@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,27 +23,46 @@ get_header();
  * WPortfolio before archive action hook.
  *
  * @hooked UI::archive_section_open - 10
+ * @hooked UI::archive_category_list - 20
+ * @hooked UI::archive_post_wrapper_open - 30
  *
+ * @version 0.0.2
  * @since 0.0.2
  */
 do_action( 'wportfolio_before_archive' );
 
-while ( have_posts() ) {
-	the_post();
+if ( have_posts() ) {
+
+	// Loop available post.
+	while ( have_posts() ) {
+		the_post();
+
+		/**
+		 * WPortfolio archive post action hook.
+		 *
+		 * @param int $post_id id of the current post.
+		 *
+		 * @hooked UI::archive_post_list - 10
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.2
+		 */
+		do_action( 'wportfolio_archive_post', get_the_ID() );
+	}
+} else {
 
 	/**
-	 * WPortfolio archive post action hook.
+	 * WPortfolio archive no post action hook.
 	 *
-	 * @param int $post_id id of the current post.
-	 *
-	 * @since 0.0.2
+	 * @since 0.0.3
 	 */
-	do_action( 'wportfolio_archive_post', get_the_ID() );
+	do_action( 'wportfolio_archive_no_post' );
 }
 
 /**
  * WPortfolio after archive action hook.
  *
+ * @hooked UI::archive_post_wrapper_close - 40
  * @hooked UI::archive_section_close - 50
  *
  * @since 0.0.2

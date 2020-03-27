@@ -146,7 +146,7 @@
 @mixin ellipse_text($rows) {
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
+  display: -webkit-box !important;
   -webkit-line-clamp: $rows; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
@@ -211,4 +211,10 @@
 
 @mixin dancing_font() {
   font-family: 'Dancing Script', cursive;
+}
+
+@mixin cover() {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
