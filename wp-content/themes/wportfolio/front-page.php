@@ -4,8 +4,10 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.6
+ * @version 0.0.7
  */
+
+use WPortfolio\Data;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,23 +26,11 @@ while ( have_posts() ) {
 	// Get current id.
 	$post_id = get_the_ID();
 
-	// Prepare used sections.
-	$sections = [
-		'about'   => __( 'Hi There!', 'wportfolio' ),
-		'focus'   => __( 'Specialisation', 'wportfolio' ),
-		'blog'    => __( 'Latest Posts', 'wportfolio' ),
-		'contact' => __( 'Get in Touch', 'wportfolio' ),
-	];
+	// Instance data.
+	$data = new Data();
 
-	/**
-	 * WPortfolio front page section filter hook.
-	 *
-	 * @param array $sections list of default section.
-	 * @param int $post_id id of the current page.
-	 *
-	 * @since 0.0.1
-	 */
-	$sections = apply_filters( 'wportfolio_front_page_section', $sections, $post_id );
+	// Get sections data.
+	$sections = $data->get_sections();
 
 	// Loop all sections.
 	foreach ( $sections as $section => $section_title ) {

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -45,6 +45,31 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 			 * @since 0.0.1
 			 */
 			return apply_filters( 'wportfolio_data_masthead', $data );
+		}
+
+		/**
+		 * Get sections data.
+		 *
+		 * @return mixed|void
+		 *
+		 * @since 0.0.3
+		 */
+		public function get_sections() {
+			$data = [
+				'about'   => __( 'Hi There!', 'wportfolio' ),
+				'focus'   => __( 'Specialisation', 'wportfolio' ),
+				'blog'    => __( 'Latest Posts', 'wportfolio' ),
+				'contact' => __( 'Get in Touch', 'wportfolio' ),
+			];
+
+			/**
+			 * WPortfolio data sections filter hook.
+			 *
+			 * @param array $data default data.
+			 *
+			 * @since 0.0.1
+			 */
+			return apply_filters( 'wportfolio_data_sections', $data );
 		}
 
 		/**
