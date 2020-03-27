@@ -1,29 +1,43 @@
 section.section.section-blog {
+  background-color: darken($white_color, 3%);
+
   .blog-items-wrapper {
     margin-bottom: 1.5rem;
 
     > .frow {
       > div {
         .blog-item {
+          overflow: hidden;
+          background-color: $white_color;
+          border: 1px solid rgba($black_color, .1);
           margin-bottom: 1.5rem;
+          @include border-radius(4px);
+          @include transition(all .2s ease);
+          padding-left: 15px;
+          padding-right: 15px;
+          padding-bottom: 15px;
 
           .thumbnail {
-            height: 200px;
-            //background-color: darken($white_color, 10%);
-            margin-bottom: 1rem;
+            height: 150px;
+            margin: 0 -15px 1rem;
             position: relative;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
+            @include cover();
 
             &:before {
-              content: '';
               position: absolute;
               left: 0;
               top: 0;
               width: 100%;
               height: 100%;
               background-color: rgba($black_color, .2);
+              content: "\f205";
+              color: transparent;
+              @include remixicon_font;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 2rem;
+              @include transition(all .2s ease);
             }
           }
 
@@ -56,6 +70,17 @@ section.section.section-blog {
               margin-right: .5rem;
             }
           }
+
+          &:hover {
+            @include box-shadow();
+
+            .thumbnail {
+              &:before {
+                background-color: rgba($black_color, .5);
+                color: $white_color;
+              }
+            }
+          }
         }
 
         &:last-child {
@@ -73,7 +98,8 @@ section.section.section-blog {
         > div {
           .blog-item {
             margin-bottom: 0;
-            padding: 0 7.5px;
+            margin-left: 7.5px;
+            margin-right: 7.5px;
 
             .thumbnail {
               height: 150px;

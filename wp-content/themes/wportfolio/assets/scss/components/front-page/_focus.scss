@@ -10,28 +10,6 @@ section.section.section-focus {
 
           .icon {
             margin: 0 auto 1rem;
-            //width: $icon_size;
-            //height: $icon_size;
-            //background-color: $base_color;
-            //position: relative;
-
-            //> * {
-            //  position: relative;
-            //  z-index: 2;
-            //}
-
-            //&:after {
-            //  position: absolute;
-            //  left: 0;
-            //  top: 0;
-            //  z-index: 1;
-            //  display: block;
-            //  content: '';
-            //  width: $icon_size;
-            //  height: $icon_size;
-            //  //background-color: $base_color;
-            //  @include rotate(45deg);
-            //}
 
             span.icon-fill {
               color: $base_color;
