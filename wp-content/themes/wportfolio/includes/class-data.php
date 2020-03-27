@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.5
+ * @version 0.0.6
  */
 
 namespace WPortfolio;
@@ -22,6 +22,28 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 	 * @package WPortfolio
 	 */
 	class Data {
+
+		/**
+		 * Get empty data.
+		 *
+		 * @return mixed|void
+		 *
+		 * @since 0.0.6
+		 */
+		public function get_empty() {
+			$data = [
+				'post' => __( 'No posts found', 'wportfolio' ),
+			];
+
+			/**
+			 * WPortfolio data empty filter hook.
+			 *
+			 * @param array $data default data.
+			 *
+			 * @since 0.0.1
+			 */
+			return apply_filters( 'wportfolio_data_empty', $data );
+		}
 
 		/**
 		 * Get masthead data.

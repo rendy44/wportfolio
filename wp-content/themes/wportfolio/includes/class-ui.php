@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.0
+ * @version 0.3.1
  */
 
 namespace WPortfolio;
@@ -144,6 +144,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Modify archive page content.
 		 *
+		 * @version 0.0.2
 		 * @since 0.2.3
 		 */
 		private function archive_page() {
@@ -161,6 +162,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Render post list.
 			add_action( 'wportfolio_archive_post', [ $this, 'archive_post_list' ], 10, 1 );
+			// Render empty post.
+			add_action( 'wportfolio_archive_no_post', [ $this, 'archive_no_post' ], 10, 1 );
 		}
 
 		/**
@@ -633,6 +636,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		public function front_page_blog_content( $section_title, $post_id ) {
 			$blog_items = [];
 
+			// Get data empty.
+			$empty_data = $this->data_obj->get_empty();
+
 			// Get posts.
 			$posts_query = Master::get_posts( [ 'posts_per_page' => 3 ] );
 			if ( $posts_query->have_posts() ) {
@@ -653,7 +659,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			$args = [
 				'blog_items' => $blog_items,
-				'blog_empty' => __( 'No posts found', 'wportfolio' ),
+				'blog_empty' => $empty_data['post'],
 			];
 
 			/**
@@ -680,7 +686,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function front_page_contact_content( $section_title, $post_id ) {
 
-			// Get data.
+			// Get data contact.
 			$contact_data = $this->data_obj->get_contact();
 
 			$contact_items = [
@@ -858,6 +864,18 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			Template::render( 'blog/archive/post', $args );
 		}
+
+		/**
+		 * Callback for rendering empty post.
+		 *
+		 * @since 0.3.1
+		 */
+		public function archive_no_post() {
+
+			// Get data empty.
+			$empty_data = $this->data_obj->get_empty(); ?>
+            <div class="text-center"><p><?php echo esc_html( $empty_data['post'] ); ?></p></div>
+		<?php }
 
 		/**
 		 * Callback for footer open content.
