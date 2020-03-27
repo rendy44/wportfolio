@@ -25,6 +25,7 @@
 
   .author-detail {
     > a {
+      pointer-events: none;
       display: inline-block;
       color: $base_color;
       text-transform: capitalize;
