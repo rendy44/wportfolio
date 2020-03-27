@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.3
+ * @version 0.2.4
  */
 
 namespace WPortfolio;
@@ -750,10 +750,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for category list in archive page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.2.3
 		 */
 		public function archive_category_list() {
-			$category_args = [];
+			$category_args = [
+				'hide_empty' => false,
+			];
 
 			/**
 			 * WPortfolio archive category args filter hook.
