@@ -1,5 +1,13 @@
 section.section.section-single {
 
+  img.wp-post-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem;
+    @include border-radius(4px);
+  }
+
   @include breakpoint($size_tablet) {
     padding-top: 3rem;
     padding-bottom: 3rem;

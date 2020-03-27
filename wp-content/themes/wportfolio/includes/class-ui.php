@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.3
+ * @version 0.3.4
  */
 
 namespace WPortfolio;
@@ -352,9 +352,11 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param int $post_id id of the current post.
 		 *
+         * @version 0.0.2
 		 * @since 0.1.9
 		 */
 		public function single_post_content( $post_id ) {
+			the_post_thumbnail( 'large' );
 			the_content();
 		}
 
