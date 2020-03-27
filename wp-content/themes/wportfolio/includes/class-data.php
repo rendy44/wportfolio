@@ -95,6 +95,42 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		}
 
 		/**
+		 * Get focus data.
+		 *
+		 * @return mixed|void
+		 *
+		 * @since 0.0.4
+		 */
+		public function get_focus() {
+			$data = [
+				[
+					'id'    => 'wpcs',
+					'title' => __( 'WPCS Compliant', 'wportfolio' ),
+					'desc'  => __( 'By following WPCS we can expect most of what WordPress can offers.', 'wportfolio' ),
+				],
+				[
+					'id'    => 'config',
+					'title' => __( 'Customizable', 'wportfolio' ),
+					'desc'  => __( 'Thanks to WordPress hooks, they make development way more easier and simpler.', 'wportfolio' ),
+				],
+				[
+					'id'    => 'secure',
+					'title' => __( 'Secure', 'wportfolio' ),
+					'desc'  => __( 'Beautiful and cutting-edge website is worth nothing if it is not secure.', 'wportfolio' ),
+				],
+			];
+
+			/**
+			 * WPortfolio data focus filter hook.
+			 *
+			 * @param array $data default data.
+			 *
+			 * @since 0.0.1
+			 */
+			return apply_filters( 'wportfolio_data_focus', $data );
+		}
+		
+		/**
 		 * Get contact data.
 		 *
 		 * @return mixed|void

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.8
+ * @version 0.2.9
  */
 
 namespace WPortfolio;
@@ -595,41 +595,17 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.4
+		 * @version 0.0.5
 		 * @since 0.0.4
 		 */
 		public function front_page_focus_content( $section_title, $post_id ) {
-			$focus_items = [
-				[
-					'id'    => 'wpcs',
-					'title' => __( 'WPCS Compliant', 'wportfolio' ),
-					'desc'  => __( 'By following WPCS we can expect most of what WordPress can offers.', 'wportfolio' ),
-				],
-				[
-					'id'    => 'config',
-					'title' => __( 'Customizable', 'wportfolio' ),
-					'desc'  => __( 'Thanks to WordPress hooks, they make development way more easier and simpler.', 'wportfolio' ),
-				],
-				[
-					'id'    => 'secure',
-					'title' => __( 'Secure', 'wportfolio' ),
-					'desc'  => __( 'Beautiful and cutting-edge website is worth nothing if it is not secure.', 'wportfolio' ),
-				],
-			];
 
-			/**
-			 * WPortfolio focus items filter hooks.
-			 *
-			 * @param array $focus_items default focus items.
-			 * @param int $post_id id of the current page.
-			 *
-			 * @since 0.0.2
-			 */
-			$focus_items = apply_filters( 'wportfolio_focus_items', $focus_items, $post_id );
+			// Get data focus.
+			$focus_data = $this->data_obj->get_focus();
 
 			// Prepare the args.
 			$args = [
-				'focus_items' => $focus_items,
+				'focus_items' => $focus_data,
 			];
 
 			/**
