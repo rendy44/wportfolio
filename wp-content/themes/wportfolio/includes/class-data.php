@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.4
+ * @version 0.0.5
  */
 
 namespace WPortfolio;
@@ -99,7 +99,8 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @since 0.0.4
+		 * @version 0.0.2
+		 * @since 0.0.5
 		 */
 		public function get_focus() {
 			$data = [
@@ -111,7 +112,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 				[
 					'id'    => 'config',
 					'title' => __( 'Customizable', 'wportfolio' ),
-					'desc'  => __( 'Thanks to WordPress hooks, they make development way more easier and simpler.', 'wportfolio' ),
+					'desc'  => __( 'Thanks to WordPress hooks, they make development way easier and simpler.', 'wportfolio' ),
 				],
 				[
 					'id'    => 'secure',
