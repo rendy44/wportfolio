@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.7
+ * @version 0.2.8
  */
 
 namespace WPortfolio;
@@ -564,12 +564,16 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.3
+		 * @version 0.0.4
 		 * @since 0.0.3
 		 */
 		public function front_page_about_content( $section_title, $post_id ) {
+
+			// Get data about.
+			$about_data = $this->data_obj->get_about();
+
 			$args = [
-				'about_content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionate to write clean and efficient code but highly customizable.', 'wportfolio' ),
+				'about_content' => $about_data['content'],
 			];
 
 			/**

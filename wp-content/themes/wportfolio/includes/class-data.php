@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
@@ -70,6 +70,28 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 			 * @since 0.0.1
 			 */
 			return apply_filters( 'wportfolio_data_sections', $data );
+		}
+
+		/**
+		 * Get about data.
+		 *
+		 * @return mixed|void
+		 *
+		 * @since 0.0.4
+		 */
+		public function get_about() {
+			$data = [
+				'content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionate to write clean and efficient code but highly customizable.', 'wportfolio' ),
+			];
+
+			/**
+			 * WPortfolio data about filter hook.
+			 *
+			 * @param array $data default data.
+			 *
+			 * @since 0.0.1
+			 */
+			return apply_filters( 'wportfolio_data_about', $data );
 		}
 
 		/**
