@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,5 +30,11 @@ if ( ! empty( $blog_items ) ) { ?>
 <?php } else { ?>
     <div class="text-center">
         <p><?php echo esc_html( $blog_empty ); ?></p>
+    </div>
+<?php }
+
+if ( $blog_url ) { ?>
+    <div class="text-center">
+        <a href="<?php echo esc_attr( $blog_url ); ?>" class="button"><?php esc_html_e( 'All Posts', 'wportfolio' ); ?></a>
     </div>
 <?php }

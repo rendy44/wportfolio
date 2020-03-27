@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.1
+ * @version 0.3.2
  */
 
 namespace WPortfolio;
@@ -630,7 +630,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.1.4
 		 */
 		public function front_page_blog_content( $section_title, $post_id ) {
@@ -657,9 +657,11 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 				}
 			}
 
-			$args = [
+			$blog_page_id = get_option( 'page_for_posts' );
+			$args         = [
 				'blog_items' => $blog_items,
 				'blog_empty' => $empty_data['post'],
+				'blog_url'   => $blog_page_id ? get_permalink( $blog_page_id ) : false,
 			];
 
 			/**
