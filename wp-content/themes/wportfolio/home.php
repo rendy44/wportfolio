@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,6 +53,8 @@ if ( have_posts() ) {
 
 	/**
 	 * WPortfolio archive no post action hook.
+	 *
+	 * @hooked UI::archive_no_post - 10
 	 *
 	 * @since 0.0.3
 	 */

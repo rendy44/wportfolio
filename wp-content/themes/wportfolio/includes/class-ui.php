@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.2
+ * @version 0.3.3
  */
 
 namespace WPortfolio;
@@ -113,6 +113,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Modify front page content.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		private function front_page() {
@@ -133,6 +134,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Section focus.
 			add_action( 'wportfolio_section_focus', [ $this, 'front_page_focus_content' ], 10, 2 );
+
+			// Section experience.
+			add_action( 'wportfolio_section_experience', [ $this, 'front_page_experience_content' ], 10, 2 );
 
 			// Section blog.
 			add_action( 'wportfolio_section_blog', [ $this, 'front_page_blog_content' ], 10, 2 );
@@ -622,6 +626,38 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			$args = apply_filters( 'wportfolio_section_focus_content_args', $args, $post_id );
 
 			Template::render( 'front-page/section-focus', $args );
+		}
+
+		/**
+		 * Callback for section experience content.
+		 *
+		 * @param string $section_title title of the current section.
+		 * @param int $post_id id of the current page.
+		 *
+		 * @since 0.3.2
+		 */
+		public function front_page_experience_content( $section_title, $post_id ) {
+
+			// Get data experience.
+			$experience_data = $this->data_obj->get_experience();
+
+			// Prepare the args.
+			$args = [
+				'experience_content' => $experience_data['content'],
+				'experience_items'   => $experience_data['items'],
+			];
+
+			/**
+			 * WPortfolio section experience content args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$args = apply_filters( 'wportfolio_section_experience_content_args', $args, $post_id );
+
+			Template::render( 'front-page/section-experience', $args );
 		}
 
 		/**

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.6
+ * @version 0.0.7
  */
 
 namespace WPortfolio;
@@ -74,14 +74,16 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.3
 		 */
 		public function get_sections() {
 			$data = [
-				'about'   => __( 'Hi There!', 'wportfolio' ),
-				'focus'   => __( 'Specialisation', 'wportfolio' ),
-				'blog'    => __( 'Latest Posts', 'wportfolio' ),
-				'contact' => __( 'Get in Touch', 'wportfolio' ),
+				'about'      => __( 'Hi There!', 'wportfolio' ),
+				'focus'      => __( 'Specialisation', 'wportfolio' ),
+				'experience' => __( 'Professional Experiences', 'wportfolio' ),
+				'blog'       => __( 'Latest Posts', 'wportfolio' ),
+				'contact'    => __( 'Get in Touch', 'wportfolio' ),
 			];
 
 			/**
@@ -151,6 +153,48 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 			 * @since 0.0.1
 			 */
 			return apply_filters( 'wportfolio_data_focus', $data );
+		}
+
+		/**
+		 * Get experience data.
+		 *
+		 * @return mixed|void
+		 *
+		 * @since 0.0.7
+		 */
+		public function get_experience() {
+			$data = [
+				'content' => __( 'Generally, I have more than 7 years of experience as a Software Developer, shrunk to 4 years as a WordPress Developer.', 'wportfolio' ),
+				'items'   => [
+					[
+						'name'     => 'Harnods',
+						'location' => __( 'Yogyakarta, Indonesia', 'wportfolio' ),
+						'logo'     => 'https://harnods.com/wp-content/uploads/2018/09/harnods-logo.svg',
+						'url'      => 'https://harnods.com/',
+						'role'     => __( 'WordPress Developer', 'wportfolio' ),
+						'start'    => __( 'Apr 2016', 'wportfolio' ),
+						'end'      => __( 'Feb 2019', 'wportfolio' ),
+					],
+					[
+						'name'     => 'SoftwareSeni',
+						'location' => __( 'Yogyakarta, Indonesia', 'wportfolio' ),
+						'logo'     => 'https://www.softwareseni.co.id/wp-content/themes/ss-2018/assets/img/extra/softwareseni_logo.svg',
+						'url'      => 'https://www.softwareseni.co.id/',
+						'role'     => __( 'WordPress Developer', 'wportfolio' ),
+						'start'    => __( 'Feb 2019', 'wportfolio' ),
+						'end'      => __( 'Now', 'wportfolio' ),
+					],
+				],
+			];
+
+			/**
+			 * WPortfolio data experience filter hook.
+			 *
+			 * @param array $data default data.
+			 *
+			 * @since 0.0.1
+			 */
+			return apply_filters( 'wportfolio_data_experience', $data );
 		}
 
 		/**

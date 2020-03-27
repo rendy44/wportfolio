@@ -1,0 +1,59 @@
+.experience-items-wrapper {
+  margin-top: 1.5rem;
+
+  .experience-item {
+    display: flex;
+    //background-color: aquamarine;
+    margin-bottom: 1rem;
+    padding: 0 7.5px 1rem;
+    align-items: center;
+
+    .company-logo {
+      width: 80%;
+      max-width: 80px;
+      height: 40px;
+      margin-right: 1rem;
+      @include cover(contain);
+    }
+
+    .experience-detail {
+      > h3.company-name {
+        margin: 0 0 .5rem;
+        display: block;
+        font-weight: 500;
+
+        a.company-url {
+          font-size: 12px;
+          color: $base_color;
+          font-weight: 400;
+        }
+      }
+
+      > span.experience-role {
+        display: block;
+        font-weight: 500;
+      }
+
+      > span.company-location {
+        display: block;
+        margin-bottom: .25rem;
+      }
+
+      > span.experience-period {
+        display: block;
+        font-size: 14px;
+        color: $black_text_alt_color;
+      }
+    }
+
+    //@include breakpoint($size_tablet) {
+    //  flex-direction: row;
+    //  align-items: center;
+    //  .company-logo {
+    //    max-width: 100px;
+    //    height: 50px;
+    //    margin-right: 1rem;
+    //  }
+    //}
+  }
+}
