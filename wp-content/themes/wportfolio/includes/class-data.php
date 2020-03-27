@@ -130,7 +130,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 			 */
 			return apply_filters( 'wportfolio_data_focus', $data );
 		}
-		
+
 		/**
 		 * Get contact data.
 		 *
@@ -140,6 +140,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 */
 		public function get_contact() {
 			$data = [
+				'content'  => __( 'If you have projects that need to be get started, you may need some helps or just saying hey, let\'s get in touch.', 'wportfolio' ),
 				'email'    => 'rendy.de.p@gmail.com',
 				'linkedin' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
 				'github'   => 'https://github.com/rendy44',

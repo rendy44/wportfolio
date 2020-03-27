@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.9
+ * @version 0.3.0
  */
 
 namespace WPortfolio;
@@ -675,7 +675,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section. @since 0.0.2
 		 * @param int $post_id id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.1.0
 		 */
 		public function front_page_contact_content( $section_title, $post_id ) {
@@ -714,7 +714,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Prepare the args.
 			$args = [
-				'contact_content' => __( 'If you have projects that need to be get started, you may need some helps or just saying hey, let\'s get in touch.', 'wportfolio' ),
+				'contact_content' => $contact_data['content'],
 				'contact_items'   => $contact_items,
 			];
 
