@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.5
+ * @version 0.2.6
  */
 
 namespace WPortfolio;
@@ -31,6 +31,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		private static $instance = null;
 
 		/**
+		 * Data object variable.
+		 *
+		 * @var null|Data
+		 */
+		private $data_obj;
+
+		/**
 		 * Singleton
 		 *
 		 * @return UI|null
@@ -46,14 +53,24 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * UI constructor.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		private function __construct() {
+			$this->instance();
 			$this->global_page();
 			$this->front_page();
 			$this->single_page();
 			$this->archive_page();
+		}
+
+		/**
+		 * Instance data object.
+		 *
+		 * @since 0.2.6
+		 */
+		private function instance() {
+			$this->data_obj = new Data();
 		}
 
 		/**
@@ -674,22 +691,26 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @since 0.1.0
 		 */
 		public function front_page_contact_content( $section_title, $post_id ) {
+
+			// Get data.
+			$contact_data = $this->data_obj->get_contact();
+
 			$contact_items = [
 				[
 					'id'  => 'email',
-					'url' => 'mailto:rendy.de.p@gmail.com',
+					'url' => 'mailto:' . $contact_data['email'],
 				],
 				[
 					'id'  => 'linkedin',
-					'url' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
+					'url' => $contact_data['linkedin'],
 				],
 				[
 					'id'  => 'github',
-					'url' => 'https://github.com/rendy44',
+					'url' => $contact_data['github'],
 				],
 				[
 					'id'  => 'whatsapp',
-					'url' => 'http://wa.me/6282219186349',
+					'url' => 'http://wa.me/' . $contact_data['whatsapp'],
 				],
 			];
 
