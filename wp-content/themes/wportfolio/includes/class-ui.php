@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.6
+ * @version 0.2.7
  */
 
 namespace WPortfolio;
@@ -250,16 +250,19 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @return string
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.1.5
 		 */
 		public function masthead_title( $title ) {
 
+			// Get masthead data.
+			$masthead_data = $this->data_obj->get_masthead();
+
 			// Change masthead title depends on the current page.
 			if ( is_front_page() ) {
-				$title = __( 'Hi, I am Rendy,', 'wportfolio' );
+				$title = $masthead_data['title'];
 			} elseif ( is_home() ) {
-				$title = _x( 'Recent Posts', 'Masthead title', 'wportfolio' );
+				$title = $masthead_data['home_title'];
 			} elseif ( is_archive() ) {
 				$title = get_the_archive_title();
 			}
@@ -437,13 +440,18 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @return array
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.5
 		 */
 		public function masthead_content_args( $args ) {
 
 			// Add args in front page.
 			if ( is_front_page() ) {
-				$args['masthead_subtitle'] = __( 'a WordPress Developer', 'wportfolio' );
+
+				// Get masthead data.
+				$masthead_data = $this->data_obj->get_masthead();
+
+				$args['masthead_subtitle'] = $masthead_data['subtitle'];
 			}
 
 			return $args;
