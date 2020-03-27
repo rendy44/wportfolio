@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.2.2
+ * @version 0.2.3
  */
 
 namespace WPortfolio;
@@ -45,11 +45,15 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 		/**
 		 * UI constructor.
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
 		private function __construct() {
 			$this->global_page();
 			$this->front_page();
 			$this->single_page();
+			$this->archive_page();
 		}
 
 		/**
@@ -118,6 +122,21 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Section contact.
 			add_action( 'wportfolio_section_contact', [ $this, 'front_page_contact_content' ], 10, 2 );
+		}
+
+		/**
+		 * Modify archive page content.
+		 *
+		 * @since 0.2.3
+		 */
+		private function archive_page() {
+
+			// Render section.
+			add_action( 'wportfolio_before_archive', [ $this, 'archive_section_open' ], 10 );
+			add_action( 'wportfolio_after_archive', [ $this, 'archive_section_close' ], 50 );
+
+			// Render category.
+			add_action( 'wportfolio_before_archive', [ $this, 'archive_category_list' ], 20 );
 		}
 
 		/**
@@ -694,6 +713,74 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			$args = apply_filters( 'wportfolio_section_contact_content_args', $args, $post_id );
 
 			Template::render( 'front-page/section-contact', $args );
+		}
+
+		/**
+		 * Callback for section open in archive.
+		 *
+		 * @since 0.2.3
+		 */
+		public function archive_section_open() {
+			$args = [
+				'section_id'    => 'archive',
+				'section_class' => 'section-archive',
+			];
+
+			/**
+			 * WPortfolio archive section open args filter hook.
+			 *
+			 * @param array $args default args.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_archive_section_open_args', $args );
+
+			Template::render( 'global/section-open', $args );
+		}
+
+		/**
+		 * Callback for section close in archive.
+		 *
+		 * @since 0.2.3
+		 */
+		public function archive_section_close() {
+			Template::render( 'global/section-close' );
+		}
+
+		/**
+		 * Callback for category list in archive page.
+		 *
+		 * @since 0.2.3
+		 */
+		public function archive_category_list() {
+			$category_args = [];
+
+			/**
+			 * WPortfolio archive category args filter hook.
+			 *
+			 * @param array $category_args default args.
+			 *
+			 * @since 0.0.1
+			 */
+			$category_args = apply_filters( 'wportfolio_archive_category_args', $category_args );
+
+			// Get all categories.
+			$categories = get_categories( $category_args );
+
+			$args = [
+				'archive_categories' => $categories,
+			];
+
+			/**
+			 * WPortfolio archive section args filter hook.
+			 *
+			 * @param array $args default args.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_archive_section_args', $args );
+
+			Template::render( 'blog/category/list', $args );
 		}
 
 		/**
