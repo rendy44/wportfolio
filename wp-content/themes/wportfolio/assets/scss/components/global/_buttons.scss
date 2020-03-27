@@ -11,9 +11,10 @@ button {
   padding: .75rem 2rem;
   border: 1px solid rgba($black_color, .1);
   display: inline-block;
+  font-weight: 500;
   @include border-radius(4px);
   @include text_shadow();
-  font-weight: 500;
+  @include transition(all .2s ease);
 
   &.button-success {
     background-color: $success_color !important;
@@ -22,5 +23,11 @@ button {
   &.button-text {
     border-color: transparent;
     background-color: transparent;
+  }
+
+  &:not(.button-text):hover,
+  &:not(.button-text):active,
+  &:not(.button-text):focus {
+    @include box-shadow();
   }
 }

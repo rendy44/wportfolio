@@ -19,9 +19,15 @@ section.section.section-contact {
         align-items: center;
         font-size: 1.5rem;
         @include border-radius(50%);
+        @include transition(all .2s ease);
 
         &:before {
           @include remixicon_font;
+        }
+
+        &:hover {
+          @include box-shadow();
+          @include rotate(15deg);
         }
       }
 
