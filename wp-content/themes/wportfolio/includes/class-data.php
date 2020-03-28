@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.8
+ * @version 0.0.9
  */
 
 namespace WPortfolio;
@@ -225,6 +225,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		public function get_contact() {
@@ -234,6 +235,26 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 				'linkedin' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
 				'github'   => 'https://github.com/rendy44',
 				'whatsapp' => '6282219186349',
+			];
+
+			// Merge the items.
+			$data['items'] = [
+				[
+					'id'  => 'email',
+					'url' => 'mailto:' . $data['email'],
+				],
+				[
+					'id'  => 'whatsapp',
+					'url' => 'http://wa.me/' . $data['whatsapp'],
+				],
+				[
+					'id'  => 'linkedin',
+					'url' => $data['linkedin'],
+				],
+				[
+					'id'  => 'github',
+					'url' => $data['github'],
+				],
 			];
 
 			/**

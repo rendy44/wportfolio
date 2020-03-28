@@ -1,3 +1,5 @@
+$bullet_size: 30px;
+$bullet_size_md: 40px;
 nav.nav {
   position: fixed;
   display: flex;
@@ -12,12 +14,85 @@ nav.nav {
   @include box-shadow();
   @include transition(all .2s ease);
 
-  .brand {
-    > a {
-      @include dancing_font;
-      color: $base_color;
-      font-size: 2rem;
-      @include transition(all .2s ease);
+  .frow-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .brand {
+      > a {
+        @include dancing_font;
+        color: $base_color;
+        font-size: 2rem;
+        @include transition(all .2s ease);
+      }
+    }
+
+    .contact-items-wrapper {
+      //display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      > li.contact-item {
+        margin-right: 5px;
+        display: inline-block;
+        @include transition(all .2s ease);
+
+        > a {
+          display: flex;
+          width: $bullet_size;
+          height: $bullet_size;
+          background-color: $base_color;
+          color: $white_color;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          @include border-radius(50%);
+          @include transition(all .2s ease);
+
+          &:before {
+            @include remixicon_font;
+          }
+
+          &:hover {
+            @include box-shadow();
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &.item-email > a:before {
+          content: "\ee90";
+        }
+
+        &.item-linkedin > a:before {
+          content: "\ee4e";
+        }
+
+        &.item-github > a:before {
+          content: "\ed85";
+        }
+
+        &.item-whatsapp > a:before {
+          content: "\f1e9";
+        }
+      }
+
+      @include breakpoint($size_tablet) {
+        > li.contact-item {
+          margin-right: 15px;
+
+          > a {
+            width: $bullet_size_md;
+            height: $bullet_size_md;
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
 }
