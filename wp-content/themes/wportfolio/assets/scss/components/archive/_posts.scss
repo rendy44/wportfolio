@@ -20,13 +20,7 @@ $thumbnail_size_md: 140px;
       }
 
       &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba($black_color, .2);
+        @include thumbnail_overlay;
       }
     }
 
@@ -91,6 +85,15 @@ $thumbnail_size_md: 140px;
         }
         > span.date {
           font-size: 14px;
+        }
+      }
+    }
+
+    &:hover {
+      .blog-thumbnail {
+        &:before {
+          background-color: rgba($black_color, .5);
+          color: $white_color;
         }
       }
     }

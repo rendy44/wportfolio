@@ -24,20 +24,7 @@ section.section.section-blog {
             @include cover();
 
             &:before {
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 100%;
-              height: 100%;
-              background-color: rgba($black_color, .2);
-              content: "\f205";
-              color: transparent;
-              @include remixicon_font;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 2rem;
-              @include transition(all .2s ease);
+              @include thumbnail_overlay;
             }
           }
 
