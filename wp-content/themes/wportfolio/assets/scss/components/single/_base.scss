@@ -4,8 +4,16 @@ section.section.section-single {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto 1rem;
+    margin: 0 auto 2rem;
     @include border-radius(4px);
+  }
+
+  p {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   @include breakpoint($size_tablet) {
