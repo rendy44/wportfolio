@@ -1,0 +1,35 @@
+$bullet_size: 40px;
+ul.page-numbers {
+  text-align: center;
+  list-style: none;
+  margin: 2rem auto 0;
+  padding: 0;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $bullet_size;
+    height: $bullet_size;
+    border: 1px solid rgba($black_color, .1);
+    text-align: center;
+    @include border-radius(50%);
+    @include transition(all .2s ease);
+
+    > * {
+      font-size: 20px;
+    }
+
+    > a {
+      color: $base_color;
+      display: block;
+      width: 100%;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: $black_color;
+    }
+  }
+}

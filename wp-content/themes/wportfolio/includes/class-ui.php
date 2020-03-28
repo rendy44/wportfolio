@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.5
+ * @version 0.3.6
  */
 
 namespace WPortfolio;
@@ -150,14 +150,14 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Modify archive page content.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.2.3
 		 */
 		private function archive_page() {
 
 			// Render section.
 			add_action( 'wportfolio_before_archive', [ $this, 'archive_section_open' ], 10 );
-			add_action( 'wportfolio_after_archive', [ $this, 'archive_section_close' ], 50 );
+			add_action( 'wportfolio_after_archive', [ $this, 'archive_section_close' ], 60 );
 
 			// Render category.
 			add_action( 'wportfolio_before_archive', [ $this, 'archive_category_list' ], 20 );
@@ -165,6 +165,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Render posts wrapper.
 			add_action( 'wportfolio_before_archive', [ $this, 'archive_post_wrapper_open' ], 30 );
 			add_action( 'wportfolio_after_archive', [ $this, 'archive_post_wrapper_close' ], 40 );
+			add_action( 'wportfolio_after_archive', [ $this, 'archive_pagination' ], 50 );
 
 			// Render post list.
 			add_action( 'wportfolio_archive_post', [ $this, 'archive_post_list' ], 10, 1 );
@@ -901,6 +902,29 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			?>
 			</div>
 			<?php
+		}
+
+		/**
+		 * Callback for archive pagination.
+		 *
+		 * @since 0.3.6
+		 */
+		public function archive_pagination() {
+			$args = [
+				'type'      => 'list',
+				'prev_next' => false,
+			];
+
+			/**
+			 * WPortfolio archive pagination args filter hook.
+			 *
+			 * @param array $args default args.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_archive_pagination_args', $args );
+
+			echo paginate_links( $args ); // phpcs:ignore
 		}
 
 		/**
