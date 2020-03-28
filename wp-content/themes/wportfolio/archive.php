@@ -5,23 +5,12 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Include header.
- *
- * @since 0.0.1
- */
-get_header();
-
-/**
- * Include footer.
- *
- * @since 0.0.1
- */
-get_footer();
+// We just want to make it easy, at this moment we only need to include the home template.
+include TEMP_PATH . '/home.php';
