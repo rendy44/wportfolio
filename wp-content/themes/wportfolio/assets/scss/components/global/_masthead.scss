@@ -5,6 +5,7 @@ section.masthead {
   background-color: lighten($base_color, 20%);
   overflow: hidden;
   color: $white_color;
+  padding-top: $nav_height;
   @include custom_text_shadow(2px 2px 1px rgba($black_color, .4));
 
   > .left-masthead {

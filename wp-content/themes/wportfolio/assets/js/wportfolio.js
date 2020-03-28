@@ -9,7 +9,7 @@ import Action from "./class/action.js";
      *
      * @author WPerfekt
      * @package WPortfolio
-     * @version 0.0.1
+     * @version 0.0.2
      */
     new class {
 
@@ -17,7 +17,27 @@ import Action from "./class/action.js";
          * Class constructor.
          */
         constructor() {
+            this.eventScrollNav();
             this.eventLikePost();
+        }
+
+        /**
+         * Event when navbar being scrolled.
+         *
+         * @since 0.0.2
+         */
+        eventScrollNav() {
+            const navBar = $('nav.nav');
+            $(window).scroll(function () {
+                const position = $(this).scrollTop();
+
+                // Add class depends on scroll position.
+                if (position > 100) {
+                    navBar.addClass('scrolled');
+                } else {
+                    navBar.removeClass('scrolled');
+                }
+            })
         }
 
         /**

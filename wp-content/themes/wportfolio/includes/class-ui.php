@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.4
+ * @version 0.3.5
  */
 
 namespace WPortfolio;
@@ -76,14 +76,16 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Add content for global pages.
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.5
 		 */
 		private function global_page() {
 
 			// Render masthead.
-			add_action( 'wp_body_open', [ $this, 'masthead_open' ], 10 );
-			add_action( 'wp_body_open', [ $this, 'masthead_content' ], 20 );
-			add_action( 'wp_body_open', [ $this, 'masthead_close' ], 30 );
+			add_action( 'wp_body_open', [ $this, 'maybe_nav_bar' ], 10 );
+			add_action( 'wp_body_open', [ $this, 'masthead_open' ], 20 );
+			add_action( 'wp_body_open', [ $this, 'masthead_content' ], 30 );
+			add_action( 'wp_body_open', [ $this, 'masthead_close' ], 40 );
 			add_filter( 'wportfolio_masthead_title', [ $this, 'masthead_title' ], 10, 1 );
 
 			// Render footer.
@@ -168,6 +170,37 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wportfolio_archive_post', [ $this, 'archive_post_list' ], 10, 1 );
 			// Render empty post.
 			add_action( 'wportfolio_archive_no_post', [ $this, 'archive_no_post' ], 10, 1 );
+		}
+
+		/**
+		 * Callback for masthead nav bar.
+		 *
+		 * @since 0.3.5
+		 */
+		public function maybe_nav_bar() {
+
+			// Make sure it's not front page.
+			if ( ! is_front_page() ) {
+
+				// Get data nav,
+				$nav_data = $this->data_obj->get_nav();
+
+				$args = [
+					'nav_url'  => $nav_data['link'],
+					'nav_text' => $nav_data['text'],
+				];
+
+				/**
+				 * WPortfolio nav content args filter hook.
+				 *
+				 * @param array $args default args.
+				 *
+				 * @since 0.0.1
+				 */
+				$args = apply_filters( 'wportfolio_nav_content_args', $args );
+
+				Template::render( 'global/nav', $args );
+			}
 		}
 
 		/**
@@ -352,7 +385,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param int $post_id id of the current post.
 		 *
-         * @version 0.0.2
+		 * @version 0.0.2
 		 * @since 0.1.9
 		 */
 		public function single_post_content( $post_id ) {

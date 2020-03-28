@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.7
+ * @version 0.0.8
  */
 
 namespace WPortfolio;
@@ -43,6 +43,29 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 			 * @since 0.0.1
 			 */
 			return apply_filters( 'wportfolio_data_empty', $data );
+		}
+
+		/**
+		 * Get nav data.
+		 *
+		 * @return mixed|void
+		 *
+		 * @since 0.0.6
+		 */
+		public function get_nav() {
+			$data = [
+				'link' => home_url(),
+				'text' => 'Rendy',
+			];
+
+			/**
+			 * WPortfolio data nav filter hook.
+			 *
+			 * @param array $data default data.
+			 *
+			 * @since 0.0.1
+			 */
+			return apply_filters( 'wportfolio_data_nav', $data );
 		}
 
 		/**
