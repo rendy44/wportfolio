@@ -7,8 +7,14 @@
     line-height: 1;
     background-color: darken($white_color, 5%);
     margin-right: .3rem;
+    margin-bottom: .3rem;
     color: $black_text_color;
     @include border-radius(4px);
     font-size: 14px;
+
+    &:last-child {
+      margin-bottom: 0;
+      margin-right: 0;
+    }
   }
 }
