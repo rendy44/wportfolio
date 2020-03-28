@@ -107,8 +107,8 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 		/**
 		 * Do load the assets.
 		 *
-		 * @param array $assets list of the assets.
-		 * @param string $type type of the asset, css|js
+		 * @param array  $assets list of the assets.
+		 * @param string $type type of the asset, css|js.
 		 *
 		 * @since 0.0.1
 		 */

@@ -77,7 +77,7 @@ if ( ! class_exists( 'WPortfolio\Settings' ) ) {
 		/**
 		 * Callback for modifying guttenberg availability.
 		 *
-		 * @param bool $use_block_editor Whether the post can be edited or not.
+		 * @param bool    $use_block_editor Whether the post can be edited or not.
 		 * @param WP_Post $post The post being checked.
 		 *
 		 * @return bool

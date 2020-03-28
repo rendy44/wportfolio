@@ -12,5 +12,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <div class="text-center">
-    <p><?php echo esc_html( $about_content ); ?></p>
+	<p><?php echo esc_html( $about_content ); ?></p>
 </div>

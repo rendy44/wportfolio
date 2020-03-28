@@ -12,11 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <div class="single-meta">
-    <div class="author-avatar">
-		<?php echo $meta_avatar; ?>
-    </div>
-    <div class="author-detail">
+	<div class="author-avatar">
+		<?php echo $meta_avatar; // phpcs:ignore ?>
+	</div>
+	<div class="author-detail">
 		<?php echo $meta_author_link; // phpcs:ignore ?>
-        <span class="meta-date"><?php echo esc_html( $meta_date_time ); ?></span>
-    </div>
+		<span class="meta-date"><?php echo esc_html( $meta_date_time ); ?></span>
+	</div>
 </div>

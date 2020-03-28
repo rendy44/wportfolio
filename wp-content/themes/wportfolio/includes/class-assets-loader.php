@@ -54,8 +54,8 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		 * Add asset for front-end.
 		 *
 		 * @param string $name name of the asset.
-		 * @param array $args array of the new asset.
-		 * @param string $type type of the asset, css|js
+		 * @param array  $args array of the new asset.
+		 * @param string $type type of the asset, css|js.
 		 *
 		 * @version 0.0.2
 		 * @since 0.0.1
@@ -91,7 +91,7 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		/**
 		 * Get front-end's assets.
 		 *
-		 * @param string $type type of the asset, css|js
+		 * @param string $type type of the asset, css|js.
 		 *
 		 * @since 0.0.1
 		 */
@@ -103,7 +103,6 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 				$assets          = self::$front_css;
 				$loader_function = 'wp_enqueue_style';
 			}
-
 
 			// Loop assets.
 			if ( ! empty( $assets ) ) {

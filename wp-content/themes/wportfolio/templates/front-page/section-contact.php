@@ -12,13 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <div class="text-center">
-    <p><?php echo esc_html( $contact_content ); ?></p>
+	<p><?php echo esc_html( $contact_content ); ?></p>
 
-    <ul class="contact-items-wrapper">
+	<ul class="contact-items-wrapper">
 		<?php foreach ( $contact_items as $contact_item ) { ?>
-            <li class="contact-item item-<?php echo esc_attr( $contact_item['id'] ); ?>">
-                <a href="<?php echo esc_attr( $contact_item['url'] ); ?>" target="_blank"></a>
-            </li>
+			<li class="contact-item item-<?php echo esc_attr( $contact_item['id'] ); ?>">
+				<a href="<?php echo esc_attr( $contact_item['url'] ); ?>" target="_blank"></a>
+			</li>
 		<?php } ?>
-    </ul>
+	</ul>
 </div>

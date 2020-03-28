@@ -16,8 +16,8 @@ $section_size  = isset( $section_size ) && $section_size ? $section_size : 'col-
 ?>
 
 <section class="section <?php echo esc_attr( $section_class ); ?>" id="<?php echo esc_attr( $section_id ); ?>">
-    <div class="left-section"></div>
-    <div class="right-section"></div>
-    <div class="frow-container">
-        <div class="frow">
-            <div class="<?php echo esc_attr( $section_size ); ?>">
+	<div class="left-section"></div>
+	<div class="right-section"></div>
+	<div class="frow-container">
+		<div class="frow">
+			<div class="<?php echo esc_attr( $section_size ); ?>">

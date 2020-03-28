@@ -162,7 +162,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Render category.
 			add_action( 'wportfolio_before_archive', [ $this, 'archive_category_list' ], 20 );
 
-			// Render posts wrapper
+			// Render posts wrapper.
 			add_action( 'wportfolio_before_archive', [ $this, 'archive_post_wrapper_open' ], 30 );
 			add_action( 'wportfolio_after_archive', [ $this, 'archive_post_wrapper_close' ], 40 );
 
@@ -182,7 +182,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Make sure it's not front page.
 			if ( ! is_front_page() ) {
 
-				// Get data nav,
+				// Get data nav.
 				$nav_data = $this->data_obj->get_nav();
 
 				$args = [
@@ -314,7 +314,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for adding section open in single post.
 		 *
 		 * @param string $post_type name of the current post type.
-		 * @param int $post_id id of the current post.
+		 * @param int    $post_id id of the current post.
 		 *
 		 * @version 0.0.2
 		 * @since 0.1.8
@@ -343,7 +343,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for adding section close in single post.
 		 *
 		 * @param string $post_type name of the current post type.
-		 * @param int $post_id id of the current post.
+		 * @param int    $post_id id of the current post.
 		 *
 		 * @since 0.1.8
 		 */
@@ -503,8 +503,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section open content.
 		 *
 		 * @param string $section name of the current section.
-		 * @param string $section_title title of the current section. @since 0.0.2
-		 * @param int $post_id id of the current page.
+		 * @param string $section_title title of the current section. @since 0.0.2.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @version 0.0.4
 		 * @since 0.0.1
@@ -535,9 +535,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for filtering section size.
 		 *
-		 * @param array $args default args.
+		 * @param array  $args default args.
 		 * @param string $section name of the current section.
-		 * @param int $post_id id of the current page.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @return array
 		 *
@@ -548,7 +548,6 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			switch ( $section ) {
 				case 'focus':
 				case 'blog':
-
 					// Add custom data.
 					$args['section_size'] = 'col-md-2-3';
 					break;
@@ -562,7 +561,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param string $section name of the current section.
 		 * @param string $section_title title of the current section.
-		 * @param int $post_id id of the current page.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @version 0.0.2
 		 * @since 0.0.2
@@ -590,8 +589,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section close content.
 		 *
 		 * @param string $section name of the current section.
-		 * @param string $section_title title of the current section. @since 0.0.2
-		 * @param int $post_id id of the current page.
+		 * @param string $section_title title of the current section. @since 0.0.2.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @version 0.0.3
 		 * @since 0.0.1
@@ -603,8 +602,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for section about content.
 		 *
-		 * @param string $section_title title of the current section. @since 0.0.2
-		 * @param int $post_id id of the current page.
+		 * @param string $section_title title of the current section. @since 0.0.2.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @version 0.0.4
 		 * @since 0.0.3
@@ -634,8 +633,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for section focus content.
 		 *
-		 * @param string $section_title title of the current section. @since 0.0.2
-		 * @param int $post_id id of the current page.
+		 * @param string $section_title title of the current section. @since 0.0.2.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @version 0.0.5
 		 * @since 0.0.4
@@ -667,7 +666,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section experience content.
 		 *
 		 * @param string $section_title title of the current section.
-		 * @param int $post_id id of the current page.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @since 0.3.2
 		 */
@@ -698,8 +697,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for section blog content.
 		 *
-		 * @param string $section_title title of the current section. @since 0.0.2
-		 * @param int $post_id id of the current page.
+		 * @param string $section_title title of the current section. @since 0.0.2.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @version 0.0.3
 		 * @since 0.1.4
@@ -751,8 +750,8 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for section contact content.
 		 *
-		 * @param string $section_title title of the current section. @since 0.0.2
-		 * @param int $post_id id of the current page.
+		 * @param string $section_title title of the current section. @since 0.0.2.
+		 * @param int    $post_id id of the current page.
 		 *
 		 * @version 0.0.3
 		 * @since 0.1.0
@@ -889,17 +888,20 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @since 0.2.5
 		 */
 		public function archive_post_wrapper_open() { ?>
-            <div class="archive-posts-wrapper">
-		<?php }
+			<div class="archive-posts-wrapper">
+			<?php
+		}
 
 		/**
 		 * Callback for archive posts wrapper close.
 		 *
 		 * @since 0.2.5
 		 */
-		public function archive_post_wrapper_close() { ?>
-            </div>
-		<?php }
+		public function archive_post_wrapper_close() {
+			?>
+			</div>
+			<?php
+		}
 
 		/**
 		 * Callback for rendering post list.
@@ -946,9 +948,11 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		public function archive_no_post() {
 
 			// Get data empty.
-			$empty_data = $this->data_obj->get_empty(); ?>
-            <div class="text-center"><p><?php echo esc_html( $empty_data['post'] ); ?></p></div>
-		<?php }
+			$empty_data = $this->data_obj->get_empty();
+			?>
+			<div class="text-center"><p><?php echo esc_html( $empty_data['post'] ); ?></p></div>
+			<?php
+		}
 
 		/**
 		 * Callback for footer open content.

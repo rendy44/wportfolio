@@ -48,7 +48,7 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 			$args = wp_parse_args( $args, $default_args );
 
 			// Define as string.
-			$cache_key = serialize( $args );
+			$cache_key = wp_json_encode( $args );
 
 			// Maybe get from cache.
 			$query = wp_cache_get( $cache_key );
@@ -69,8 +69,8 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 		/**
 		 * Update post meta.
 		 *
-		 * @param string $key post meta key.
-		 * @param string $value new post meta value.
+		 * @param string   $key post meta key.
+		 * @param string   $value new post meta value.
 		 * @param bool|int $post_id id of the post.
 		 *
 		 * @version 0.0.2
@@ -100,14 +100,14 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 		 * @since 0.0.2
 		 */
 		public static function get_post_meta( $key, $post_id = false, $single_value = true, $with_prefix = true ) {
-			$result  = false;
+			$result = false;
 
 			// Maybe redefine post id.
 			if ( ! $post_id ) {
 				$post_id = get_the_ID();
 			}
 
-			$prefix  = $with_prefix ? TEMP_PREFIX : '';
+			$prefix = $with_prefix ? TEMP_PREFIX : '';
 			if ( is_array( $key ) ) {
 				foreach ( $key as $single_key ) {
 					$result[ $single_key ] = get_post_meta( $post_id, $prefix . $single_key, $single_value );

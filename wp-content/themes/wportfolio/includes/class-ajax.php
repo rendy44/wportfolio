@@ -80,10 +80,10 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 		/**
 		 * Register ajax endpoint.
 		 *
-		 * @param string $endpoint the endpoint name.
+		 * @param string   $endpoint the endpoint name.
 		 * @param callable $callback obect of the endpoint.
-		 * @param bool $is_public whether set endpoint as public or not.
-		 * @param bool $is_logged_in whether set endpoint as accessible in logged in user or not.
+		 * @param bool     $is_public whether set endpoint as public or not.
+		 * @param bool     $is_logged_in whether set endpoint as accessible in logged in user or not.
 		 *
 		 * @since 0.0.1
 		 */
@@ -154,7 +154,7 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 
 					// Get new like count.
 					$new_like_count = $post_like->get_likes();
-
+					/* translators: %s: amount of the loves */
 					$result = sprintf( _n( '%s love', '%s loves', $new_like_count, 'wportfolio' ), $new_like_count );
 				} else {
 					$result = new WP_Error( 'fail_like', __( 'Unable to give a love', 'wportfolio' ) );

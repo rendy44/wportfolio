@@ -16,8 +16,8 @@ $masthead_size  = isset( $masthead_size ) && $masthead_size ? $masthead_size : '
 ?>
 
 <section class="masthead <?php echo esc_attr( $masthead_class ); ?>">
-    <div class="left-masthead"></div>
-    <div class="right-masthead"></div>
-    <div class="frow-container">
-        <div class="frow">
-            <div class="<?php echo esc_attr( $masthead_size ); ?>">
+	<div class="left-masthead"></div>
+	<div class="right-masthead"></div>
+	<div class="frow-container">
+		<div class="frow">
+			<div class="<?php echo esc_attr( $masthead_size ); ?>">
