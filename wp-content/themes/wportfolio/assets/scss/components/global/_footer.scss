@@ -6,10 +6,20 @@ footer.footer {
     margin: 0;
     font-size: 14px;
     letter-spacing: 2px;
+
+    &.author {
+      margin-top: 1rem;
+      font-size: 12px;
+
+      a {
+        color: $base_color;
+        font-weight: 700;
+      }
+    }
   }
 
   &.footer-dark {
-    background-color: lighten($black_color, 20%);
+    background-color: lighten($black_color, 30%);
 
     p {
       color: $white_color;

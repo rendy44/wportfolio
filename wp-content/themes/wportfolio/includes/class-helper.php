@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -108,6 +108,17 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 			}
 
 			return $result;
+		}
+
+		/**
+		 * Please let this line available.
+		 *
+		 * @return string
+		 *
+		 * @since 0.0.2
+		 */
+		public static function get_author() {
+			return 'Created and Designed by <a href="http://wperfekt.com" target="_blank">WPerfekt</a>';
 		}
 	}
 }

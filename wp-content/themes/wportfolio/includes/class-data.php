@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.9
+ * @version 0.1.0
  */
 
 namespace WPortfolio;
@@ -43,6 +43,17 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 			 * @since 0.0.1
 			 */
 			return apply_filters( 'wportfolio_data_empty', $data );
+		}
+
+		/**
+		 * Get author data.
+		 *
+		 * @return string
+		 *
+		 * @since 0.1.0
+		 */
+		public function get_author() {
+			return Helper::get_author();
 		}
 
 		/**
