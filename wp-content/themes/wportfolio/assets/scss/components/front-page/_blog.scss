@@ -15,7 +15,8 @@ section.section.section-blog {
           @include transition(all .2s ease);
           padding-left: 15px;
           padding-right: 15px;
-          padding-bottom: 15px;
+          padding-bottom: 30px;
+          position: relative;
 
           .thumbnail {
             height: 150px;
@@ -47,6 +48,8 @@ section.section.section-blog {
           }
 
           p.blog-time {
+            position: absolute;
+            bottom: 10px;
             margin: 0;
             font-size: 12px;
             color: lighten($black_color, 60%);
@@ -84,6 +87,7 @@ section.section.section-blog {
       > .frow {
         > div {
           .blog-item {
+            height: 100%;
             margin-bottom: 0;
             margin-left: 7.5px;
             margin-right: 7.5px;
