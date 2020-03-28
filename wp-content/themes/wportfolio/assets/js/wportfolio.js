@@ -32,7 +32,7 @@ import Action from "./class/action.js";
                 const position = $(this).scrollTop();
 
                 // Add class depends on scroll position.
-                if (position > 100) {
+                if (position > 80) {
                     navBar.addClass('scrolled');
                 } else {
                     navBar.removeClass('scrolled');

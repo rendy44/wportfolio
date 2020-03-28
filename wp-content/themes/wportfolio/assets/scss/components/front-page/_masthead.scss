@@ -6,7 +6,7 @@ section.masthead.masthead-front-page {
   h1 {
     text-align: left !important;
     font-size: 3rem;
-    margin: 0 0 1rem;
+    margin: 0 0 1rem !important;
     @include dancing_font;
     @include breakpoint($size_tablet) {
       font-size: 5rem;

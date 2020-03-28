@@ -7,29 +7,17 @@ nav.nav {
   z-index: 2;
   height: $nav_height;
   align-items: center;
-  background-color: transparent;
+  background-color: $white_color;
+  border-bottom: 1px solid rgba($black_color, .1);
+  @include box-shadow();
   @include transition(all .2s ease);
 
   .brand {
     > a {
       @include dancing_font;
-      color: $white_color;
-      font-size: 2.5rem;
+      color: $base_color;
+      font-size: 2rem;
       @include transition(all .2s ease);
-      @include text_shadow();
-    }
-  }
-
-  &.scrolled {
-    background-color: $white_color;
-    border-bottom: 1px solid rgba($black_color, .1);
-    @include box-shadow();
-
-    .brand {
-      > a {
-        color: $base_color;
-        @include text_shadow(transparent);
-      }
     }
   }
 }
