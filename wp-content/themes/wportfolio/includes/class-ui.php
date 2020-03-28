@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.9
+ * @version 0.4.0
  */
 
 namespace WPortfolio;
@@ -758,7 +758,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 						'id'            => get_the_ID(),
 						'title'         => get_the_title(),
 						'permalink'     => get_permalink(),
-						'thumbnail_url' => get_the_post_thumbnail_url(),
+						'thumbnail_url' => get_the_post_thumbnail_url( get_the_ID(), 'medium' ),
 						'excerpt'       => get_the_excerpt(),
 						'date'          => get_the_date(),
 					];
@@ -952,12 +952,13 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param int $post_id id of the current post.
 		 *
+		 * @version 0.0.2
 		 * @since 0.2.5
 		 */
 		public function archive_post_list( $post_id ) {
 
 			// Fetch thumbnail as bg.
-			$thumbnail_url = get_the_post_thumbnail_url( $post_id );
+			$thumbnail_url = get_the_post_thumbnail_url( $post_id, 'thumbnail' );
 			$bg_image      = $thumbnail_url ? "style='background-image: url({$thumbnail_url});'" : '';
 
 			// Prepare args.
