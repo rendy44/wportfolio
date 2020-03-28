@@ -11,6 +11,14 @@ section.section.section-single {
   p {
     margin-bottom: 1rem;
 
+    &.thumbnail-caption {
+      text-align: center;
+      font-size: 14px;
+      margin-top: -1.5rem;
+      margin-bottom: 1.5rem;
+      color: $black_text_alt_color;
+    }
+
     &:last-child {
       margin-bottom: 0;
     }

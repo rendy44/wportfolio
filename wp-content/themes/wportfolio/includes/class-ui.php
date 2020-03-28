@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.3.8
+ * @version 0.3.9
  */
 
 namespace WPortfolio;
@@ -97,6 +97,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Add content for single post page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.1
 		 */
 		private function single_page() {
@@ -107,6 +108,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Single post content.
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_meta' ], 10, 1 );
+			add_filter( 'post_thumbnail_html', [ $this, 'single_post_thumbnail_detail' ], 10, 5 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_content' ], 20, 1 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_tag' ], 30, 1 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_like' ], 40, 1 );
@@ -318,7 +320,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for adding section open in single post.
 		 *
 		 * @param string $post_type name of the current post type.
-		 * @param int    $post_id id of the current post.
+		 * @param int $post_id id of the current post.
 		 *
 		 * @version 0.0.2
 		 * @since 0.1.8
@@ -347,7 +349,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for adding section close in single post.
 		 *
 		 * @param string $post_type name of the current post type.
-		 * @param int    $post_id id of the current post.
+		 * @param int $post_id id of the current post.
 		 *
 		 * @since 0.1.8
 		 */
@@ -382,6 +384,38 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			$args = apply_filters( 'wportfolio_single_post_meta_args', $args, $post_id );
 
 			Template::render( 'blog/single/meta', $args );
+		}
+
+		/**
+		 * WPortfolio the post thumbnail HTML filter hook.
+		 *
+		 * @param string $html The post thumbnail HTML.
+		 * @param int $post_id The post ID.
+		 * @param string $post_thumbnail_id The post thumbnail ID.
+		 * @param string|array $size The post thumbnail size. Image size or array of width and height
+		 *                                        values (in that order). Default 'post-thumbnail'.
+		 * @param string $attr Query string of attributes.
+		 *
+		 * @return string
+		 *
+		 * @since 0.3.9
+		 */
+		public function single_post_thumbnail_detail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+
+			// Make sure it is post.
+			$post_type = get_post_type( $post_id );
+
+			if ( 'post' === $post_type ) {
+
+				// Fetch caption.
+				$caption = wp_get_attachment_caption( $post_thumbnail_id );
+
+				// Merge the result.
+                /* translators: %s : thumbnail caption */
+				$html .= sprintf( '<p class="thumbnail-caption">%s</p>', $caption );
+			}
+
+			return $html;
 		}
 
 		/**
@@ -508,7 +542,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param string $section name of the current section.
 		 * @param string $section_title title of the current section. @since 0.0.2.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @version 0.0.4
 		 * @since 0.0.1
@@ -539,9 +573,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Callback for filtering section size.
 		 *
-		 * @param array  $args default args.
+		 * @param array $args default args.
 		 * @param string $section name of the current section.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @return array
 		 *
@@ -565,7 +599,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param string $section name of the current section.
 		 * @param string $section_title title of the current section.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @version 0.0.2
 		 * @since 0.0.2
@@ -594,7 +628,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param string $section name of the current section.
 		 * @param string $section_title title of the current section. @since 0.0.2.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @version 0.0.3
 		 * @since 0.0.1
@@ -607,7 +641,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section about content.
 		 *
 		 * @param string $section_title title of the current section. @since 0.0.2.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @version 0.0.4
 		 * @since 0.0.3
@@ -638,7 +672,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section focus content.
 		 *
 		 * @param string $section_title title of the current section. @since 0.0.2.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @version 0.0.5
 		 * @since 0.0.4
@@ -670,7 +704,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section experience content.
 		 *
 		 * @param string $section_title title of the current section.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @since 0.3.2
 		 */
@@ -702,7 +736,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section blog content.
 		 *
 		 * @param string $section_title title of the current section. @since 0.0.2.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @version 0.0.3
 		 * @since 0.1.4
@@ -755,7 +789,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * Callback for section contact content.
 		 *
 		 * @param string $section_title title of the current section. @since 0.0.2.
-		 * @param int    $post_id id of the current page.
+		 * @param int $post_id id of the current page.
 		 *
 		 * @version 0.0.4
 		 * @since 0.1.0
@@ -875,7 +909,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @since 0.2.5
 		 */
 		public function archive_post_wrapper_open() { ?>
-			<div class="archive-posts-wrapper">
+            <div class="archive-posts-wrapper">
 			<?php
 		}
 
@@ -886,7 +920,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 */
 		public function archive_post_wrapper_close() {
 			?>
-			</div>
+            </div>
 			<?php
 		}
 
@@ -960,7 +994,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Get data empty.
 			$empty_data = $this->data_obj->get_empty();
 			?>
-			<div class="text-center"><p><?php echo esc_html( $empty_data['post'] ); ?></p></div>
+            <div class="text-center"><p><?php echo esc_html( $empty_data['post'] ); ?></p></div>
 			<?php
 		}
 
