@@ -28,6 +28,56 @@ section.section.section-single {
     }
   }
 
+  .wp-caption {
+    width: 100% !important;
+    margin-bottom: 1.5rem;
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 2rem;
+      @include border-radius(4px);
+    }
+
+    p.wp-caption-text {
+      font-size: 14px;
+      margin-top: -1.5rem;
+      color: $black_text_alt_color;
+    }
+
+    &.aligncenter {
+      img {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      p.wp-caption-text {
+        text-align: center;
+      }
+    }
+
+    &.alignright {
+      img {
+        margin-left: auto;
+      }
+
+      p.wp-caption-text {
+        text-align: right;
+      }
+    }
+
+    &.alignleft {
+      img {
+        margin-right: auto;
+      }
+
+      p.wp-caption-text {
+        text-align: left;
+      }
+    }
+  }
+
   @include breakpoint($size_tablet) {
     padding-top: 3rem;
     padding-bottom: 3rem;
