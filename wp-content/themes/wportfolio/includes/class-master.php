@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
@@ -32,6 +32,7 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 		 *
 		 * @return bool|mixed|WP_Query
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		public static function get_posts( $args = [] ) {
@@ -48,19 +49,19 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 			$args = wp_parse_args( $args, $default_args );
 
 			// Define as string.
-			$cache_key = wp_json_encode( $args );
+			$data_key = wp_json_encode( $args );
 
-			// Maybe get from cache.
-			$query = wp_cache_get( $cache_key );
+			// Maybe get from transient.
+			$query = get_transient( $data_key );
 
-			// Validate the cache.
+			// Validate the transient.
 			if ( ! $query ) {
 
 				// Re-define the query.
 				$query = new WP_Query( $args );
 
-				// Save to cache.
-				wp_cache_set( $cache_key, $query, '', 3600 );
+				// Save to transient.
+				set_transient( $data_key, $query, 3600 );
 			}
 
 			return $query;

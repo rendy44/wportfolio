@@ -6,13 +6,17 @@ section.section.section-project {
       > div {
         .project-item {
           position: relative;
-          margin: 0 7.5px 1rem;
+          margin-bottom: 1rem;
           //height: calc(100% - 1rem);
           background-color: $white_color;
           padding: 1rem 1rem;
           border: 1px solid rgba($black_color, .1);
           @include border-radius(4px);
           @include transition(all .2s ease);
+          @include breakpoint($size_tablet) {
+            margin-left: 7.5px;
+            margin-right: 7.5px;
+          }
 
           > a {
             > h3 {
@@ -38,7 +42,9 @@ section.section.section-project {
             font-size: 16px;
             color: $black_text_alt_color;
             margin: 0 0 1rem;
-            @include ellipse_text(1);
+            @include breakpoint($size_tablet) {
+              @include ellipse_text(1);
+            }
           }
 
           > ul.project-languages {
