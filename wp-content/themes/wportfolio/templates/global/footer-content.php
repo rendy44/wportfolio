@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,8 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="text-center">
 	<?php
 	/* translators: %1$s : current year, %2$s : name of the site, %3$s : site description */
-	echo sprintf( __( '<p>&copy; %1$s %2$s | %3$s</p>', 'wportfolio' ), esc_html( date( 'Y' ) ), esc_html( get_bloginfo( 'name' ) ), esc_html( get_bloginfo( 'description' ) ) );
+	echo sprintf( __( '<p>&copy; %1$s %2$s | %3$s</p>', 'wportfolio' ), esc_html( date( 'Y' ) ), esc_html( get_bloginfo( 'name' ) ), esc_html( get_bloginfo( 'description' ) ) ); // phpcs:ignore
 	/* translators: %1$s : author data */
-	echo sprintf( '<p class="author">%1$s</p>', $author_data );
+	echo sprintf( '<p class="author">%1$s</p>', $author_data ); // phpcs:ignore
 	?>
 </div>

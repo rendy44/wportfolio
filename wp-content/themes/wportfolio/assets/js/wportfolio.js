@@ -9,16 +9,20 @@ import Action from "./class/action.js";
      *
      * @author WPerfekt
      * @package WPortfolio
-     * @version 0.0.2
+     * @version 0.0.3
      */
     new class {
 
         /**
          * Class constructor.
+         *
+         * @version 0.0.2
+         * @since 0.0.1
          */
         constructor() {
             this.eventScrollNav();
             this.eventLikePost();
+            this.eventCountActivity();
         }
 
         /**
@@ -65,6 +69,25 @@ import Action from "./class/action.js";
                         }
                     })
             })
+        }
+
+        /**
+         * Event when activity count is rendered and then animate it.
+         *
+         * @since 0.0.3
+         */
+        eventCountActivity() {
+            $('.activity-count').each(function () {
+                $(this).prop('Counter',0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 3000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
         }
     }
 })(jQuery);

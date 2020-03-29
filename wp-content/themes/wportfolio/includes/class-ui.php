@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.4.0
+ * @version 0.4.1
  */
 
 namespace WPortfolio;
@@ -141,6 +141,9 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			// Section experience.
 			add_action( 'wportfolio_section_experience', [ $this, 'front_page_experience_content' ], 10, 2 );
+
+			// Section projects.
+			add_action( 'wportfolio_section_activity', [ $this, 'front_page_activity_content' ], 10, 2 );
 
 			// Section blog.
 			add_action( 'wportfolio_section_blog', [ $this, 'front_page_blog_content' ], 10, 2 );
@@ -730,6 +733,62 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			$args = apply_filters( 'wportfolio_section_experience_content_args', $args, $post_id );
 
 			Template::render( 'front-page/section-experience', $args );
+		}
+
+		/**
+		 * Callback for section activity content.
+		 *
+		 * @param string $section_title title of the current section.
+		 * @param int    $post_id id of the current page.
+		 *
+		 * @since 0.4.1
+		 */
+		public function front_page_activity_content( $section_title, $post_id ) {
+
+			// Get data github.
+			$github_data = $this->data_obj->get_github();
+
+			// Prepare the args.
+			$args = [
+				'activity_success' => true,
+			];
+
+			// Instance github api.
+			$github_api = new Github_Api( $github_data['access_key'], $github_data['username'] );
+
+			// Get contribution.
+			$github_contribution = $github_api->get_contributions();
+
+			// Validate the contribution.
+			if ( is_wp_error( $github_contribution ) ) {
+				$args['activity_success'] = false;
+				$args['activity_error']   = $github_contribution->get_error_message();
+			} else {
+
+				// Save object.
+				$contribution_collection = $github_contribution->data->user->contributionsCollection;
+
+				// Update the args.
+				$args['activity_start_timestamp'] = strtotime( $contribution_collection->startedAt );
+				$args['activity_start']           = Helper::convert_date( $args['activity_start_timestamp'] );
+				$args['activity_end_timestamp']   = strtotime( $contribution_collection->endedAt );
+				$args['activity_end']             = Helper::convert_date( $args['activity_end_timestamp'] );
+				$args['activity_total']           = $contribution_collection->contributionCalendar->totalContributions;
+				/* translators: %1$s: start date, %2$s: end date */
+				$args['activity_content'] = sprintf( __( 'Total contributions between %1$s to %2$s', 'wportfolio' ), $args['activity_start'], $args['activity_end'] );
+			}
+
+			/**
+			 * WPortfolio section activity content args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.2
+			 */
+			$args = apply_filters( 'wportfolio_section_activity_content_args', $args, $post_id );
+
+			Template::render( 'front-page/section-activity', $args );
 		}
 
 		/**

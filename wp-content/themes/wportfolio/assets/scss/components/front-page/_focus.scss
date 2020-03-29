@@ -6,7 +6,7 @@ section.section.section-focus {
     > .frow {
       > div {
         .focus-item {
-          margin-bottom: 1rem;
+          margin-bottom: 1.25rem;
 
           .icon {
             margin: 0 auto 1rem;
@@ -30,7 +30,7 @@ section.section.section-focus {
           > h3 {
             display: block;
             text-align: center;
-            margin: 0 0 1rem;
+            margin: 0 0 .5rem;
             font-weight: 400;
           }
 
@@ -82,6 +82,7 @@ section.section.section-focus {
             padding: 0 7.5px;
             margin-right: 7.5px;
             margin-left: 7.5px;
+            margin-bottom: 0;
 
             > p {
               //font-size: 14px;

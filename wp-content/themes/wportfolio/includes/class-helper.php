@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -22,6 +22,19 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 	 * @package WPortfolio
 	 */
 	class Helper {
+
+		/**
+		 * Convert date.
+		 *
+		 * @param int $timestamp unique timestamp.
+		 *
+		 * @return false|string
+		 */
+		public static function convert_date( $timestamp ) {
+			$date_format = get_option( 'date_format' );
+
+			return date( $date_format, $timestamp );
+		}
 
 		/**
 		 * Get serialized value

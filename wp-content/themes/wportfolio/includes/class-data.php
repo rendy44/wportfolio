@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.0
+ * @version 0.1.1
  */
 
 namespace WPortfolio;
@@ -54,6 +54,29 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 */
 		public function get_author() {
 			return Helper::get_author();
+		}
+
+		/**
+		 * Get github data.
+		 *
+		 * @return mixed|void
+		 *
+		 * @since 0.1.1
+		 */
+		public function get_github() {
+			$data = [
+				'username'   => 'rendy44',
+				'access_key' => 'bc9d56a5db994f51f53d8ebbb036cbc977b27a6f',
+			];
+
+			/**
+			 * WPortfolio data github filter hook.
+			 *
+			 * @param array $data default data.
+			 *
+			 * @since 0.0.1
+			 */
+			return apply_filters( 'wportfolio_data_github', $data );
 		}
 
 		/**
@@ -108,7 +131,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.3
 		 */
 		public function get_sections() {
@@ -116,6 +139,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 				'about'      => __( 'Hi There!', 'wportfolio' ),
 				'focus'      => __( 'Specialisation', 'wportfolio' ),
 				'experience' => __( 'Professional Experiences', 'wportfolio' ),
+				'activity'   => __( 'Summary Activity', 'wportfolio' ),
 				'blog'       => __( 'Latest Posts', 'wportfolio' ),
 				'contact'    => __( 'Get in Touch', 'wportfolio' ),
 			];
@@ -236,15 +260,19 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		public function get_contact() {
+
+			// Get github data.
+			$github_data = $this->get_github();
+
 			$data = [
 				'content'  => __( 'If you have projects that need to be get started, you may need some helps or just saying hey, let\'s get in touch.', 'wportfolio' ),
 				'email'    => 'rendy.de.p@gmail.com',
 				'linkedin' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
-				'github'   => 'https://github.com/rendy44',
+				'github'   => 'https://github.com/' . $github_data['username'],
 				'whatsapp' => '6282219186349',
 			];
 

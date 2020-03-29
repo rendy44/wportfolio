@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.5
+ * @version 0.0.6
  */
 
 namespace WPortfolio;
@@ -71,7 +71,7 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 		 *
 		 * @return array
 		 *
-		 * @version 0.0.4
+		 * @version 0.0.5
 		 * @since 0.0.1
 		 */
 		private function map_classes() {
@@ -87,6 +87,7 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 				'template',
 				'post-like',
 				'ajax',
+				'github-api',
 			];
 
 			/**
