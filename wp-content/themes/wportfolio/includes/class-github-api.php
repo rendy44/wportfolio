@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace WPortfolio;
@@ -68,6 +68,8 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 *
 		 * @param string $access_key personal access key.
 		 * @param string $username username.
+		 *
+		 * @since 0.0.1
 		 */
 		public function __construct( $access_key, $username ) {
 			$this->access_key = $access_key;
@@ -87,11 +89,13 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 * Validate and retrieve the api request.
 		 *
 		 * @param array|WP_Error $api_request response of api request.
-		 * @param bool           $cache whether cache the result or not.
 		 *
 		 * @return mixed
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
-		private function retrieve_data( $api_request, $cache = true ) {
+		private function retrieve_data( $api_request ) {
 
 			// Validate the request.
 			if ( ! is_wp_error( $api_request ) ) {
@@ -112,6 +116,9 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 * @param string $body body content of the graphql request.
 		 *
 		 * @return mixed
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
 		private function connect( $name, $body ) {
 
@@ -134,7 +141,7 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 				);
 
 				// Save to the cache.
-				set_transient( $name, $api_request, WP_FS__TIME_12_HOURS_IN_SEC );
+				set_transient( $name, $api_request, 3600 * 12 );
 			}
 
 			return $this->retrieve_data( $api_request );
@@ -144,6 +151,8 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 * Get contribution calendar.
 		 *
 		 * @return mixed
+		 *
+		 * @since 0.0.1
 		 */
 		public function get_contributions() {
 			return $this->connect( 'get_contributions', '{"query":"{\\n    user(login: \\"' . $this->username . '\\") {\\n              contributionsCollection {\\n                  startedAt\\n                  endedAt\\n                contributionCalendar {\\n                  totalContributions\\n                }\\n              }\\n            }\\n          }","variables":{}}' );
@@ -153,9 +162,12 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 * Get pinned repositories.
 		 *
 		 * @return mixed
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
 		public function get_pinned_repos() {
-			return $this->connect( 'get_pinned_repos', '{"query":"{\\n  repositoryOwner(login: \\"' . $this->username . '\\") {\\n    ... on User {\\n      pinnedRepositories(first:4) {\\n        edges {\\n          node {\\n              forkCount\\n            name\\n            description\\n            url\\n            languages(first:5){\\n                edges{\\n                    node{\\n                        color\\n                        name\\n                    }\\n                }\\n            }\\n          }\\n        }\\n      }\\n    }\\n  }\\n}","variables":{}}' );
+			return $this->connect( 'get_pinned_repos', '{"query":"{\\n  repositoryOwner(login: \\"' . $this->username . '\\") {\\n    ... on User {\\n      pinnedRepositories(first:4) {\\n        edges {\\n          node {\\n              forkCount\\n            name\\n            description\\n            url\\n            languages(first:3){\\n                edges{\\n                    node{\\n                        color\\n                        name\\n                    }\\n                }\\n            }\\n          }\\n        }\\n      }\\n    }\\n  }\\n}","variables":{}}' );
 		}
 	}
 }

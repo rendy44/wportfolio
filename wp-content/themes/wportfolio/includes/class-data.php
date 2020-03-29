@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.1
+ * @version 0.1.2
  */
 
 namespace WPortfolio;
@@ -61,12 +61,13 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
+		 * @version 0.0.2
 		 * @since 0.1.1
 		 */
 		public function get_github() {
 			$data = [
 				'username'   => 'rendy44',
-				'access_key' => 'bc9d56a5db994f51f53d8ebbb036cbc977b27a6f',
+				'access_key' => 'bc081e8a3ac21bea51982634a5de980c35c7f489',
 			];
 
 			/**
@@ -131,7 +132,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.3
+		 * @version 0.0.4
 		 * @since 0.0.3
 		 */
 		public function get_sections() {
@@ -139,6 +140,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 				'about'      => __( 'Hi There!', 'wportfolio' ),
 				'focus'      => __( 'Specialisation', 'wportfolio' ),
 				'experience' => __( 'Professional Experiences', 'wportfolio' ),
+				'project'    => __( 'Experimental Projects', 'wportfolio' ),
 				'activity'   => __( 'Summary Activity', 'wportfolio' ),
 				'blog'       => __( 'Latest Posts', 'wportfolio' ),
 				'contact'    => __( 'Get in Touch', 'wportfolio' ),

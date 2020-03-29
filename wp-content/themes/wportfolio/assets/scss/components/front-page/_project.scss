@@ -1,0 +1,80 @@
+section.section.section-project {
+  background-color: darken($white_color, 3%);
+
+  .project-items-wrapper {
+    > .frow {
+      > div {
+        .project-item {
+          position: relative;
+          margin: 0 7.5px 1rem;
+          //height: calc(100% - 1rem);
+          background-color: $white_color;
+          padding: 1rem 1rem;
+          border: 1px solid rgba($black_color, .1);
+          @include border-radius(4px);
+          @include transition(all .2s ease);
+
+          > a {
+            > h3 {
+              font-weight: 500;
+              margin: 0 0 1rem;
+              color: $base_color;
+            }
+          }
+
+          > .forked {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+
+            &:after {
+              @include remixicon_font;
+              content: "\ed85";
+              font-size: 1rem;
+            }
+          }
+
+          > p {
+            font-size: 16px;
+            color: $black_text_alt_color;
+            margin: 0 0 1rem;
+            @include ellipse_text(1);
+          }
+
+          > ul.project-languages {
+            //display: block;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            > li {
+              display: inline-block;
+              color: $white_color;
+
+              > span {
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 1;
+                padding: 0 .5rem;
+                @include border-radius(4px);
+                @include text_shadow();
+              }
+            }
+          }
+
+          &:hover,
+          &:active,
+          &:focus {
+            @include box-shadow();
+          }
+        }
+
+        &:last-child {
+          .project-item {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

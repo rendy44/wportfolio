@@ -1,5 +1,5 @@
 section.section.section-blog {
-  //background-color: darken($white_color, 3%);
+  background-color: darken($white_color, 3%);
 
   .blog-items-wrapper {
     margin-bottom: 1.5rem;
@@ -35,7 +35,7 @@ section.section.section-blog {
             color: $base_color;
 
             h3 {
-              font-weight: 400;
+              font-weight: 500;
               margin: 0;
               @include ellipse_text(2);
             }

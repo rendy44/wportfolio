@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -128,11 +128,11 @@ if ( ! class_exists( 'WPortfolio\Post_Like' ) ) {
 		/**
 		 * Add cookie to current visitor.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		private function add_cookie() {
-			setcookie( $this->cookie_like_key, true, WP_FS__TIME_WEEK_IN_SEC );
+			setcookie( $this->cookie_like_key, true, 3600 * 24 * 7 );
 		}
 
 		/**

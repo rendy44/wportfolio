@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.4.1
+ * @version 0.4.2
  */
 
 namespace WPortfolio;
@@ -117,7 +117,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Modify front page content.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		private function front_page() {
@@ -142,7 +142,10 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			// Section experience.
 			add_action( 'wportfolio_section_experience', [ $this, 'front_page_experience_content' ], 10, 2 );
 
-			// Section projects.
+			// Section project.
+			add_action( 'wportfolio_section_project', [ $this, 'front_page_project_content' ], 10, 2 );
+
+			// Section activity.
 			add_action( 'wportfolio_section_activity', [ $this, 'front_page_activity_content' ], 10, 2 );
 
 			// Section blog.
@@ -582,13 +585,14 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @return array
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.7
 		 */
 		public function front_page_section_size( $args, $section, $post_id ) {
 			switch ( $section ) {
 				case 'focus':
 				case 'blog':
+                case 'project':
 					// Add custom data.
 					$args['section_size'] = 'col-md-2-3';
 					break;
@@ -736,11 +740,60 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		}
 
 		/**
+		 * Callback for section project content.
+		 *
+		 * @param string $section_title title of the current section.
+		 * @param int    $post_id id of the current page.
+		 *
+		 * @since 0.4.2
+		 */
+		public function front_page_project_content( $section_title, $post_id ) {
+
+			// Get data github.
+			$github_data = $this->data_obj->get_github();
+
+			// Prepare the args.
+			$args = [
+				'project_success' => true,
+			];
+
+			// Instance github api.
+			$github_api = new Github_Api( $github_data['access_key'], $github_data['username'] );
+
+			// Get repos.
+			$github_repos = $github_api->get_pinned_repos();
+
+			// Validate the contribution.
+			if ( is_wp_error( $github_repos ) ) {
+				$args['project_success'] = false;
+				$args['project_error']   = $github_repos->get_error_message();
+			} else {
+
+				// Update the args.
+				$args['project_items']   = $github_repos->data->repositoryOwner->pinnedRepositories->edges;
+				$args['project_content'] = __( 'Few experimental projects that I have developed.', 'wportfolio' );
+			}
+
+			/**
+			 * WPortfolio section project content args filter hook.
+			 *
+			 * @param array $args default args.
+			 * @param int $post_id id of the current page.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_section_project_content_args', $args, $post_id );
+
+			Template::render( 'front-page/section-project', $args );
+		}
+
+		/**
 		 * Callback for section activity content.
 		 *
 		 * @param string $section_title title of the current section.
 		 * @param int    $post_id id of the current page.
 		 *
+		 * @version 0.0.2
 		 * @since 0.4.1
 		 */
 		public function front_page_activity_content( $section_title, $post_id ) {
@@ -766,14 +819,14 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			} else {
 
 				// Save object.
-				$contribution_collection = $github_contribution->data->user->contributionsCollection;
+				$contribution_collection = $github_contribution->data->user->contributionsCollection; // phpcs:ignore
 
 				// Update the args.
-				$args['activity_start_timestamp'] = strtotime( $contribution_collection->startedAt );
+				$args['activity_start_timestamp'] = strtotime( $contribution_collection->startedAt ); // phpcs:ignore
 				$args['activity_start']           = Helper::convert_date( $args['activity_start_timestamp'] );
-				$args['activity_end_timestamp']   = strtotime( $contribution_collection->endedAt );
+				$args['activity_end_timestamp']   = strtotime( $contribution_collection->endedAt ); // phpcs:ignore
 				$args['activity_end']             = Helper::convert_date( $args['activity_end_timestamp'] );
-				$args['activity_total']           = $contribution_collection->contributionCalendar->totalContributions;
+				$args['activity_total']           = $contribution_collection->contributionCalendar->totalContributions; // phpcs:ignore
 				/* translators: %1$s: start date, %2$s: end date */
 				$args['activity_content'] = sprintf( __( 'Total contributions between %1$s to %2$s', 'wportfolio' ), $args['activity_start'], $args['activity_end'] );
 			}
@@ -784,7 +837,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			 * @param array $args default args.
 			 * @param int $post_id id of the current page.
 			 *
-			 * @since 0.0.2
+			 * @since 0.0.1
 			 */
 			$args = apply_filters( 'wportfolio_section_activity_content_args', $args, $post_id );
 
