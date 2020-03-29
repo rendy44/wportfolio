@@ -1,7 +1,11 @@
-.activity-count {
-  display: inline-block;
-  font-size: 3rem;
-  //color: $base_color;
-  font-weight: 700;
-  margin-bottom: 1rem;
+section.section.section-activity {
+  background-color: darken($white_color, 3%);
+
+  .activity-count {
+    display: inline-block;
+    font-size: 3rem;
+    //color: $base_color;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
 }
