@@ -4,7 +4,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,5 +27,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 </div>
 <div class="text-center">
-	<a href="#contact" class="button"><?php esc_html_e( 'Contact me', 'wportfolio' ); ?></a>
+	<a href="#contact" class="button button-outline"><?php esc_html_e( 'Contact me', 'wportfolio' ); ?></a>
 </div>

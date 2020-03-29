@@ -25,6 +25,13 @@ button {
     background-color: transparent;
   }
 
+  &.button-outline {
+    background-color: transparent;
+    color: $base_color;
+    border: 2px solid $base_color;
+    text-shadow: none;
+  }
+
   &:not(.button-text):hover,
   &:not(.button-text):active,
   &:not(.button-text):focus {
