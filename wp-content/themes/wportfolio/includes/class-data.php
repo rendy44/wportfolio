@@ -67,7 +67,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		public function get_github() {
 			$data = [
 				'username'   => 'rendy44',
-				'access_key' => 'bc081e8a3ac21bea51982634a5de980c35c7f489',
+				'access_key' => '', // TODO: Insert your github access token.
 			];
 
 			/**
