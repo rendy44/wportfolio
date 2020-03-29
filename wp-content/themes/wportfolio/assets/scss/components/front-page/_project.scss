@@ -50,6 +50,7 @@ section.section.section-project {
             > li {
               display: inline-block;
               color: $white_color;
+              margin-right: 5px;
 
               > span {
                 font-size: 12px;
@@ -58,6 +59,10 @@ section.section.section-project {
                 padding: 0 .5rem;
                 @include border-radius(4px);
                 @include text_shadow();
+              }
+
+              &:last-child {
+                margin-right: 0;
               }
             }
           }
