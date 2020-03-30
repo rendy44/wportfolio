@@ -9,7 +9,7 @@ import Action from "./class/action.js";
      *
      * @author WPerfekt
      * @package WPortfolio
-     * @version 0.0.3
+     * @version 0.0.4
      */
     new class {
 
@@ -21,6 +21,7 @@ import Action from "./class/action.js";
          */
         constructor() {
             this.eventScrollNav();
+            this.eventCheckLikePost();
             this.eventLikePost();
             this.eventCountActivity();
         }
@@ -45,6 +46,26 @@ import Action from "./class/action.js";
         }
 
         /**
+         * Event to check post like status.
+         *
+         * @since 0.0.4
+         */
+        eventCheckLikePost() {
+            $('button.button-like').each(function () {
+                const postId = $(this).data('id');
+
+                // Validate the like status.
+                if (postId) {
+                    if (Action.isPostLiked(postId)) {
+
+                        // Add a class.
+                        $(this).addClass('liked');
+                    }
+                }
+            });
+        }
+
+        /**
          * Event when like button in single post being triggered.
          *
          * @since 0.0.1
@@ -58,6 +79,11 @@ import Action from "./class/action.js";
                     postId = btn.data('id'),
                     contentText = btn.siblings('.counter');
 
+                // Make sure it hasn't been liked.
+                if (Action.isPostLiked(postId)) {
+                    return;
+                }
+
                 // Proceed to like.
                 Action.likePost(postId)
                     .then(function (data) {
@@ -66,6 +92,9 @@ import Action from "./class/action.js";
                         if (!data.errors) {
                             contentText.text(data);
                             btn.addClass('liked');
+
+                            // Save the cookie.
+                            Action.saveLikePostCookie(postId);
                         }
                     })
             })
@@ -78,7 +107,7 @@ import Action from "./class/action.js";
          */
         eventCountActivity() {
             $('.activity-count').each(function () {
-                $(this).prop('Counter',0).animate({
+                $(this).prop('Counter', 0).animate({
                     Counter: $(this).text()
                 }, {
                     duration: 3000,

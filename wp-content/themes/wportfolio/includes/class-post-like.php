@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
@@ -70,7 +70,7 @@ if ( ! class_exists( 'WPortfolio\Post_Like' ) ) {
 
 			// Define some properties.
 			$this->post_id         = $post_id;
-			$this->cookie_like_key = 'like_' . $this->post_id;
+			$this->cookie_like_key = 'have_liked_' . $this->post_id;
 			$this->like_count      = $this->count_like_db();
 		}
 
@@ -86,32 +86,18 @@ if ( ! class_exists( 'WPortfolio\Post_Like' ) ) {
 		}
 
 		/**
-		 * Maybe add a like into the post.
+		 * Add a like into the post.
 		 *
-		 * @return bool
-		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
-		public function maybe_add_like() {
-			$result = false;
+		public function add_like() {
 
-			// Make sure that visitor hasn't liked yet.
-			if ( ! $this->is_liked() ) {
+			// Define new likes.
+			$this->like_count ++;
 
-				// Save the cookie.
-				$this->add_cookie();
-
-				// Define new likes.
-				$this->like_count ++;
-
-				// Update meta.
-				Master::update_post_meta( $this->meta_key, $this->like_count, $this->post_id );
-
-				// Update result.
-				$result = true;
-			}
-
-			return $result;
+			// Update meta.
+			Master::update_post_meta( $this->meta_key, $this->like_count, $this->post_id );
 		}
 
 		/**
@@ -123,28 +109,6 @@ if ( ! class_exists( 'WPortfolio\Post_Like' ) ) {
 		 */
 		private function count_like_db() {
 			return (int) Master::get_post_meta( $this->meta_key, $this->post_id );
-		}
-
-		/**
-		 * Add cookie to current visitor.
-		 *
-		 * @version 0.0.3
-		 * @since 0.0.1
-		 */
-		private function add_cookie() {
-			setcookie( $this->cookie_like_key, true, 3600 * 24 * 7 );
-		}
-
-		/**
-		 * Check whether current post is already liked or not.
-		 *
-		 * @return bool
-		 *
-		 * @version 0.0.2
-		 * @since 0.0.1
-		 */
-		public function is_liked() {
-			return isset( $_COOKIE[ $this->cookie_like_key ] );
 		}
 	}
 }

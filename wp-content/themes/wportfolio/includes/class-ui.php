@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.4.2
+ * @version 0.4.3
  */
 
 namespace WPortfolio;
@@ -453,6 +453,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param int $post_id id of the current post.
 		 *
+         * @version 0.0.2
 		 * @since 0.2.2
 		 */
 		public function single_post_like( $post_id ) {
@@ -463,7 +464,6 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			$args = [
 				'post_id'    => $post_id,
 				'like_count' => $post_like->get_likes(),
-				'is_liked'   => $post_like->is_liked(),
 			];
 
 			/**
@@ -592,7 +592,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			switch ( $section ) {
 				case 'focus':
 				case 'blog':
-                case 'project':
+				case 'project':
 					// Add custom data.
 					$args['section_size'] = 'col-md-2-3';
 					break;

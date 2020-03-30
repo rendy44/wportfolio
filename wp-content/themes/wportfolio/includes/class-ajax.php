@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -134,7 +134,7 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 		/**
 		 * Callback for liking a post.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		public function like_single_post() {
@@ -147,18 +147,16 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 
 				// Instance post like.
 				$post_like = new Post_Like( $post_id );
-				$like      = $post_like->maybe_add_like();
 
-				// Validate the like.
-				if ( $like ) {
+				// Do give a like.
+				$post_like->add_like();
 
-					// Get new like count.
-					$new_like_count = $post_like->get_likes();
-					/* translators: %s: amount of the loves */
-					$result = sprintf( _n( '%s love', '%s loves', $new_like_count, 'wportfolio' ), $new_like_count );
-				} else {
-					$result = new WP_Error( 'fail_like', __( 'Unable to give a love', 'wportfolio' ) );
-				}
+				// Get new like count.
+				$new_like_count = $post_like->get_likes();
+
+				/* translators: %s: amount of the loves */
+				$result = sprintf( _n( '%s love', '%s loves', $new_like_count, 'wportfolio' ), $new_like_count );
+
 			} else {
 				$result = new WP_Error( 'no_post_id', __( 'Please insert post id', 'wportfolio' ) );
 			}
