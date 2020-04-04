@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.2
+ * @version 0.1.3
  */
 
 namespace WPortfolio;
@@ -67,7 +67,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		public function get_github() {
 			$data = [
 				'username'   => 'rendy44',
-				'access_key' => '124c4d9c2b9b5ad06ec0f0daa5fbc08fed43b89d', // TODO: Insert your github access token.
+				'access_key' => '', // TODO: Insert your github access token.
 			];
 
 			/**
@@ -161,11 +161,12 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.4
 		 */
 		public function get_about() {
 			$data = [
-				'content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionate to write clean and efficient code but highly customizable.', 'wportfolio' ),
+				'content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionated to write clean and efficient code but highly customizable.', 'wportfolio' ),
 			];
 
 			/**
