@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.1.3
+ * @version 0.1.4
  */
 
 namespace WPortfolio;
@@ -161,12 +161,12 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.4
 		 */
 		public function get_about() {
 			$data = [
-				'content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionated to write clean and efficient code but highly customizable.', 'wportfolio' ),
+				'content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionate to write clean and efficient code but highly customizable.', 'wportfolio' ),
 			];
 
 			/**
