@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -117,13 +117,13 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 *
 		 * @return mixed
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		private function connect( $name, $body ) {
 
 			// Maybe get from the cache.
-			$api_request = get_transient( $name );
+			$api_request = get_transient( $name . $this->access_key );
 
 			// Validate the cache.
 			if ( ! $api_request ) {
