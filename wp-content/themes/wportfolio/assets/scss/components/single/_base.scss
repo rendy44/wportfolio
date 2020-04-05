@@ -13,6 +13,12 @@ section.section.section-single {
     color: $base_color;
   }
 
+  ul, ol {
+    li {
+      line-height: 1.4;
+    }
+  }
+
   p {
     margin-bottom: 1rem;
 
