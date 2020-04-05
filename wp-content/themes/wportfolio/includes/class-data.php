@@ -184,14 +184,14 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.5
 		 */
 		public function get_focus() {
 			$data = [
 				[
 					'id'    => 'wpcs',
-					'title' => __( 'WPCS Compliant', 'wportfolio' ),
+					'title' => __( 'WPCS Compliance', 'wportfolio' ),
 					'desc'  => __( 'By following WPCS we can expect most of what WordPress can offers.', 'wportfolio' ),
 				],
 				[
@@ -221,11 +221,12 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.7
 		 */
 		public function get_experience() {
 			$data = [
-				'content' => __( 'Generally, I have more than 7 years of experience as a Software Developer, shrunk to 4 years as a WordPress Developer.', 'wportfolio' ),
+				'content' => __( 'In general, I have more than 7 years experience as a Software Developer, around more than 4 years as a WordPress Developer.', 'wportfolio' ),
 				'items'   => [
 					[
 						'name'     => 'Harnods',
@@ -263,7 +264,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.3
+		 * @version 0.0.4
 		 * @since 0.0.1
 		 */
 		public function get_contact() {
@@ -272,7 +273,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 			$github_data = $this->get_github();
 
 			$data = [
-				'content'  => __( 'If you have projects that need to be get started, you may need some helps or just saying hey, let\'s get in touch.', 'wportfolio' ),
+				'content'  => __( 'If you have projects that need to be get started, you may need some help or just saying hey, let\'s get in touch.', 'wportfolio' ),
 				'email'    => 'rendy.de.p@gmail.com',
 				'linkedin' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
 				'github'   => 'https://github.com/' . $github_data['username'],

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.4.3
+ * @version 0.4.4
  */
 
 namespace WPortfolio;
@@ -793,7 +793,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section.
 		 * @param int    $post_id id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.4.1
 		 */
 		public function front_page_activity_content( $section_title, $post_id ) {
@@ -828,7 +828,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 				$args['activity_end']             = Helper::convert_date( $args['activity_end_timestamp'] );
 				$args['activity_total']           = $contribution_collection->contributionCalendar->totalContributions; // phpcs:ignore
 				/* translators: %1$s: start date, %2$s: end date */
-				$args['activity_content'] = sprintf( __( 'Total contributions between %1$s to %2$s', 'wportfolio' ), $args['activity_start'], $args['activity_end'] );
+				$args['activity_content'] = sprintf( __( 'Total contributions between %1$s, to %2$s', 'wportfolio' ), $args['activity_start'], $args['activity_end'] );
 			}
 
 			/**
