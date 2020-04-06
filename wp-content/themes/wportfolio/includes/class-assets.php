@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.4
+ * @version 0.0.5
  */
 
 namespace WPortfolio;
@@ -53,6 +53,7 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 		/**
 		 * Load assets in front-end.
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		private function load_front_assets() {
@@ -85,6 +86,9 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 			$css_files = [
 				'font'       => [
 					'src' => 'https://fonts.googleapis.com/css?family=Baloo+2:400,500,600|Dancing+Script:700&display=swap',
+				],
+				'remixicon'  => [
+					'src' => TEMP_URI . '/assets/lib/remixicon/remixicon.css',
 				],
 				'wportfolio' => [
 					'src' => TEMP_URI . '/assets/css/wportfolio.css',

@@ -453,7 +453,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 *
 		 * @param int $post_id id of the current post.
 		 *
-         * @version 0.0.2
+		 * @version 0.0.2
 		 * @since 0.2.2
 		 */
 		public function single_post_like( $post_id ) {
