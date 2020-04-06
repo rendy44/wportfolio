@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.4.4
+ * @version 0.4.5
  */
 
 namespace WPortfolio;
@@ -97,7 +97,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Add content for single post page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.1.1
 		 */
 		private function single_page() {
@@ -112,6 +112,7 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_content' ], 20, 1 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_tag' ], 30, 1 );
 			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_like' ], 40, 1 );
+			add_action( 'wportfolio_single_post_content', [ $this, 'single_post_comment' ], 50, 1 );
 		}
 
 		/**
@@ -479,6 +480,17 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 
 			Template::render( 'blog/single/like', $args );
 
+		}
+
+		/**
+		 * Callback for adding single post comment.
+		 *
+		 * @param int $post_id id of the current post.
+		 *
+		 * @since 0.4.5
+		 */
+		public function single_post_comment( $post_id ) {
+			comments_template();
 		}
 
 		/**
