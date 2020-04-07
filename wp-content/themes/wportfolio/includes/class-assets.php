@@ -59,16 +59,16 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 		private function load_front_assets() {
 
 			// Prepare front-end js.
-			$js_files = [
-				'wportfolio' => [
+			$js_files = array(
+				'wportfolio' => array(
 					'src'  => TEMP_URI . '/assets/js/wportfolio.js',
-					'deps' => [ 'jquery' ],
-					'vars' => [
+					'deps' => array( 'jquery' ),
+					'vars' => array(
 						'ajax_url' => admin_url( 'admin-ajax.php' ),
 						'prefix'   => TEMP_PREFIX,
-					],
-				],
-			];
+					),
+				),
+			);
 
 			/**
 			 * WPortfolio front-end js filter hook.
@@ -83,17 +83,17 @@ if ( ! class_exists( 'WPortfolio\Assets' ) ) {
 			$this->do_load_assets( $js_files, 'js' );
 
 			// Prepare front-end css.
-			$css_files = [
-				'font'       => [
+			$css_files = array(
+				'font'       => array(
 					'src' => 'https://fonts.googleapis.com/css?family=Baloo+2:400,500,600|Dancing+Script:700&display=swap',
-				],
-				'remixicon'  => [
+				),
+				'remixicon'  => array(
 					'src' => TEMP_URI . '/assets/lib/remixicon/remixicon.css',
-				],
-				'wportfolio' => [
+				),
+				'wportfolio' => array(
 					'src' => TEMP_URI . '/assets/css/wportfolio.css',
-				],
-			];
+				),
+			);
 
 			/**
 			 * WPortfolio front-end css filter hook.

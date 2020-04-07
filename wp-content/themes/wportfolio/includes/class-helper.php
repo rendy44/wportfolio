@@ -48,7 +48,7 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 		 */
 		public static function get_serialized_val( $unserialized_data, $key ) {
 			$result           = '';
-			$temporary_result = [];
+			$temporary_result = array();
 			foreach ( $unserialized_data as $obj ) {
 				if ( $obj['name'] === $key ) {
 					$temporary_result[] = $obj['value'];
@@ -99,7 +99,7 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 		 *
 		 * @since 0.0.1
 		 */
-		public static function array_val( array $array, $key, $return_false = [] ) {
+		public static function array_val( array $array, $key, $return_false = array() ) {
 			return ! empty( $array[ $key ] ) ? $array[ $key ] : $return_false;
 		}
 
@@ -113,7 +113,7 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 		 * @since 0.0.1
 		 */
 		public static function convert_wpdb_into_array( array $data ) {
-			$result = [];
+			$result = array();
 			if ( ! empty( $data ) ) {
 				foreach ( $data as $id => $obj ) {
 					$result[ $id ] = $obj->post_title;

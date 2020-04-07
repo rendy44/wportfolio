@@ -35,15 +35,15 @@ if ( ! class_exists( 'WPortfolio\Master' ) ) {
 		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
-		public static function get_posts( $args = [] ) {
+		public static function get_posts( $args = array() ) {
 
 			// Prepare default args.
-			$default_args = [
+			$default_args = array(
 				'post_type'   => 'post',
 				'post_status' => 'publish',
 				'orderby'     => 'date',
 				'order'       => 'desc',
-			];
+			);
 
 			// Merge the args.
 			$args = wp_parse_args( $args, $default_args );

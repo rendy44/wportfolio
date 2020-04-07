@@ -13,4 +13,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // We just want to make it easy, at this moment we only need to include the home template.
-include TEMP_PATH . '/home.php';
+require TEMP_PATH . '/home.php';

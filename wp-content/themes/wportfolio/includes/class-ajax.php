@@ -68,11 +68,11 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 		 * @since 0.0.1
 		 */
 		private function maybe_convert_endpoint_obj( $endpoint_object ) {
-			$default_args = [
+			$default_args = array(
 				'callback'  => false,
 				'public'    => true,
 				'logged_in' => true,
-			];
+			);
 
 			return wp_parse_args( $endpoint_object, $default_args );
 		}
@@ -124,11 +124,11 @@ if ( ! class_exists( 'WPortfolio\Ajax' ) ) {
 		 * @since 0.0.1
 		 */
 		private function get_default_endpoints() {
-			return [
-				'like_post' => [
-					'callback' => [ $this, 'like_single_post' ],
-				],
-			];
+			return array(
+				'like_post' => array(
+					'callback' => array( $this, 'like_single_post' ),
+				),
+			);
 		}
 
 		/**

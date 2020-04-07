@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
@@ -59,9 +59,9 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 *
 		 * @since 0.0.1
 		 */
-		private $headers = [
+		private $headers = array(
 			'Content-Type' => 'application/json',
-		];
+		);
 
 		/**
 		 * Github_Api constructor.
@@ -77,12 +77,23 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		}
 
 		/**
+		 * Get github username.
+		 *
+		 * @return string
+		 *
+		 * @since 0.0.4
+		 */
+		public function get_username() {
+			return $this->username;
+		}
+
+		/**
 		 * Get authentication header.
 		 *
 		 * @return array
 		 */
 		private function get_auth() {
-			return [ 'Authorization' => "bearer {$this->access_key}" ];
+			return array( 'Authorization' => "bearer {$this->access_key}" );
 		}
 
 		/**
@@ -134,10 +145,10 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 				// Process the request.
 				$api_request = wp_remote_post(
 					$this->endpoint,
-					[
+					array(
 						'headers' => $headers,
 						'body'    => $body,
-					]
+					)
 				);
 
 				// Save to the cache.

@@ -3,9 +3,9 @@
  * Data Class.
  * Class to store dummy data, for a better customization you should get the data from db.
  *
- * @author WPerfekt
+ * @author  WPerfekt
  * @package WPortfolio
- * @version 0.1.4
+ * @version 0.1.5
  */
 
 namespace WPortfolio;
@@ -23,6 +23,27 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 	 */
 	class Data {
 
+
+		/**
+		 * Github api varibale.
+		 *
+		 * @var null
+		 */
+		public $github_api = null;
+
+		/**
+		 * Data custructor.
+		 */
+		public function __construct() {
+
+			// Make sure github details are defined.
+			if ( ( defined( 'GITHUB_KEY' ) && GITHUB_KEY ) && defined( 'GITHUB_USER' ) && GITHUB_USER ) {
+
+				// Instance github api.
+				$this->github_api = new Github_Api( GITHUB_KEY, GITHUB_USER );
+			}
+		}
+
 		/**
 		 * Get empty data.
 		 *
@@ -31,9 +52,9 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 * @since 0.0.6
 		 */
 		public function get_empty() {
-			$data = [
+			$data = array(
 				'post' => __( 'No posts found', 'wportfolio' ),
-			];
+			);
 
 			/**
 			 * WPortfolio data empty filter hook.
@@ -57,30 +78,6 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		}
 
 		/**
-		 * Get github data.
-		 *
-		 * @return mixed|void
-		 *
-		 * @version 0.0.2
-		 * @since 0.1.1
-		 */
-		public function get_github() {
-			$data = [
-				'username'   => 'rendy44',
-				'access_key' => '', // TODO: Insert your github access token.
-			];
-
-			/**
-			 * WPortfolio data github filter hook.
-			 *
-			 * @param array $data default data.
-			 *
-			 * @since 0.0.1
-			 */
-			return apply_filters( 'wportfolio_data_github', $data );
-		}
-
-		/**
 		 * Get nav data.
 		 *
 		 * @return mixed|void
@@ -88,10 +85,10 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 * @since 0.0.6
 		 */
 		public function get_nav() {
-			$data = [
+			$data = array(
 				'link' => home_url(),
 				'text' => 'Rendy',
-			];
+			);
 
 			/**
 			 * WPortfolio data nav filter hook.
@@ -111,11 +108,11 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 * @since 0.0.2
 		 */
 		public function get_masthead() {
-			$data = [
+			$data = array(
 				'title'      => __( 'Hi, I am Rendy,', 'wportfolio' ),
 				'subtitle'   => __( 'a WordPress Developer.', 'wportfolio' ),
 				'home_title' => _x( 'Posts', 'Masthead title', 'wportfolio' ),
-			];
+			);
 
 			/**
 			 * WPortfolio data masthead filter hook.
@@ -133,10 +130,10 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 * @return mixed|void
 		 *
 		 * @version 0.0.4
-		 * @since 0.0.3
+		 * @since   0.0.3
 		 */
 		public function get_sections() {
-			$data = [
+			$data = array(
 				'about'      => __( 'Hi There!', 'wportfolio' ),
 				'focus'      => __( 'Specialisation', 'wportfolio' ),
 				'experience' => __( 'Professional Experiences', 'wportfolio' ),
@@ -144,7 +141,7 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 				'activity'   => __( 'Summary Activity', 'wportfolio' ),
 				'blog'       => __( 'Latest Posts', 'wportfolio' ),
 				'contact'    => __( 'Get in Touch', 'wportfolio' ),
-			];
+			);
 
 			/**
 			 * WPortfolio data sections filter hook.
@@ -162,12 +159,12 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 * @return mixed|void
 		 *
 		 * @version 0.0.3
-		 * @since 0.0.4
+		 * @since   0.0.4
 		 */
 		public function get_about() {
-			$data = [
+			$data = array(
 				'content' => __( 'I am a WordPress Developer based in Yogyakarta, Indonesia. I am passionate to write clean and efficient code but highly customizable.', 'wportfolio' ),
-			];
+			);
 
 			/**
 			 * WPortfolio data about filter hook.
@@ -185,26 +182,26 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 * @return mixed|void
 		 *
 		 * @version 0.0.3
-		 * @since 0.0.5
+		 * @since   0.0.5
 		 */
 		public function get_focus() {
-			$data = [
-				[
+			$data = array(
+				array(
 					'id'    => 'wpcs',
 					'title' => __( 'WPCS Compliance', 'wportfolio' ),
 					'desc'  => __( 'By following WPCS we can expect most of what WordPress can offers.', 'wportfolio' ),
-				],
-				[
+				),
+				array(
 					'id'    => 'config',
 					'title' => __( 'Customizable', 'wportfolio' ),
 					'desc'  => __( 'Thanks to WordPress hooks, they make development way easier and simpler.', 'wportfolio' ),
-				],
-				[
+				),
+				array(
 					'id'    => 'secure',
 					'title' => __( 'Secure', 'wportfolio' ),
 					'desc'  => __( 'Beautiful and cutting-edge website is worth nothing if it is not secure.', 'wportfolio' ),
-				],
-			];
+				),
+			);
 
 			/**
 			 * WPortfolio data focus filter hook.
@@ -222,13 +219,13 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 * @return mixed|void
 		 *
 		 * @version 0.0.2
-		 * @since 0.0.7
+		 * @since   0.0.7
 		 */
 		public function get_experience() {
-			$data = [
+			$data = array(
 				'content' => __( 'In general, I have more than 7 years experience as a Software Developer, around more than 4 years as a WordPress Developer.', 'wportfolio' ),
-				'items'   => [
-					[
+				'items'   => array(
+					array(
 						'name'     => 'Harnods',
 						'location' => __( 'Yogyakarta, Indonesia', 'wportfolio' ),
 						'logo'     => 'https://harnods.com/wp-content/uploads/2018/09/harnods-logo.svg',
@@ -236,8 +233,8 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 						'role'     => __( 'WordPress Developer', 'wportfolio' ),
 						'start'    => __( 'Apr 2016', 'wportfolio' ),
 						'end'      => __( 'Feb 2019', 'wportfolio' ),
-					],
-					[
+					),
+					array(
 						'name'     => 'SoftwareSeni',
 						'location' => __( 'Yogyakarta, Indonesia', 'wportfolio' ),
 						'logo'     => 'https://www.softwareseni.co.id/wp-content/themes/ss-2018/assets/img/extra/softwareseni_logo.svg',
@@ -245,9 +242,9 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 						'role'     => __( 'WordPress Developer', 'wportfolio' ),
 						'start'    => __( 'Feb 2019', 'wportfolio' ),
 						'end'      => __( 'Now', 'wportfolio' ),
-					],
-				],
-			];
+					),
+				),
+			);
 
 			/**
 			 * WPortfolio data experience filter hook.
@@ -264,41 +261,38 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.4
-		 * @since 0.0.1
+		 * @version 0.0.5
+		 * @since   0.0.1
 		 */
 		public function get_contact() {
 
-			// Get github data.
-			$github_data = $this->get_github();
-
-			$data = [
+			$data = array(
 				'content'  => __( 'If you have projects that need to be get started, you may need some help or just saying hey, let\'s get in touch.', 'wportfolio' ),
 				'email'    => 'rendy.de.p@gmail.com',
 				'linkedin' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
-				'github'   => 'https://github.com/' . $github_data['username'],
+				'github'   => 'https://github.com/' . $this->github_api->get_username(),
 				'whatsapp' => '6282219186349',
-			];
+			);
 
 			// Merge the items.
-			$data['items'] = [
-				[
+			$data['items'] = array(
+				array(
 					'id'  => 'email',
 					'url' => 'mailto:' . $data['email'],
-				],
-				[
+				),
+				array(
 					'id'  => 'whatsapp',
 					'url' => 'http://wa.me/' . $data['whatsapp'],
-				],
-				[
+				),
+				array(
 					'id'  => 'linkedin',
 					'url' => $data['linkedin'],
-				],
-				[
+				),
+				array(
 					'id'  => 'github',
 					'url' => $data['github'],
-				],
-			];
+				),
+			);
 
 			/**
 			 * WPortfolio data contact filter hook.

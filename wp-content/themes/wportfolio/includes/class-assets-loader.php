@@ -63,13 +63,13 @@ if ( ! class_exists( 'WPortfolio\Assets_Loader' ) ) {
 		public static function add_front_asset( $name, $args, $type = 'css' ) {
 
 			// Prepare default args.
-			$default_args = [
+			$default_args = array(
 				'src'       => '',
-				'deps'      => [],
+				'deps'      => array(),
 				'ver'       => '0.0.1',
 				'in_footer' => false,
 				'is_module' => true,
-			];
+			);
 
 			// Merge args.
 			$args = wp_parse_args( $args, $default_args );

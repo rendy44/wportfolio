@@ -92,7 +92,7 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		 *
 		 * @since 0.0.1
 		 */
-		private static function render_template( $template, $variables = [] ) {
+		private static function render_template( $template, $variables = array() ) {
 			ob_start();
 			foreach ( $variables as $key => $value ) {
 				${$key} = $value;
@@ -113,7 +113,7 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		 *
 		 * @since 0.0.1
 		 */
-		public static function render( $file_name, $variables = [], $echo = true ) {
+		public static function render( $file_name, $variables = array(), $echo = true ) {
 			$template = self::find_template( $file_name );
 			$output   = '';
 			if ( $template ) {

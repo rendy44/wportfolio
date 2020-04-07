@@ -49,9 +49,9 @@ if ( ! class_exists( 'WPortfolio\Runner' ) ) {
 		private function __construct() {
 
 			// Load front assets.
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_front_assets' ] );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_front_assets' ) );
 			// Maybe convert js as module.
-			add_filter( 'script_loader_tag', [ $this, 'load_as_module' ], 10, 3 );
+			add_filter( 'script_loader_tag', array( $this, 'load_as_module' ), 10, 3 );
 		}
 
 		/**

@@ -71,7 +71,7 @@ if ( ! class_exists( 'WPortfolio\Settings' ) ) {
 			remove_action( 'wp_head', 'wp_generator' );
 
 			// Disable guttenberg.
-			add_filter( 'use_block_editor_for_post', [ $this, 'modify_guttenberg_availability' ], 10, 2 );
+			add_filter( 'use_block_editor_for_post', array( $this, 'modify_guttenberg_availability' ), 10, 2 );
 		}
 
 		/**

@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.6
+ * @version 0.0.7
  */
 
 namespace WPortfolio;
@@ -71,15 +71,16 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 		 *
 		 * @return array
 		 *
-		 * @version 0.0.5
+		 * @version 0.0.6
 		 * @since 0.0.1
 		 */
 		private function map_classes() {
-			$classes = [
+			$classes = array(
 				'helper',
 				'assets-loader',
 				'assets',
 				'runner',
+				'github-api',
 				'data',
 				'master',
 				'settings',
@@ -87,8 +88,7 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 				'template',
 				'post-like',
 				'ajax',
-				'github-api',
-			];
+			);
 
 			/**
 			 * WPortfolio dependency classes filter hook.
