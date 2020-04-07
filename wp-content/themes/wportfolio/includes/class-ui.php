@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.4.5
+ * @version 0.4.6
  */
 
 namespace WPortfolio;
@@ -67,9 +67,12 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		/**
 		 * Instance data object.
 		 *
+		 * @version 0.0.2
 		 * @since 0.2.6
 		 */
 		private function instance() {
+
+			// Instance data object.
 			$this->data_obj = new Data();
 		}
 
@@ -758,10 +761,15 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section.
 		 * @param int    $post_id       id of the current page.
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.4.2
 		 */
 		public function front_page_project_content( $section_title, $post_id ) {
+
+			// Maybe display admin notice.
+			if ( $this->data_obj->github_api->maybe_print_admin_notice() ) {
+				return;
+			};
 
 			// Prepare the args.
 			$args = array(
@@ -801,10 +809,15 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 		 * @param string $section_title title of the current section.
 		 * @param int    $post_id       id of the current page.
 		 *
-		 * @version 0.0.4
+		 * @version 0.0.5
 		 * @since   0.4.1
 		 */
 		public function front_page_activity_content( $section_title, $post_id ) {
+
+			// Maybe display admin notice.
+			if ( $this->data_obj->github_api->maybe_print_admin_notice() ) {
+				return;
+			};
 
 			// Prepare the args.
 			$args = array(

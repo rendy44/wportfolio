@@ -23,7 +23,6 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 	 */
 	class Data {
 
-
 		/**
 		 * Github api varibale.
 		 *
@@ -33,15 +32,14 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 
 		/**
 		 * Data custructor.
+		 *
+		 * @version 0.0.2
+		 * @since 0.0.1
 		 */
 		public function __construct() {
 
-			// Make sure github details are defined.
-			if ( ( defined( 'GITHUB_KEY' ) && GITHUB_KEY ) && defined( 'GITHUB_USER' ) && GITHUB_USER ) {
-
-				// Instance github api.
-				$this->github_api = new Github_Api( GITHUB_KEY, GITHUB_USER );
-			}
+			// Instance github api.
+			$this->github_api = new Github_Api();
 		}
 
 		/**

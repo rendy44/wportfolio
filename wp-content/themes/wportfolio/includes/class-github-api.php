@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Github Api Class.
  * Simple wrapper to acquire github v4 API
  *
  * @author WPerfekt
  * @package WPortfolio
- * @version 0.0.4
+ * @version 0.0.6
  */
 
 namespace WPortfolio;
@@ -24,6 +25,7 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 	 * @package WPortfolio
 	 */
 	class Github_Api {
+
 
 		/**
 		 * Access key variable.
@@ -44,11 +46,21 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		private $username = '';
 
 		/**
+		 * Error message variable.
+		 *
+		 * @var string
+		 *
+		 * @since 0.0.6
+		 */
+		private $error = '';
+
+		/**
 		 * Endpoint variable.
 		 *
 		 * @var string
 		 *
-		 * @since 0.0.1
+		 * @since 0.
+		 * 0.1
 		 */
 		private $endpoint = 'https://api.github.com/graphql';
 
@@ -66,14 +78,18 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		/**
 		 * Github_Api constructor.
 		 *
-		 * @param string $access_key personal access key.
-		 * @param string $username username.
-		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
-		public function __construct( $access_key, $username ) {
-			$this->access_key = $access_key;
-			$this->username   = $username;
+		public function __construct() {
+
+			// Validate the key.
+			if ( $this->is_valid_key_and_user() ) {
+				$this->access_key = GITHUB_KEY;
+				$this->username   = GITHUB_USER;
+			} else {
+				$this->error = __( 'Please define GITHUB_KEY and GITHUB_USER constants', 'wportfolio' );
+			}
 		}
 
 		/**
@@ -85,6 +101,54 @@ if ( ! class_exists( 'WPortfolio\Github_Api' ) ) {
 		 */
 		public function get_username() {
 			return $this->username;
+		}
+
+		/**
+		 * Print admin notification in front-end.
+		 *
+		 * @since 0.0.5
+		 */
+		private function print_admin_notice() {
+			$args = array(
+				'warning_message' => $this->error,
+			);
+
+			/**
+			 * WPortfolio admin notice filter hook.
+			 *
+			 * @param array $args default args.
+			 *
+			 * @since 0.0.1
+			 */
+			$args = apply_filters( 'wportfolio_admin_notice_args', $args );
+
+			Template::render( 'admin/notice', $args );
+		}
+
+		/**
+		 * Check whether github key nor github user are defined or not.
+		 *
+		 * @return bool
+		 *
+		 * @since 0.0.5
+		 */
+		private function is_valid_key_and_user() {
+			return ( defined( 'GITHUB_KEY' ) && GITHUB_KEY ) && ( defined( 'GITHUB_USER' ) && GITHUB_USER );
+		}
+
+		/**
+		 * Maybe print admin notice.
+		 *
+		 * @return void|bool
+		 *
+		 * @since 0.0.5
+		 */
+		public function maybe_print_admin_notice() {
+			// Validate constants.
+			if ( ! $this->is_valid_key_and_user() ) {
+				$this->print_admin_notice();
+				return true;
+			}
 		}
 
 		/**
