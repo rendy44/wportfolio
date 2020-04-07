@@ -5,10 +5,14 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 namespace WPortfolio;
+
+use get_transient;
+use set_transient;
+use base64_decode;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -128,10 +132,33 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 		 *
 		 * @return string
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.2
 		 */
 		public static function get_author() {
-			return 'Created and Designed by <a href="http://wperfekt.com" target="_blank">WPerfekt</a>';
+			$data = array(
+				'name' => 'V1BlcmZla3Q=',
+				'url'  => 'aHR0cHM6Ly93cGVyZmVrdC5jb20=',
+				'text' => 'Q3JlYXRlZCBhbmQgRGVzaWduZWQgYnk=',
+			);
+
+			// Maybe get from transient.
+			$decoded_transient = get_transient( 'credit_author_footer' );
+
+			// Validate the transient.
+			if ( ! $decoded_transient ) {
+
+				// Decode manually.
+				foreach ( $data as $data_key => $data_value ) {
+					$decoded_transient[ $data_key ] = base64_decode( $data_value );
+				}
+
+				// Save into transient.
+				set_transient( 'credit_author_footer', $decoded_transient, 3600 * 24 * 360 );
+			}
+
+			/* translators: %1$s: credit text, %2$s: credit url, %3$s: credit name */
+			return sprintf( '%1$s <a href="%2$s" target="_blank">%3$s</a>', $decoded_transient['text'], $decoded_transient['url'], $decoded_transient['name'] );
 		}
 	}
 }
