@@ -8,7 +8,7 @@ section.section.section-focus {
     > .frow {
       > div {
         .focus-item {
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.5rem;
 
           .icon {
             margin: 0 auto 1rem;
@@ -33,13 +33,13 @@ section.section.section-focus {
             display: block;
             text-align: center;
             margin: 0 0 .5rem;
-            font-weight: 400;
+            font-weight: 500;
           }
 
           > p {
             font-size: 16px;
             margin: 0;
-            text-align: justify;
+            text-align: center;
           }
 
           &.item-wpcs {
@@ -86,10 +86,10 @@ section.section.section-focus {
             margin-left: 7.5px;
             margin-bottom: 0;
 
-            > p {
+            // > p {
               //font-size: 14px;
-              text-align: center;
-            }
+              // text-align: center;
+            // }
           }
         }
       }
