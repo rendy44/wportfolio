@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.1.5
+ * @version 0.1.6
  */
 
 namespace WPortfolio;
@@ -259,14 +259,14 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.5
+		 * @version 0.0.6
 		 * @since   0.0.1
 		 */
 		public function get_contact() {
 
 			$data = array(
 				'content'  => __( 'If you have projects that need to be get started, you may need some help or just saying hey, let\'s get in touch.', 'wportfolio' ),
-				'email'    => 'rendy.de.p@gmail.com',
+				'email'    => 'hello@wperfekt.com',
 				'linkedin' => 'https://www.linkedin.com/in/rendi-dwi-p-792576119',
 				'github'   => 'https://github.com/' . $this->github_api->get_username(),
 				'whatsapp' => '6282219186349',
