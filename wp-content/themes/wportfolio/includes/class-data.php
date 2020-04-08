@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.1.6
+ * @version 0.1.7
  */
 
 namespace WPortfolio;
@@ -127,16 +127,16 @@ if ( ! class_exists( 'WPortfolio\Data' ) ) {
 		 *
 		 * @return mixed|void
 		 *
-		 * @version 0.0.4
+		 * @version 0.0.5
 		 * @since   0.0.3
 		 */
 		public function get_sections() {
 			$data = array(
 				'about'      => __( 'Hi There!', 'wportfolio' ),
-				'focus'      => __( 'Specialisation', 'wportfolio' ),
+				'focus'      => __( 'Specializations', 'wportfolio' ),
 				'experience' => __( 'Professional Experiences', 'wportfolio' ),
 				'project'    => __( 'Experimental Projects', 'wportfolio' ),
-				'activity'   => __( 'Summary Activity', 'wportfolio' ),
+				'activity'   => __( 'Summary Activities', 'wportfolio' ),
 				'blog'       => __( 'Latest Posts', 'wportfolio' ),
 				'contact'    => __( 'Get in Touch', 'wportfolio' ),
 			);
