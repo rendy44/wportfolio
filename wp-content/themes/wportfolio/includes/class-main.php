@@ -62,7 +62,7 @@ if ( ! class_exists( 'WPortfolio\Main' ) ) {
 
 			// Load all classes.
 			foreach ( $classes as $class ) {
-				include TEMP_PATH . "/includes/class-{$class}.php";
+				include TEMP_DIR . "/includes/class-{$class}.php";
 			}
 		}
 
