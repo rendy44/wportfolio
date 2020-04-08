@@ -18,4 +18,4 @@ defined( 'TEMP_PATH' ) || define( 'TEMP_PATH', get_theme_file_path() );
 defined( 'TEMP_PREFIX' ) || define( 'TEMP_PREFIX', 'wprtfl_' );
 
 // Require the main class.
-require_once TEMP_PATH . '/includes/class-main.php';
+require_once TEMP_DIR . '/includes/class-main.php';

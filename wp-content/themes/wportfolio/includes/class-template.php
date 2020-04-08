@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -35,10 +35,11 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		/**
 		 * Set template folder
 		 *
+		 * @version 0.0.2
 		 * @since 0.0.1
 		 */
 		private static function set_default_folder() {
-			$folder = TEMP_PATH . '/templates';
+			$folder = 'templates';
 
 			if ( ! self::$folder ) {
 
@@ -62,24 +63,20 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 		 *
 		 * @param string $file_name template file name.
 		 *
-		 * @return bool|string
+		 * @return string
 		 *
-		 * @version 0.0.2
+		 * @version 0.0.3
 		 * @since 0.0.1
 		 */
 		private static function find_template( $file_name ) {
-			$found = false;
 
 			// Set default folder.
 			self::set_default_folder();
 
 			// Check file in plugin.
-			$file = self::$folder . "/{$file_name}.php";
-			if ( file_exists( $file ) ) {
-				$found = $file;
-			}
+			$file = locate_template( self::$folder . "/{$file_name}.php" );
 
-			return $found;
+			return $file;
 		}
 
 		/**
@@ -97,6 +94,7 @@ if ( ! class_exists( 'WPortfolio\Template' ) ) {
 			foreach ( $variables as $key => $value ) {
 				${$key} = $value;
 			}
+
 			include $template;
 
 			return ob_get_clean();
