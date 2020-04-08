@@ -834,14 +834,14 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			} else {
 
 				// Save object.
-             $contribution_collection = $github_contribution->data->user->contributionsCollection; // phpcs:ignore
+				$contribution_collection = $github_contribution->data->user->contributionsCollection; // phpcs:ignore
 
 				// Update the args.
-             $args['activity_start_timestamp'] = strtotime( $contribution_collection->startedAt ); // phpcs:ignore
-				$args['activity_start']        = Helper::convert_date( $args['activity_start_timestamp'] );
-             $args['activity_end_timestamp']   = strtotime( $contribution_collection->endedAt ); // phpcs:ignore
-				$args['activity_end']          = Helper::convert_date( $args['activity_end_timestamp'] );
-             $args['activity_total']           = $contribution_collection->contributionCalendar->totalContributions; // phpcs:ignore
+            	$args['activity_start_timestamp'] = strtotime( $contribution_collection->startedAt ); // phpcs:ignore
+				$args['activity_start']           = Helper::convert_date( $args['activity_start_timestamp'] );
+            	$args['activity_end_timestamp']   = strtotime( $contribution_collection->endedAt ); // phpcs:ignore
+				$args['activity_end']             = Helper::convert_date( $args['activity_end_timestamp'] );
+            	$args['activity_total']           = $contribution_collection->contributionCalendar->totalContributions; // phpcs:ignore
 				/* translators: %1$s: start date, %2$s: end date */
 				$args['activity_content'] = sprintf( __( 'Total contributions between %1$s, to %2$s', 'wportfolio' ), $args['activity_start'], $args['activity_end'] );
 			}
