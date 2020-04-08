@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Github Api Class.
  * Simple wrapper to acquire github v4 API

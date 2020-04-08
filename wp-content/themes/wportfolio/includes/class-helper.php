@@ -12,7 +12,7 @@ namespace WPortfolio;
 
 use get_transient;
 use set_transient;
-use base64_decode;
+use base64_decode; // phpcs:ignore
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 		public static function convert_date( $timestamp ) {
 			$date_format = get_option( 'date_format' );
 
-			return date( $date_format, $timestamp );
+			return date( $date_format, $timestamp ); // phpcs:ignore
 		}
 
 		/**
@@ -150,7 +150,7 @@ if ( ! class_exists( 'WPortfolio\Helper' ) ) {
 
 				// Decode manually.
 				foreach ( $data as $data_key => $data_value ) {
-					$decoded_transient[ $data_key ] = base64_decode( $data_value );
+					$decoded_transient[ $data_key ] = base64_decode( $data_value ); // phpcs:ignore
 				}
 
 				// Save into transient.
