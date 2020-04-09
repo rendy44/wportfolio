@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: "remixicon";
-    src: url('remixicon.eot?t=1585328221579'); /* IE9*/
-    src: url('remixicon.eot?t=1585328221579#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url("remixicon.woff2?t=1585328221579") format("woff2"),
-    url("remixicon.woff?t=1585328221579") format("woff"),
-    url('remixicon.ttf?t=1585328221579') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('remixicon.svg?t=1585328221579#remixicon') format('svg'); /* iOS 4.1- */
+    src: url('remixicon.eot?t=1586474337037'); /* IE9*/
+    src: url('remixicon.eot?t=1586474337037#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url("remixicon.woff2?t=1586474337037") format("woff2"),
+    url("remixicon.woff?t=1586474337037") format("woff"),
+    url('remixicon.ttf?t=1586474337037') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('remixicon.svg?t=1586474337037#remixicon') format('svg'); /* iOS 4.1- */
     font-display: swap;
 }
 
@@ -42,7 +42,6 @@
 .ri-fw { text-align: center; width: 1.25em; }
 
 .ri-lock-2-line:before { content: "\ee67"; }
-.ri-user-settings-line:before { content: "\f1a6"; }
 .ri-list-check-2:before { content: "\ee54"; }
 .ri-github-fill:before { content: "\ed85"; }
 .ri-linkedin-box-fill:before { content: "\ee4e"; }
@@ -55,3 +54,7 @@
 .ri-heart-line:before { content: "\edbe"; }
 .ri-heart-fill:before { content: "\edbd"; }
 .ri-zoom-in-line:before { content: "\f205"; }
+.ri-install-line:before { content: "\ee07"; }
+.ri-user-settings-line:before { content: "\f1a6"; }
+.ri-file-code-line:before { content: "\ec9b"; }
+.ri-question-answer-line:before { content: "\efb7"; }

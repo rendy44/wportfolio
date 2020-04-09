@@ -18,4 +18,5 @@
 !/wp-content/themes
 /wp-content/themes/*
 !/wp-content/themes/wportfolio/
+/wp-content/themes/wportfolio/documentation/node_modules/*
 !/wp-content/themes/wportfolio-child/

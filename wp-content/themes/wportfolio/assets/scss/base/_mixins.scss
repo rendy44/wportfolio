@@ -71,7 +71,7 @@
   transition: $args;
 }
 
-@mixin box-shadow($top : 0, $left : .2rem, $blur : .4rem, $color: rgba($black,.15), $inset: false) {
+@mixin box-shadow($top : 0, $left : .2rem, $blur : .4rem, $color: rgba($black_color,.15), $inset: false) {
   @if $inset {
     -webkit-box-shadow: inset $top $left $blur $color !important;
     -moz-box-shadow: inset $top $left $blur $color !important;

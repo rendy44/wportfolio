@@ -1,0 +1,15 @@
+@for $i from 1 through 6 {
+  $size: $i * .5rem !important;
+  $spaces: 'padding', 'margin';
+  @each $space in $spaces {
+    .#{$space}-#{$i} {
+      #{$space}: $size;
+    }
+    $sides: 'top', 'right', 'bottom', 'left';
+    @each $side in $sides {
+      .#{$space}-#{$side}-#{$i} {
+        #{$space}-#{$side}: $size;
+      }
+    }
+  }
+}
