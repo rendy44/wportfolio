@@ -2,6 +2,14 @@ body {
   background-color: darken($white_color, 3%);
 }
 
-section.masthead {
-  padding-top: 0 !important;
+// Custom icon for contact items.
+$contact-items: ('download':"\ec25", 'preview':"\ec7e");
+ul.contact-items-wrapper {
+  li.contact-item {
+    @each $name, $icon in $contact-items {
+      &.item-#{$name} > a:before {
+        content: $icon;
+      }
+    }
+  }
 }
