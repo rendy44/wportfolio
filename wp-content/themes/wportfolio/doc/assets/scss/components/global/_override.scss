@@ -16,6 +16,29 @@ article {
       font-size: 20px;
     }
   }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  code {
+    color: $base-color;
+    font-weight: 400;
+    background-color: rgba($black_color, .05);
+  }
+
+  @include breakpoint($size_tablet) {
+    h2 {
+      font-size: 32px;
+    }
+    h3 {
+      font-size: 26px;
+    }
+  }
 }
 
 a {
