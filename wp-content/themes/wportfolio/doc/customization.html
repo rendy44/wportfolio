@@ -187,6 +187,91 @@ do_action( "wportfolio_section_{$section}", $section_title, $page_id );</code> <
  */
 do_action( 'wportfolio_after_section', $section, $section_title, $page_id );</code></pre>
 					<hr class="mini"/>
+					<p>Filter to modify args in opening section. See <code>wportfolio/includes/class-ui.php</code> line <strong>589</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section open args filter hook.
+ *
+ * @param array $args default args.
+ * @param string $section name of the current section.
+ * @param int $post_id id of the current page.
+ *
+ * @hooked self::section_focus_size - 10
+ */
+apply_filters( 'wportfolio_section_open_args', $args, $section, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in section title. See <code>wportfolio/includes/class-ui.php</code> line <strong>644</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section title args filter hook.
+ *
+ * @param array $args default args.
+ * @param string $section name of the current section.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_section_title_args', $args, $section, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in section about. See <code>wportfolio/includes/class-ui.php</code> line <strong>689</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section about content args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_section_about_content_args', $args, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in section focus/specialization. See <code>wportfolio/includes/class-ui.php</code> line <strong>721</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section about content args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_section_about_content_args', $args, $post_id );</code></pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in section experience. See <code>wportfolio/includes/class-ui.php</code> line <strong>753</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section experience content args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_section_experience_content_args', $args, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in section project. See <code>wportfolio/includes/class-ui.php</code> line <strong>801</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section project content args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_section_project_content_args', $args, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in section activity. See <code>wportfolio/includes/class-ui.php</code> line <strong>857</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section activity content args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_section_activity_content_args', $args, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in section blog. See <code>wportfolio/includes/class-ui.php</code> line <strong>910</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section blog content args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_section_blog_content_args', $args, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify contact items. See <code>wportfolio/includes/class-ui.php</code> line <strong>939</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio contact items filter hooks.
+ *
+ * @param array $contact_items default contact items.
+ * @param int $post_id id of the current page.
+ */
+apply_filters( 'wportfolio_contact_items', $contact_items, $post_id );</code> </pre>
+					<hr class="mini"/>
 				</article>
 			</div>
 		</div>
