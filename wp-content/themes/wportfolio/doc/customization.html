@@ -6,7 +6,7 @@
 <link rel="stylesheet" id="font-css" href="https://fonts.googleapis.com/css?family=Baloo+2%3A400%2C500%2C600%7CDancing+Script%3A700&amp;display=swap&amp;ver=0.0.1" type="text/css" media="">
 <link rel="stylesheet" type="text/css" href="../assets/css/wportfolio.css"/>
 <link rel="stylesheet" type="text/css" href="../assets/lib/remixicon/remixicon.css"/>
-<link rel="stylesheet" type="text/css" href="assets/lib/highlight/styles/github.css"/>
+<link rel="stylesheet" type="text/css" href="assets/lib/highlight/styles/school-book.css"/>
 <link rel="stylesheet" type="text/css" href="assets/css/doc.css"/>
 <body>
 <nav class="nav">
@@ -43,6 +43,7 @@
 						<li><a href="#hooks">Hooks</a>
 							<ul>
 								<li><a href="#global">Global</a></li>
+								<li><a href="#data">Data Content</a></li>
 								<li><a href="#front">Front Page</a></li>
 							</ul>
 						</li>
@@ -142,8 +143,33 @@ apply_filters( 'wportfolio_footer_open_args', $args );</code> </pre>
  * @param array $args default args.
  */
 apply_filters( 'wportfolio_footer_content_args', $args );</code> </pre>
-					<h3 id="front">Front Page</h3>
-					<p>Filter to manage section list in front page. See <code>wportfolio/includes/class-data.php</code> line <strong>151</strong></p>
+					<hr class="mini"/>
+					<h3 id="data">Data Content</h3>
+					<p>Filter to modify empty message. See <code>wportfolio/includes/class-data.php</code> line <strong>64</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data empty filter hook.
+ *
+ * @param array $data default data.
+ */
+apply_filters( 'wportfolio_data_empty', $data );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify nav menu. See <code>wportfolio/includes/class-data.php</code> line <strong>98</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data nav filter hook.
+ *
+ * @param array $data default data.
+ */
+apply_filters( 'wportfolio_data_nav', $data );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify masthead. See <code>wportfolio/includes/class-data.php</code> line <strong>122</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data masthead filter hook.
+ *
+ * @param array $data default data.
+ */
+apply_filters( 'wportfolio_data_masthead', $data );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify section list in front page. See <code>wportfolio/includes/class-data.php</code> line <strong>151</strong></p>
 					<pre><code class="php">/**
  * WPortfolio data sections filter hook.
  *
@@ -152,6 +178,40 @@ apply_filters( 'wportfolio_footer_content_args', $args );</code> </pre>
 apply_filters( 'wportfolio_data_sections', $data );
 					</code></pre>
 					<hr class="mini"/>
+					<p>Filter to modify data in section about. See <code>wportfolio/includes/class-data.php</code> line <strong>174</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data about filter hook.
+ *
+ * @param array $data default data.
+ *
+ */
+apply_filters( 'wportfolio_data_about', $data );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify data in section focus/specialization. See <code>wportfolio/includes/class-data.php</code> line <strong>211</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data focus filter hook.
+ *
+ * @param array $data default data.
+ *
+ */
+apply_filters( 'wportfolio_data_focus', $data );</code> </pre>
+					<hr class="mini"/><p>Filter to modify data in section experience. See <code>wportfolio/includes/class-data.php</code> line <strong>254</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data experience filter hook.
+ *
+ * @param array $data default data.
+ */
+apply_filters( 'wportfolio_data_experience', $data );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify data in section contact. See <code>wportfolio/includes/class-data.php</code> line <strong>302</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data contact filter hook.
+ *
+ * @param array $data default data.
+ */
+apply_filters( 'wportfolio_data_contact', $data );</code> </pre>
+					<hr class="mini"/>
+					<h3 id="front">Front Page</h3>
 					<p>Action to add content before individual section. See <code>wportfolio/front-page.php</code> line <strong>51</strong></p>
 					<pre><code class="php">/**
  * WPortfolio before section action hook.
