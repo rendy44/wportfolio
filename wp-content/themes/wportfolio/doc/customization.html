@@ -6,7 +6,7 @@
 <link rel="stylesheet" id="font-css" href="https://fonts.googleapis.com/css?family=Baloo+2%3A400%2C500%2C600%7CDancing+Script%3A700&amp;display=swap&amp;ver=0.0.1" type="text/css" media="">
 <link rel="stylesheet" type="text/css" href="../assets/css/wportfolio.css"/>
 <link rel="stylesheet" type="text/css" href="../assets/lib/remixicon/remixicon.css"/>
-<link rel="stylesheet" type="text/css" href="assets/lib/highlight/styles/darcula.css"/>
+<link rel="stylesheet" type="text/css" href="assets/lib/highlight/styles/github.css"/>
 <link rel="stylesheet" type="text/css" href="assets/css/doc.css"/>
 <body>
 <nav class="nav">
@@ -68,17 +68,125 @@
 						<i>hooks</i> to customize the theme, since it has less effort than overriding templates. In order to support that, WPortfolio provides a lot of hooks either action or filter to customize the theme to meet our needs.
 					</p>
 					<h3 id="global">Global Hooks</h3>
-					<p>Action to add content in footer, see <code>wp-content/themes/wportfolio/footer.php</code> line<strong>23</strong></p>
+					<p>Filter to modify args in nav content. See <code>wportfolio/includes/class-ui.php</code> line <strong>216</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio nav content args filter hook.
+ *
+ * @param array $args default args.
+ */
+apply_filters( 'wportfolio_nav_content_args', $args );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in opening masthead. See <code>wportfolio/includes/class-ui.php</code> line <strong>240</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio masthead open filter hook.
+ *
+ * @param array $args default args.
+ *
+ * @hooked self::masthead_args - 10
+ */
+apply_filters( 'wportfolio_masthead_open_args', $args );</code></pre>
+					<hr class="mini"/>
+					<p>Filter to modify masthead template name. See <code>wportfolio/includes/class-ui.php</code> line <strong>262</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio masthead template filter hook.
+ *
+ * @hooked self::masthead_template - 10
+ *
+ * @param string $template default template path.
+ */
+apply_filters( 'wportfolio_masthead_template', $template );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify masthead title. See <code>wportfolio/includes/class-ui.php</code> line <strong>273</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio masthead title filter hook.
+ *
+ * @param string $masthead_title default title.
+ *
+ * @hooked self::masthead_title - 10
+ */
+apply_filters( 'wportfolio_masthead_title', $masthead_title );</code> </pre>
+					<p>This filter is also useful if we want to differentiate masthead title of each different page.</p>
+					<hr class="mini"/>
+					<p>Filter to modify args in masthead content. See <code>wportfolio/includes/class-ui.php</code> line <strong>288</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio masthead content args filter hook.
+ *
+ * @param array $args default args.
+ *
+ * @hooked self::masthead_content_args - 10
+ */
+apply_filters( 'wportfolio_masthead_content_args', $args );</code> </pre>
+					<hr class="mini"/>
+					<p>Action to add content in footer. See <code>wportfolio/footer.php</code> line <strong>23</strong></p>
 					<pre><code class="php">/**
  * WPortfolio footer action hook.
  *
  * @hooked UI::footer_open - 10
  * @hooked UI::footer_content - 20
  * @hooked UI::footer_close - 30
- *
- * @since 0.0.1
  */
 do_action( 'wportfolio_footer' );</code></pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in opening footer. See <code>wportfolio/includes/class-ui.php</code> line <strong>1147</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio footer open args filter hook.
+ *
+ * @param array $args default args.
+ */
+apply_filters( 'wportfolio_footer_open_args', $args );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in footer content. See <code>wportfolio/includes/class-ui.php</code> line <strong>1170</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio footer content args filter hook.
+ *
+ * @param array $args default args.
+ */
+apply_filters( 'wportfolio_footer_content_args', $args );</code> </pre>
+					<h3 id="front">Front Page</h3>
+					<p>Filter to manage section list in front page. See <code>wportfolio/includes/class-data.php</code> line <strong>151</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio data sections filter hook.
+ *
+ * @param array $data default data.
+ */
+apply_filters( 'wportfolio_data_sections', $data );
+					</code></pre>
+					<hr class="mini"/>
+					<p>Action to add content before individual section. See <code>wportfolio/front-page.php</code> line <strong>51</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio before section action hook.
+ *
+ * @param string $section name of the current section.
+ * @param string $section_title title of the current section.
+ * @param int $page_id id of the current page.
+ *
+ * @hooked UI::section_open - 10
+ * @hooked UI::section_title - 20
+ */
+do_action( 'wportfolio_before_section', $section, $section_title, $page_id );</code></pre>
+					<hr class="mini"/>
+					<p>Action to add content in individual section. See <code>wportfolio/front-page.php</code> line <strong>62</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio section action hook.
+ *
+ * @param string $section_title title of the current section.
+ * @param int $page_id id of the current page.
+ */
+do_action( "wportfolio_section_{$section}", $section_title, $page_id );</code> </pre>
+					<p>Variable <code>$section</code> should be individual section slug.</p>
+					<hr class="mini"/>
+					<p>Action to add content after individual section. See <code>wportfolio/front-page.php</code> line <strong>76</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio after section action hook.
+ *
+ * @param string $section name of the current section.
+ * @param string $section_title title of the current section.
+ * @param int $page_id id of the current page.
+ *
+ * @hooked UI::section_close - 50
+ */
+do_action( 'wportfolio_after_section', $section, $section_title, $page_id );</code></pre>
+					<hr class="mini"/>
 				</article>
 			</div>
 		</div>
