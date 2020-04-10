@@ -1,0 +1,24 @@
+aside {
+  display: none;
+  @include breakpoint($size_laptop) {
+    display: unset;
+  }
+
+  ul.menus {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+
+    > li {
+      margin-bottom: .5rem;
+
+      > a {
+        font-size: 20px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

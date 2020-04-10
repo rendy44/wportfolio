@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<title>Installation - WPortfolio Documentation</title>
+<link rel="stylesheet" id="font-css" href="https://fonts.googleapis.com/css?family=Baloo+2%3A400%2C500%2C600%7CDancing+Script%3A700&amp;display=swap&amp;ver=0.0.1" type="text/css" media="">
+<link rel="stylesheet" type="text/css" href="../assets/css/wportfolio.css"/>
+<link rel="stylesheet" type="text/css" href="../assets/lib/remixicon/remixicon.css"/>
+<link rel="stylesheet" type="text/css" href="assets/lib/highlight/styles/darcula.css"/>
+<link rel="stylesheet" type="text/css" href="assets/css/doc.css"/>
+<body>
+<nav class="nav">
+	<div class="frow-container">
+		<div class="brand"></div>
+		<ul class="contact-items-wrapper">
+			<li class="contact-item item-preview">
+				<a href="https://wperfekt.com" target="_blank"></a></li>
+			<li class="contact-item item-download">
+				<a href="https://github.com/rendy44/wportfolio" target="_blank"></a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<section class="masthead ">
+	<div class="left-masthead"></div>
+	<div class="right-masthead"></div>
+	<div class="frow-container">
+		<div class="frow">
+			<div class="col-md-2-3">
+				<h1>Installation</h1>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="section section-doc">
+	<div class="frow-container">
+		<div class="frow">
+			<div class="col-md-1-4">
+				<aside>
+					<ul class="menus">
+						<li><a href="#overview">Overview</a>
+						<li><a href="#requirement">Requirement</a>
+						<li><a href="#installation">Installation</a></li>
+						<li><a href="#configuration">Configuration</a></li>
+					</ul>
+				</aside>
+			</div>
+			<div class="col-md-3-4">
+				<article>
+					<h2 id="overview">Overview</h2>
+					<p>Thank you for using WPortfolio for your personal web blog portfolio. WPortfolio is a free WordPress theme for a personal web blog portfolio. This theme suits a person who want to show their works while writing some interesting blog.</p>
+					<p>This documentation will walk you around about how to use this theme on your own web at no cost.</p>
+					<hr/>
+					<h2 id="requirement">Requirements</h2>
+					<p>This theme is created by a Developer for Developers, hence it is going to be a bit techy for some of people out there.</p>
+					<p>Before using this theme, please make sure that you have these requirements:</p>
+					<ul>
+						<li><strong>Git Base Knowledge</strong>, we will download the theme using git command.</li>
+						<li>
+							<strong>WordPress Base Knowledge</strong>, before using this theme, we are assuming that we are already familiar with basic WordPress Development.
+						</li>
+						<li>
+							<strong>Github Account</strong>, it is a place where we will show of our works and highlight it on our website. However, if it is optional if we don't want to show it.
+						</li>
+					</ul>
+					<hr/>
+					<h2 id="installation">Installation</h2>
+					<p>WPortfolio is available for free and you can download it from its github repository.</p>
+					<ol>
+						<li>Download it from its Github repository
+							<pre><code class="powershell">git clone https://github.com/rendy44/wportfolio.git</code></pre>
+							Once you done it, you should have two themes,
+							<i><strong>wportfolio</strong></i> as your main theme and
+							<i><strong>wportfolio-child</strong></i> as a demo child theme to modify the parent theme.
+						</li>
+						<li>Make sure your working directory is correct as
+							<code>root/wp-content/themes/wportfolio/style.css.</code></li>
+						<li>
+							Before activating the theme, please define constants named
+							<code>GITHUB_USER</code> with your GitHub username (without any slices) and
+							<code>GITHUB_KEY</code> with a
+							<a href="https://github.com/settings/tokens" target="_blank">personal access token</a> in your
+							<code>wp-config.php</code> file. It is not necessary to grant all permissions, we only need to grant user:read permission.
+							<pre><code class="php">define( 'GITHUB_USER', 'githubusername' );
+define( 'GITHUB_KEY', 'randomstringthatcontainaccesstoken' );</code></pre>
+						</li>
+						<li>
+							Activate the <strong>WPortfolio Child Demo</strong> theme from our wp-admin.
+						</li>
+					</ol>
+					<hr/>
+					<h2 id="configuration">Configuration</h2>
+					<p>After Installing the theme, we need to provide two pages as our
+						<i>front-page</i> that will act as our landing page and
+						<i>home-page</i> where we will store our posts.</p>
+					<ol>
+						<li>Go to your wp-admin and click <i><strong>Pages</strong></i> >
+							<i><strong>Add New</strong></i>. You can name it as free as you want, but for easier management, we suggest you name it
+							<i>Front</i>.
+						</li>
+						<li>Repeat the above step but name the new page with <i>Posts</i>.</li>
+						<li>Go to <i><strong>Appearance</strong></i> > <i><strong>Customize</strong></i> >
+							<i><strong>Homepage Settings</strong></i>, in <i>Your homepage displays</i> please select
+							<i>Static Page</i>, Select <i>Front</i> in <i>Homepage</i> dropdown and <i>Posts</i> in
+							<i>Posts Page</i> dropdown.
+						</li>
+					</ol>
+					<p>Now, try to open your homepage, you should see your website with full of built-in contents.</p>
+				</article>
+			</div>
+		</div>
+	</div>
+</section>
+<footer class="footer footer-dark">
+	<div class="frow-container">
+		<div class="text-center">
+			<p>&copy; 2020 WPortfolio</p>
+		</div>
+	</div>
+</footer>
+<script type="text/javascript" src="assets/lib/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
