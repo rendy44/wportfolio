@@ -6,7 +6,7 @@
 <link rel="stylesheet" id="font-css" href="https://fonts.googleapis.com/css?family=Baloo+2%3A400%2C500%2C600%7CDancing+Script%3A700&amp;display=swap&amp;ver=0.0.1" type="text/css" media="">
 <link rel="stylesheet" type="text/css" href="../assets/css/wportfolio.css"/>
 <link rel="stylesheet" type="text/css" href="../assets/lib/remixicon/remixicon.css"/>
-<link rel="stylesheet" type="text/css" href="assets/lib/highlight/styles/school-book.css"/>
+<link rel="stylesheet" type="text/css" href="assets/lib/highlight/styles/github.css"/>
 <link rel="stylesheet" type="text/css" href="assets/css/doc.css"/>
 <body>
 <nav class="nav">
@@ -49,6 +49,7 @@
 								<li><a href="#archive">Archive Page</a></li>
 							</ul>
 						</li>
+						<li><a href="#color">Color Scheme</a></li>
 					</ul>
 				</aside>
 			</div>
@@ -473,7 +474,11 @@ apply_filters( 'wportfolio_archive_pagination_args', $args );</code> </pre>
  * @param int $post_id id of the current post.
  */
 apply_filters( 'wportfolio_archive_post_list', $args, $post_id );</code> </pre>
-					<hr class="mini"/>
+					<hr/>
+					<h2 id="color">Color Scheme</h2>
+					<p>WPortfolio also provides an easy SCSS files that can be read easily for non Front-End Developer. In order to change the main color scheme you can edit the SCSS file from <code>wportfolio/assets/scss/base/_variable.scss</code> line <strong>5</strong>, we can edit the color with any color we want.</p>
+					<p>Once we done, we should run the SASS watcher, by pointing our command line to <code>wp-content/themes/wportfolio/assets</code> and then running sass watcher.</p>
+					<pre><code class="powershell">sass --watch scss:css --style=compressed</code> </pre>
 				</article>
 			</div>
 		</div>
