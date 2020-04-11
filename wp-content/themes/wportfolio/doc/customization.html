@@ -11,7 +11,9 @@
 <body>
 <nav class="nav">
 	<div class="frow-container">
-		<div class="brand"></div>
+		<div class="brand">
+			<a href="index.html">DOCS</a>
+		</div>
 		<ul class="contact-items-wrapper">
 			<li class="contact-item item-preview">
 				<a href="https://wperfekt.com" target="_blank"></a></li>
@@ -56,7 +58,7 @@
 			<div class="col-md-3-4">
 				<article>
 					<h2 id="overview">Overview</h2>
-					<p>After activating the theme and previewing the homepage, you may wonder that your website is already filled in with built-in content and questioning about how to customize it.</p>
+					<p>After activating the theme and previewing the homepage, we may wonder that our website is already filled in with built-in content and questioning about how to customize it.</p>
 					<p>WPortfolio provides huge possibilities to customize the theme to meet our needs. For an easier and best practice to customize the theme, it's highly recommended to do by using a child theme.</p>
 					<p>There are two ways to customize the theme, by overriding the templates nor using WordPress hooks.</p>
 					<hr/>
@@ -65,11 +67,11 @@
 					<p>For example, in our parent theme, we have
 						<code>wp-content/themes/wportfolio/templates/front-page/masthead.php</code>, we can override it by creating an exact file in our child theme, so we'll have
 						<code>wp-content/themes/wportfolio-child/templates/front-page/masthead.php</code></p>
-					<p>This can be achieved because the parent theme will look up the possible template in child theme first before looking in parent theme.</p>
+					<p>This can be achieved because the parent theme will look up the possible template in the child theme first before looking in the parent theme.</p>
 					<hr/>
 					<h2 id="hooks">Hooks</h2>
 					<p>It is highly recommended to use
-						<i>hooks</i> to customize the theme, since it has less effort than overriding templates. In order to support that, WPortfolio provides a lot of hooks either action or filter to customize the theme to meet our needs.
+						<i>hooks</i> to customize the theme since it has less effort than overriding templates. In order to support that, WPortfolio provides a lot of hooks either action or filter to customize the theme to meet our needs.
 					</p>
 					<h3 id="global">Global Hooks</h3>
 					<p>Filter to modify args in nav content. See <code>wportfolio/includes/class-ui.php</code> line <strong>216</strong></p>
@@ -476,8 +478,8 @@ apply_filters( 'wportfolio_archive_pagination_args', $args );</code> </pre>
 apply_filters( 'wportfolio_archive_post_list', $args, $post_id );</code> </pre>
 					<hr/>
 					<h2 id="color">Color Scheme</h2>
-					<p>WPortfolio also provides an easy SCSS files that can be read easily for non Front-End Developer. In order to change the main color scheme you can edit the SCSS file from <code>wportfolio/assets/scss/base/_variable.scss</code> line <strong>5</strong>, we can edit the color with any color we want.</p>
-					<p>Once we done, we should run the SASS watcher, by pointing our command line to <code>wp-content/themes/wportfolio/assets</code> and then running sass watcher.</p>
+					<p>WPortfolio also provides easy SCSS files that can be read easily for non-Front-End Developers. In order to change the main color scheme we can edit the SCSS file from <code>wportfolio/assets/scss/base/_variable.scss</code> line <strong>5</strong>, we can edit the color with any color we want.</p>
+					<p>Once we've done, we should run the SASS watcher, by pointing our command line to <code>wp-content/themes/wportfolio/assets</code> and then running sass watcher.</p>
 					<pre><code class="powershell">sass --watch scss:css --style=compressed</code> </pre>
 				</article>
 			</div>

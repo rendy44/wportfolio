@@ -2,10 +2,14 @@ body {
   background-color: darken($white_color, 3%);
 }
 
+nav.nav .frow-container .brand > a {
+  font-family: unset;
+}
+
 // Override content post.
 article {
   h1, h2, h3, h4, h5, p, ul, ol {
-    margin-top: 0 !important;
+    //margin-top: 0 !important;
     margin-bottom: 1rem !important;
   }
 
@@ -18,17 +22,24 @@ article {
   }
 
   h2 {
+    margin-top: 1.5rem;
     font-size: 26px;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   h3 {
+    margin-top: .5rem;
     font-size: 20px;
   }
 
-  code {
+  code:not([class]) {
+    font-size: 80%;
     color: $base-color;
     font-weight: 400;
-    background-color: rgba($black_color, .05);
+    background-color: rgba($black_color, .02);
   }
 
   @include breakpoint($size_tablet) {
