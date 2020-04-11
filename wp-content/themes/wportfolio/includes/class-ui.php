@@ -5,7 +5,7 @@
  *
  * @author  WPerfekt
  * @package WPortfolio
- * @version 0.4.6
+ * @version 0.4.7
  */
 
 namespace WPortfolio;
@@ -1019,13 +1019,14 @@ if ( ! class_exists( 'WPortfolio\UI' ) ) {
 			);
 
 			/**
-			 * WPortfolio archive section args filter hook.
+			 * WPortfolio archive category args filter hook.
 			 *
 			 * @param array $args default args.
 			 *
+			 * @version 0.0.2
 			 * @since 0.0.1
 			 */
-			$args = apply_filters( 'wportfolio_archive_section_args', $args );
+			$args = apply_filters( 'wportfolio_archive_category_args', $args );
 
 			Template::render( 'blog/archive/category', $args );
 		}
