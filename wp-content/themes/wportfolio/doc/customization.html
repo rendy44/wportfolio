@@ -45,6 +45,7 @@
 								<li><a href="#global">Global</a></li>
 								<li><a href="#data">Data Content</a></li>
 								<li><a href="#front">Front Page</a></li>
+								<li><a href="#single">Single Post</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -331,6 +332,65 @@ apply_filters( 'wportfolio_section_blog_content_args', $args, $post_id );</code>
  * @param int $post_id id of the current page.
  */
 apply_filters( 'wportfolio_contact_items', $contact_items, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<h3 id="single">Single Post</h3>
+					<p>Action to add content before single post. See <code>wportfolio/single.php</code> line <strong>38</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio before single post content action hook.
+ *
+ * @param string $current_post_type name of the current post type.
+ * @param int $current_post_id id of the current post.
+ *
+ * @hooked UI::single_page_section_open - 10
+ */
+do_action( 'wportfolio_before_single_content', $current_post_type, $current_post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Action to add content in single post. See <code>wportfolio/single.php</code> line <strong>47</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio single post content action hook.
+ *
+ * @param int $current_post_id id of the current post.
+ */
+do_action( "wportfolio_single_{$current_post_type}_content", $current_post_id );</code> </pre>
+					<p>Where <code>$current_post_type</code> is name of the current post type.</p>
+					<hr class="mini"/>
+					<p>Action to add content after single post. See <code>wportfolio/single.php</code> line <strong>58</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio after single post content action hook.
+ *
+ * @param string $current_post_type name of the current post type.
+ * @param int $current_post_id id of the current post.
+ *
+ * @hooked UI::single_page_section_close - 50
+ */
+do_action( 'wportfolio_after_single_content', $current_post_type, $current_post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in single post opening section. See <code>wportfolio/includes/class-ui.php</code> line <strong>353</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio single section open args.
+ *
+ * @param array $args default args.
+ */
+apply_filters( 'wportfolio_single_section_open_args', $args, $post_type, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in single post meta. See <code>wportfolio/includes/class-ui.php</code> line <strong>394</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio single post meta args filter hook.
+ *
+ * @param array $meta_items default meta items.
+ * @param int $post_id id of the current post.
+ */
+apply_filters( 'wportfolio_single_post_meta_args', $args, $post_id );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in single post like button. See <code>wportfolio/includes/class-ui.php</code> line <strong>483</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio single post like args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current post.
+ * @param Post_Like $post_like object of the current post like.
+ */
+apply_filters( 'wportfolio_single_post_like_args', $args, $post_id, $post_like );</code> </pre>
 					<hr class="mini"/>
 				</article>
 			</div>
