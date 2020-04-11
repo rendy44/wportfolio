@@ -16,6 +16,19 @@ aside {
         font-size: 20px;
       }
 
+      ul {
+        margin-top: .25rem;
+        list-style: none;
+
+        > li {
+          margin-bottom: .25rem;
+
+          a {
+            font-size: 16px;
+          }
+        }
+      }
+
       &:last-child {
         margin-bottom: 0;
       }

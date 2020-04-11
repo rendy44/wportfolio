@@ -46,6 +46,7 @@
 								<li><a href="#data">Data Content</a></li>
 								<li><a href="#front">Front Page</a></li>
 								<li><a href="#single">Single Post</a></li>
+								<li><a href="#archive">Archive Page</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -391,6 +392,87 @@ apply_filters( 'wportfolio_single_post_meta_args', $args, $post_id );</code> </p
  * @param Post_Like $post_like object of the current post like.
  */
 apply_filters( 'wportfolio_single_post_like_args', $args, $post_id, $post_like );</code> </pre>
+					<hr class="mini"/>
+					<h3 id="archive">Archive Page</h3>
+					<p>Action to add content before archive post. See <code>wportfolio/home.php</code> line <strong>32</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio before archive action hook.
+ *
+ * @hooked UI::archive_section_open - 10
+ * @hooked UI::archive_category_list - 20
+ * @hooked UI::archive_post_wrapper_open - 30
+ */
+do_action( 'wportfolio_before_archive' );</code> </pre>
+					<hr class="mini"/>
+					<p>Action to add content in archive post loop. See <code>wportfolio/home.php</code> line <strong>50</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio archive post action hook.
+ *
+ * @param int $post_id id of the current post.
+ *
+ * @hooked UI::archive_post_list - 10
+ */
+do_action( 'wportfolio_archive_post', get_the_ID() );</code> </pre>
+					<hr class="mini"/>
+					<p>Action to add content in no post in archive. See <code>wportfolio/home.php</code> line <strong>61</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio archive no post action hook.
+ *
+ * @hooked UI::archive_no_post - 10
+ */
+do_action( 'wportfolio_archive_no_post' );</code> </pre>
+					<hr class="mini"/>
+					<p>Action to add content after archive post. See <code>wportfolio/home.php</code> line <strong>72</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio after archive action hook.
+ *
+ * @hooked UI::archive_post_wrapper_close - 40
+ * @hooked UI::archive_section_close - 50
+ */
+do_action( 'wportfolio_after_archive' );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in archive opening section. See <code>wportfolio/includes/class-ui.php</code> line <strong>980</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio archive section open args filter hook.
+ *
+ * @param array $args default args.
+ */
+apply_filters( 'wportfolio_archive_section_open_args', $args );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in archive list category. See <code>wportfolio/includes/class-ui.php</code> line <strong>1012</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio archive category args filter hook.
+ *
+ * @param array $category_args default args.
+ *
+ * @since 0.0.1
+ */
+apply_filters( 'wportfolio_archive_category_args', $category_args );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in archive category. See <code>wportfolio/includes/class-ui.php</code> line <strong>1029</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio archive category args filter hook.
+ *
+ * @param array $args default args.
+ */
+apply_filters( 'wportfolio_archive_category_args', $args );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in archive pagination. See <code>wportfolio/includes/class-ui.php</code> line <strong>1074</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio archive pagination args filter hook.
+ *
+ * @param array $args default args.
+ */
+apply_filters( 'wportfolio_archive_pagination_args', $args );</code> </pre>
+					<hr class="mini"/>
+					<p>Filter to modify args in archive post list. See <code>wportfolio/includes/class-ui.php</code> line <strong>1112</strong></p>
+					<pre><code class="php">/**
+ * WPortfolio archive post list args filter hook.
+ *
+ * @param array $args default args.
+ * @param int $post_id id of the current post.
+ */
+apply_filters( 'wportfolio_archive_post_list', $args, $post_id );</code> </pre>
 					<hr class="mini"/>
 				</article>
 			</div>
