@@ -5,7 +5,7 @@
  *
  * @author WPerfekt
  * @package WPortfoli
- * @version 0.0.1
+ * @version 0.0.3
  */
 
 namespace WPortfolio;
@@ -70,6 +70,8 @@ if ( ! class_exists( 'WPortfolio\Rest_Api' ) ) {
 
 		/**
 		 * Rest_Api constructor.
+		 *
+		 * @since 0.0.1
 		 */
 		private function __construct() {
 
@@ -88,6 +90,9 @@ if ( ! class_exists( 'WPortfolio\Rest_Api' ) ) {
 
 		/**
 		 * Map rest api routes.
+		 *
+		 * @version 0.0.3
+		 * @since 0.0.1
 		 */
 		private function map_routes() {
 			$this->routes = array(
@@ -99,6 +104,10 @@ if ( ! class_exists( 'WPortfolio\Rest_Api' ) ) {
 					'methods'  => 'GET',
 					'callback' => array( $this, 'get_recent_posts' ),
 				),
+				'post_detail'  => array(
+					'methods'  => 'GET',
+					'callback' => array( $this, 'get_post_detail' ),
+				),
 			);
 		}
 
@@ -106,6 +115,8 @@ if ( ! class_exists( 'WPortfolio\Rest_Api' ) ) {
 		 * Callback for registering rest api.
 		 *
 		 * @param WP_REST_Server $server rest api server.
+		 *
+		 * @since 0.0.1
 		 */
 		public function register_rest_api( WP_REST_Server $server ) {
 
@@ -125,6 +136,8 @@ if ( ! class_exists( 'WPortfolio\Rest_Api' ) ) {
 		 * @param WP_REST_Request $request api request.
 		 *
 		 * @return WP_REST_Response
+		 *
+		 * @since 0.0.1
 		 */
 		public function get_sections( WP_REST_Request $request ) {
 			$response = new WP_REST_Response( $this->obj_data->get_sections() );
@@ -139,6 +152,8 @@ if ( ! class_exists( 'WPortfolio\Rest_Api' ) ) {
 		 * @param WP_REST_Request $request api request.
 		 *
 		 * @return WP_REST_Response
+		 *
+		 * @since 0.0.2
 		 */
 		public function get_recent_posts( WP_REST_Request $request ) {
 
@@ -167,6 +182,47 @@ if ( ! class_exists( 'WPortfolio\Rest_Api' ) ) {
 
 			$response = new WP_REST_Response( $blog_items );
 			$response->set_status( 200 );
+
+			return $response;
+		}
+
+		/**
+		 * Callback for getting post detail.
+		 *
+		 * @param WP_REST_Request $request api request.
+		 *
+		 * @return WP_REST_Response
+		 *
+		 * @since 0.0.3
+		 */
+		public function get_post_detail( WP_REST_Request $request ) {
+			$param    = $request->get_param( 'slug' );
+			$response = new WP_REST_Response();
+
+			// Find post.
+			$find_post = get_page_by_path( $param, OBJECT, 'post' );
+
+			// Validate post.
+			if ( $find_post ) {
+				$response->set_data(
+					array(
+						'id'                => $find_post->ID,
+						'title'             => $find_post->post_title,
+						'content'           => apply_filters( 'the_content', $find_post->post_content ),
+						'date'              => get_the_date( '', $find_post ),
+						'time'              => get_the_time( '', $find_post ),
+						'thumbnail'         => get_the_post_thumbnail_url( $find_post, 'large' ),
+						'thumbnail_caption' => get_the_post_thumbnail_caption( $find_post ),
+						'tags'              => wp_get_post_tags( $find_post->ID ),
+						'author_avatar_url' => get_avatar_url( $find_post->post_author ),
+						'author_name'       => get_the_author_meta( 'user_nicename', $find_post->post_author ),
+					)
+				);
+				$response->set_status( 200 );
+			} else {
+				$response->set_data( __( 'Post not found', 'wportfolio' ) );
+				$response->set_status( 404 );
+			}
 
 			return $response;
 		}
